@@ -1,0 +1,28 @@
+/* Header style */
+#header {
+  border-bottom: 1px solid #000;
+  margin-bottom: 2vh
+}
+
+#header .title {
+  font-size: 3em;
+}
+
+/* Body style */
+#body {
+  margin-bottom: 2vh;
+}
+
+#body table {
+  width: 100%;
+  text-align: center;
+}
+
+#body table, #body tr, #body td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+/* Footer style */
+#footer {
+}

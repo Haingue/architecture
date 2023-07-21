@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Store A</title>
+    <link rel="stylesheet" href="/css/home.css" />
+    <script type="text/javascript" src="/js/home.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="title">Welcome on Store A</div>
+      <div th:text="${environmentName}">X</div>
+      <div th:text="${authorities}">-</div>
+      <div th:text="${port}">X</div>
+      <div id="timestamp">------</div>
+    </header>
+    <div id="body">
+      <table>
+        <thead>
+          <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Weight</td>
+            <td>Price</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="item : ${items}">
+            <td th:text="${item.id}">-</td>
+            <td th:text="${item.name}">-</td>
+            <td th:text="${item.weight}">-</td>
+            <td th:text="${item.price}+'€'">-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <footer>
+      <a href="/login"><button>Login</button></a>
+      <a href="/logout"><button>Logout</button></a>
+    </footer>
+  </body>
+</html>
