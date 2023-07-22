@@ -1,0 +1,34 @@
+version: "3.9"
+services:
+  store-a_db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    networks:
+      - store-a_internal
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: storeA
+    volumes:
+      - store-a_db_data:/var/lib/postgresql
+  store-a_api:
+    depends_on:
+      - store-a_db
+    #    image: store-a # Use this line if you are build the Dockerfile before
+    build: . # Use this line if you don't want build Dockerfile before
+    environment:
+      - ENV_NAME=production
+    ports:
+      - "8080:8080"
+    networks:
+      - store-a_internal
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels: [APP=Store-A]
+volumes:
+  store-a_db_data:
+networks:
+  store-a_internal:

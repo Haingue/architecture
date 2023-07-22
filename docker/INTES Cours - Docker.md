@@ -137,7 +137,7 @@ Il existe plusieurs moteurs de conteneurs, certains ont des usages différents:
 
 ![bg 40%](../resources/images/docker-engines.png)
 
-> Si vous souhaitez mieux comprendre comment fonctionne un moteur de conteneur et comment nous sommes arrivés à ce niveau, je vous recommande grandement de regarder cette conférence: <br> > [De chroot à Docker à Podman à Wasm, 40 ans d'évolutation](https://www.youtube.com/watch?v=dikQOyAzdS4&pp=ygUQZGV2b3h4IGNvbnRhaW5lcg%3D%3D)
+> Si vous souhaitez mieux comprendre comment fonctionne un moteur de conteneur et comment nous sommes arrivés à ce niveau, je vous recommande grandement de regarder cette conférence: <br/> [De chroot à Docker à Podman à Wasm, 40 ans d'évolutation](https://www.youtube.com/watch?v=dikQOyAzdS4&pp=ygUQZGV2b3h4IGNvbnRhaW5lcg%3D%3D)
 
 ---
 

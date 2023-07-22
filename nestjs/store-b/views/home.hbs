@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Store B</title>
+    <link rel="stylesheet" href="/css/home.css" />
+    <script type="text/javascript" src="/js/home.js"></script>
+  </head>
+  <body>
+    
+    <div id="header">
+        <div class="title">
+            Welcome on Store B
+        </div>
+        <div id="timestamp"></div>
+    </div>
+    <div id="body">
+      <section>
+        <h3>Item catalogue</h3>
+        <table>
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Weight</td>
+                    <td>Price</td>
+                </tr>
+            </thead>
+            <tbody>
+              {{#each items}}
+                <tr>
+                    <td>{{ this.id }}</td>
+                    <td>{{ this.name }}</td>
+                    <td>{{ this.weight }}</td>
+                    <td>{{ this.price }}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+      </section>
+    </div>
+    <div id="footer">
+    </div>
+  </body>
+</html>
