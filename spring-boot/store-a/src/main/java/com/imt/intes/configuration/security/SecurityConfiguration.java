@@ -51,7 +51,8 @@ public class SecurityConfiguration {
                         "/css/**",
                         "/js/**",
                         "/hello").permitAll()
-                .antMatchers("/swagger**", "/webjars/springfox-swagger-ui/**", "/v2/api-docs").permitAll()
+                .regexMatchers("/swagger-ui.*", "/api-docs.*").permitAll()
+                .antMatchers("/actuator/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/service/**").permitAll()
                 .antMatchers("/service/admin/**").hasRole("ADMIN")
                 .antMatchers("/service/user/**").hasAnyRole("ADMIN", "MANAGER")

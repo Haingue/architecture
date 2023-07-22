@@ -32,7 +32,7 @@ public class UserController {
     public ResponseEntity getUser (@PathParam("login") String login, Authentication authentication) {
         logger.info("Load user");
         Function<UserEntity, UserDto> mapper;
-        if (authentication.getAuthorities().contains(Role.ROLE_MANAGER)) {
+        if (authentication != null && authentication.getAuthorities().contains(Role.ROLE_MANAGER)) {
             mapper = (UserEntity entity) -> UserMapper.entityToDto(entity);
         } else {
             mapper = (UserEntity entity) -> UserMapper.entityToDtoAnonymized(entity);
