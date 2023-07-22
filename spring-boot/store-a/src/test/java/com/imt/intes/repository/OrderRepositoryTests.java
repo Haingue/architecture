@@ -16,6 +16,7 @@ import org.springframework.util.Assert;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Optional;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -30,6 +31,28 @@ public class OrderRepositoryTests {
     @Autowired
     private ItemRepository itemRepository;
 
+    private UserEntity prepareUserEntity () {
+        UserEntity user1 = new UserEntity();
+        user1.setLogin("pierreD");
+        user1.setPassword("TEST");
+        user1.setAddress("Address test");
+        user1 = userRepository.save(user1);
+        return user1;
+    }
+
+    private ItemEntity prepareItemEntity () {
+        Optional<ItemEntity> item = itemRepository.findFirstByName("Test order repository");
+        ItemEntity item1;
+        if (item.isPresent()) {
+            return item.get();
+        }
+        item1 = new ItemEntity();
+        item1.setName("Test order repository");
+        item1.setPrice(10.0);
+        item1 = itemRepository.save(item1);
+        return item1;
+    }
+
     @Test
     @Order(1)
     @Transactional
@@ -40,10 +63,7 @@ public class OrderRepositoryTests {
         user1.setAddress("Address test");
         user1 = userRepository.save(user1);
 
-        ItemEntity item1 = new ItemEntity();
-        item1.setName("Test order repository");
-        item1.setPrice(10.0);
-        item1 = itemRepository.save(item1);
+        ItemEntity item1 = prepareItemEntity();
 
         OrderId orderId = new OrderId();
         orderId.setCreationDatetime(LocalDateTime.now());

@@ -4,6 +4,7 @@ import com.imt.intes.model.UserEntity;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.Optional;
@@ -71,6 +72,7 @@ public class UserRepositoryTests {
 
     @Test
     @Order(5)
+    @Transactional
     void delete () {
         Optional<UserEntity> user1Result = userRepository.findById("pierreD");
         Assert.isTrue(user1Result.isPresent(), "The user1 is not found");
