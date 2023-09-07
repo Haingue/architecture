@@ -18,8 +18,17 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
       POSTGRES_DB: storeB
-  adminer:
-    image: adminer
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8090:8080
+  omnidb-gui:
+    image: omnidbteam/omnidb:latest
     restart: always
     ports:
-      - 8090:8080
+      - 8090:8000
+    volumes:
+      - ./omnidb-server:/home/omnidb/.omnidb/omnidb-server
+    # You need to run this command directly in the container:
+    #     python omnidb-server.py --createsuperuser=admin pass
