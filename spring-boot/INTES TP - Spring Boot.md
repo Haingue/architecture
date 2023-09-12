@@ -15,6 +15,12 @@ Créer une application Spring Boot permettant de gérer un entrepôt d’objet.
 5. Modification d’objet
 6. Suppression d’objet
 
+<center>
+
+![](../resources/Store-A_hybrid.png)
+
+</center>
+
 <br><br>
 
 ## Prérequis
