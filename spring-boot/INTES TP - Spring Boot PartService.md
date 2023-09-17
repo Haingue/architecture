@@ -1,6 +1,6 @@
 # Sujet TP – Spring Boot
 
-Dans ce TP, vous aller apprendre/revoir comment utiliser Spring Boot et les modules Spring pour créer une application web.
+Dans ce TP, vous allez apprendre/revoir comment utiliser Spring Boot et les modules Spring pour créer une application web.
 
 <br><br>
 
@@ -59,7 +59,7 @@ Eclipse :
 VS Code / IntelliJ :
 
 - Lancer l’IDE
-- Ouvrez le dossier décompressez
+- Ouvrez le dossier décompressé
 
 Lancer l’application
 
@@ -78,13 +78,13 @@ Rendez-vous sur [http://localhost:8080](http://localhost:8080 "lien de votre app
 
 <br>
 
-Bravo votre installation fonctionne !
+Bravo, votre installation fonctionne !
 
 <br><br>
 
 ## 2. Hello World
 
-Créez votre premier contrôleur pour avoir ce même comportement:<br/>
+Créez votre premier contrôleur pour avoir ce même comportement :<br/>
 
 <center>
 
@@ -94,23 +94,43 @@ Créez votre premier contrôleur pour avoir ce même comportement:<br/>
 
 <br>
 
-Placez le fichier **HelloRestControllerTests** dans votre dossier src/tests/java/com/imt/intes.
+Placez le fichier **HelloRestControllerTests** dans votre dossier src/**tests**/java/com/imt/intes/partservice/controller.
 
 Et lancez la commande suivante :
 
 ```shell
 $ mvn test
 ```
+<details>
+<summary>Cliquez pour voir le contenu de ce fichier.</summary>
 
+```Java
+@SpringBootTest
+@AutoConfigureMockMvc
+class HelloRestControllerTest {
+    @Autowired
+    private MockMvc mvc;
+
+    @Test
+    void loadHelloString () throws Exception {
+        mvc.perform(get("/hello"))
+                .andExpect(status().isOk())
+                .andExpect(content()
+                        .contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
+                .andExpect(content().string("Hello world !"));
+    }
+}
+```
 > Ce fichier contient le test qui vérifiera si votre contrôleur fonctionne, n’hésitez pas à y jeter un coup d’œil pour le comprendre.
+</details>
 
 <br><br>
 
 ## 3. HTML dynamique
 
-Maintenant que vous avez compris le fonctionnement d’un contrôleur, vous allez pouvoir utiliser **Thymeleaf** pour générer une page HTML dynamique.
+Maintenant, que vous avez compris le fonctionnement d’un contrôleur, vous allez pouvoir utiliser **Thymeleaf** pour générer une page HTML dynamique.
 
-Tout d’abord assurez-vous que la dépendance Thymeleaf est bien dans votre pom.xml. Sans ça, vous n’aurais pas accès aux fonctionnalités de ce moteur de template et vous ne pourrez donc pas générer de HTML.
+Tout d’abord, assurez-vous que la dépendance Thymeleaf est bien dans votre pom.xml. Sans ça, vous n’auriez pas accès aux fonctionnalités de ce moteur de template et vous ne pourrez donc pas générer de HTML.
 
 ```xml
 <dependency>
@@ -119,7 +139,7 @@ Tout d’abord assurez-vous que la dépendance Thymeleaf est bien dans votre pom
 </dependency>
 ```
 
-Ensuite créez un fichier HTML « **home.html** » dans le dossier « **template** » de votre projet.
+Ensuite, créez un fichier HTML « **home.html** » dans le dossier « **template** » de votre projet.
 ![Arborescence de votre dossier](../resources/images/spring-boot-src-folder.png)
 
 <br>
@@ -137,7 +157,34 @@ Puis créez le contrôleur permettant de générer la vue.
 </html>
 ```
 
-Placez le fichier **HomeControllerTests** dans votre dossier src/tests/java/com/imt/intes pour vérifier votre code.
+Placez le fichier **HomeControllerTests** dans votre dossier src/**tests**/java/com/imt/intes/partservice/controller pour vérifier votre code.
+
+<details>
+<summary>Cliquez pour voir le contenu de ce fichier.</summary>
+
+```Java
+@SpringBootTest
+@AutoConfigureMockMvc
+public class HomeControllerTests {
+
+    @Autowired
+    private MockMvc mvc;
+
+    @Test
+    void loadHome () throws Exception {
+        mvc.perform(get("/")
+                        .with(SecurityMockMvcRequestPostProcessors.user("admin").password("admin")))
+                .andExpect(status().isOk())
+                .andExpect(content()
+                        .contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andExpect(view().name("home"));
+                // .andExpect(xpath("//html/body/div/div[@class='title']").exists());
+    }
+}
+```
+> Ici, j'utilise thymeleaf pour comparer le resultat avec le template grâce à la méthode *view().name("home")*
+
+</details>
 
 <br><br>
 
@@ -164,11 +211,11 @@ Pour cela, assurez-vous d’avoir toutes les dépendances nécessaires :
     <scope>runtime</scope>
   </dependency>
   ```
-  > Ici nous allons utiliser dans un premier temps la base de données H2database qui permet de lancer une instance en mémoire, à chaque redémarrage les données seront perdues mais c’est très simple pour commencer ou pour faire des tests automatiques.
+  > Ici, nous allons utiliser dans un premier temps la base de données H2database qui permet de lancer une instance en mémoire. A chaque, redémarrage les données seront perdues, mais c’est très simple pour commencer ou pour faire des tests automatiques.
 
 <br>
 
-Ensuite, il faut ajouter les **propriété Spring** permettant à l’application de se connecter à la base de données :
+Ensuite, il faut ajouter les **propriétés Spring** permettant à l’application de se connecter à la base de données :
 
 ```properties
 ## Database properties ##
@@ -182,18 +229,18 @@ spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 Maintenant, votre application est prête pour créer vos entités et les méthodes pour les gérer.
 <br/><br/>
 
-**Créez l'entitée Item et les méthodes permettant de les manipuler**
+**Créez l'entité Item et les méthodes permettant de les manipuler.**
 
 **Entité**:
 
 <center>
 
-| ItemEntity |        |
-| :--------- | :----- |
-| id         | long   |
-| name       | String |
-| weight     | double |
-| price      | double |
+| PartEntity   |        |
+| :---------   | :----- |
+| id           | long   |
+| name         | String |
+| supplierCode | string |
+| description  | string |
 
 </center>
 
@@ -201,13 +248,71 @@ Maintenant, votre application est prête pour créer vos entités et les méthod
 
 **Méthodes** :
 
-- ItemEntity save (ItemEntity entity)
-- Void delete (ItemEntity entity)
-- ItemEntity findFirstByName (String name)
-- List<ItemEntity> findAll ()
-- Page<ItemEntity> findAll (Pageable page)
+- PartEntity save (PartEntity entity)
+- Void delete (PartEntity entity)
+- PartEntity findFirstByName (String name)
+- List<PartEntity> findAll ()
+- Page<PartEntity> findAll (Pageable page)
 
-Placez le fichier **ItemRepositoryTests** dans votre dossier src/tests/java/com/imt/intes pour vérifier votre code.
+Placez le fichier **PartRepositoryTest** dans votre dossier src/**tests**/java/com/imt/intes/partservice/repository pour vérifier votre code.
+
+
+<details>
+<summary>Cliquez pour voir le contenu de ce fichier.</summary>
+
+```Java
+@SpringBootTest
+class PartRepositoryTest {
+
+    private static final PartDto DEFAULT_PART = new PartDto(1L, "test", "00000", "description of the part");
+
+    @Autowired
+    private PartRepository partRepository;
+
+    @Test
+    void insertEntity () {
+        PartEntity originalEntity = PartMapper.dtoToEntity(DEFAULT_PART);
+
+        PartEntity savedEntity = partRepository.save(originalEntity);
+        Assertions.assertEquals(originalEntity, savedEntity, "The object result from save method is different than the original part");
+    }
+
+    @Test
+    void selectEntity () {
+        PartEntity originalEntity = PartMapper.dtoToEntity(DEFAULT_PART);
+        originalEntity = partRepository.save(originalEntity);
+
+        Optional<PartEntity> savedEntity = partRepository.findById(originalEntity.getId());
+        Assertions.assertTrue(savedEntity.isPresent());
+        Assertions.assertEquals(originalEntity, savedEntity.get(), "The part found is not same than the original part");
+    }
+
+    @Test
+    void updateEntity () {
+        PartEntity originalEntity = PartMapper.dtoToEntity(DEFAULT_PART);
+        originalEntity = partRepository.save(originalEntity);
+
+        originalEntity.setName("updated name");
+        originalEntity.setDescription("updated description");
+        PartEntity updatedEntity = partRepository.save(originalEntity);
+        Assertions.assertNotNull(updatedEntity);
+        Assertions.assertEquals(originalEntity, updatedEntity, "The part found is not same than the updated part");
+    }
+
+    @Test
+    void deleteEntity () {
+        PartEntity originalEntity = PartMapper.dtoToEntity(DEFAULT_PART);
+        originalEntity = partRepository.save(originalEntity);
+
+        partRepository.deleteById(originalEntity.getId());
+        Assertions.assertTrue(partRepository.findById(originalEntity.getId()).isEmpty(), "The deleted part still found");
+    }
+
+}
+```
+> Ici, j'utilise thymeleaf pour comparer le résultat avec le template grâce à la méthode *view().name("home")*
+
+</details>
 
 <br><br>
 
@@ -215,7 +320,7 @@ Placez le fichier **ItemRepositoryTests** dans votre dossier src/tests/java/com/
 
 Avant d’aller plus, il serait judicieux de protéger votre application.
 
-Pour cela nous pouvons utiliser **Spring Security**, ce projet Spring va nous permettre d’ajouter une vérification des appels reçu par votre application pour vérifier si le demandeur à le droit d’accéder à la ressource qu’il a demandé.
+Pour cela, nous pouvons utiliser **Spring Security**, ce projet Spring va nous permettre d’ajouter une vérification des appels reçu par votre application pour vérifier si le demandeur à le droit d’accéder à la ressource qu’il a demandée.
 
 <br>
 
@@ -242,7 +347,7 @@ spring-security-started-log
 
 <br>
 
-Rafraichissez votre page d’accueil, normalement une page de connexion devrait apparaitre.
+Rafraichissez votre page d’accueil, normalement une page de connexion devrait apparaître.
 La configuration automatique de Spring Security a créé un utilisateur avec le login user et un mot de passe temporaire généré automatiquement (affiché dans les logs).
 Il sera regénéré à chaque redémarrage de l’application, je vous laisse trouver le moyen pour fixer ce mot de passe.
 
@@ -262,18 +367,18 @@ Comme votre application est sécurisé, vous pouvez créer des points de termina
 
 <br>
 
-Créez c’est Endpoints :
+Créez ces Endpoints :
 
-- **GET** : /service/item<br>
-  Renvoi la liste des items sauvegardée
-- **POST** : /service/item<br>
-  Permet de sauvegarder un nouvel item
-- **PUT** : /service/item<br>
-  Permet de mettre à jour un item existant
-- **DELETE** : /service/item<br>
-  Permet de supprimer un item existant
-- **GET** : /service/item/search/_\<nameRegex\>_<br>
-  Renvoi tous les items qui ont un nom ressemblant à _nameRegex_
+- **GET** : /service/part<br>
+  Renvoi la liste des pièces sauvegardées
+- **POST** : /service/part<br>
+  Permet de sauvegarder une nouvelle pièce
+- **PUT** : /service/part<br>
+  Permet de mettre à jour une pièce existante
+- **DELETE** : /service/part<br>
+  Permet de supprimer une pièce existante
+- **GET** : /service/part/search/_\<supplierCodeRegex\>_<br>
+  Renvoi tous les pièces qui ont un nom ressemblant à **_supplierCodeRegex_**
 
 Vous pouvez également ajouter un tableau HTML sur votre page d’accueil pour être capable de voir le contenu de votre base de données.
 
@@ -305,7 +410,7 @@ Cette configuration permet de rendre public toutes actions de lecture sur les ur
 
 Libre à vous de configurer la sécurité que vous souhaitez.
 
-###### _PS : Si vous êtes sur le même réseau, vous êtes capable d’accéder aux Endpoints de vos collègue 😉_
+###### _PS : si vous êtes sur le même réseau, vous êtes capable d’accéder aux Endpoints de vos collègue 😉_
 
 <br><br>
 
@@ -313,7 +418,7 @@ Libre à vous de configurer la sécurité que vous souhaitez.
 
 ## 7. User (rôle, items, …)
 
-Essayez d’ajouter des utilisateurs, rôles (« USER », « ADMIN ») ainsi que des relations entre item et user.
+Essayez d’ajouter des utilisateurs, rôles (« USER », « ADMIN ») ainsi que des relations entre part et user.
 
 > | UserEntity |            |
 > | :--------- | :--------- |
@@ -329,7 +434,7 @@ Essayez d’ajouter des utilisateurs, rôles (« USER », « ADMIN ») ainsi que
 
 <br><br>
 
-## 8. Communication storeB
+## 8. Communication avec SupplierService
 
 Depuis votre application Spring Boot, essayez d’appeler une autre API.
 Pour cela, vous pouvez définir un nouveau service qui enverra une requête http à votre second API et traitera les données en retour (voir : WebClient de Spring Reactive).

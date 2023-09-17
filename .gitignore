@@ -1,5 +1,7 @@
 ### Documents ###
 *.pptx
+*.pdf
+*.bak
 
 ### IntelliJ IDEA ###
 .idea

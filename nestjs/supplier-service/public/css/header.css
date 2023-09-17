@@ -1,0 +1,11 @@
+#header {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 2em;
+
+    border-bottom: solid 1px black;
+}
+
+#header a:hover {
+    color: black;
+}

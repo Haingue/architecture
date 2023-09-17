@@ -1,0 +1,60 @@
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Supplier list</title>
+    <script type="text/javascript" src="/js/supplier-list.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="/css/supplier-list.css">
+</head>
+<body>
+{{>header}}
+
+{{#if error}}
+<div class="error">
+    {{error}}
+</div>
+{{/if}}
+{{#if systemError}}
+<div class="system-error">
+    {{systemError}}
+</div>
+{{/if}}
+
+<main>
+    Supplier list:
+    <table>
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each suppliers}}
+            <tr id="{{code}}">
+                <td>{{code}}</td>
+                <td>{{name}}</td>
+                <td>{{address}}</td>
+                <td>
+                    <a href="/client/supplier/{{code}}">Delete</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <br/>
+    <div>
+        <form action="/client/supplier" method="post">
+            <input name="code" type="text" />
+            <input name="name" type="text" />
+            <input name="address" type="text" />
+            <button>Submit</button>
+        </form>
+    </div>
+</main>
+{{>footer}}
+</body>
+</html>

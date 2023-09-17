@@ -74,8 +74,8 @@ footer: "Fabien HAINGUE"
 
 ## JavaScript
 
-Javascript est un langage de script créer en 1995 par **Sun Microsystems** et **Netscape** pour le navigateur Netscape.
-Initialement, il était utilisé pour donner du dynamise aux pages HTML côté **navigateur (client)** mais maintenant on l’utilise aussi bien pour du backend/frontend côté client/serveur.
+Javascript est un langage de script créé en 1995 par **Sun Microsystems** et **Netscape** pour le navigateur Netscape.
+Initialement, il était utilisé pour donner du dynamise aux pages HTML côté **navigateur (client)**, mais maintenant, on l’utilise aussi bien pour du backend/frontend côté client/serveur.
 
 <center>
 
@@ -83,10 +83,12 @@ Initialement, il était utilisé pour donner du dynamise aux pages HTML côté *
 
 </center>
 
-> Au départ le langage devait s'appeler LiveScript mais le nom Javascript a été utilisé pour faciliter l’acception de la technologie et faire un coup de pub. <br/>
-> Au final, cela à causé de la confusion entre Java et JavaScript.
+---
 
-Javascript est un langage qui n’a pas de moteur officiel, c’est-à-dire qu’a l’époque Netscape avait son moteur Javascript et Microsoft le sien nommé Jscript, etc…
+> Au départ, le langage devait s'appeler LiveScript, mais le nom Javascript a été utilisé pour faciliter l’acception de la technologie et faire un coup de pub. <br/>
+> Au final, cela a causé de la confusion entre Java et JavaScript.
+
+Javascript est un langage qui n’a pas de moteur officiel. C’est-à-dire qu’à l’époque, Netscape avait son moteur Javascript et Microsoft le sien nommé Jscript, etc…
 
 ---
 
@@ -94,10 +96,10 @@ Javascript est un langage qui n’a pas de moteur officiel, c’est-à-dire qu�
 
 ## Fonctionnement
 
-Javascript est un langage de type scripte basé sur la [programmation orientée prototype](https://developer.mozilla.org/fr/docs/Glossary/Prototype-based_programming).<br/>
+Javascript est un langage de type script basé sur la [programmation orientée prototype](https://developer.mozilla.org/fr/docs/Glossary/Prototype-based_programming).<br/>
 Il a été standardisé pour facilité son utilisation, c’est ECMA international qui s’en est occupé pour la première fois en 1997
 
-ECMA est un ensemble de norme à propos des langage de type script créer par ECMA international.
+ECMA est un ensemble de norme à propos des langages de type script créés par ECMA international.
 
 ---
 <!-- header: 'Javascript' -->
@@ -114,7 +116,7 @@ ECMA est un ensemble de norme à propos des langage de type script créer par EC
 ---
 <!-- header: 'Javascript' -->
 
-### Comment Javascript fonctionne-t-il ?
+### Comment Javascript, fonctionne-t-il ?
 C’est un **langage interprété**.<br>
 C’est-à-dire que le code source et directement lu pendant son exécution ce qui rend le langage **cross-platform**.
 <center>
@@ -140,7 +142,7 @@ C’est-à-dire que le code source et directement lu pendant son exécution ce q
     return 42;
   }
   ```
-
+---
 - Fonction anonyme
   ```Javascript
   () => 42
@@ -224,15 +226,15 @@ user1.getName();
 ## Node.js
 ![bg right 50%](../resources/images/nestjs-nodejs-logo.png)
 
-Node.js est un moter d'exécution de Javascript qui fonctionne côté serveur, il utilise:
+Node.js est un moteur d'exécution de Javascript qui fonctionne côté serveur, il utilise :
 - le moteur Javascript **V8** de Google
-- la librairy **LibUV** (permet de gérer sa boucle événementielle).
+- la librairie **LibUV** (permet de gérer sa boucle événementielle).
 
 ---
 
-Ce projet open-source permet de créer des applications web événementielle:
+Ce projet open-source permet de créer des applications web événementiel:
 - **cross-platforme**
-- **hautement concurrent** (ne créer pas de nouveau thread par rêquete d'utilisateur et est non blocant).
+- **hautement concurrent** (ne créer pas de nouveau thread par requête d'utilisateur et est non bloquant).
 
 ---
 <!-- header: 'Node.js' -->
@@ -261,7 +263,7 @@ server.listen(3000, () =>
 
 ---
 
-#### Comment Javascript fonctionne-t-il ?
+#### Comment Javascript, fonctionne-t-il ?
 C’est un **langage interprété**.<br>
 C’est-à-dire que le code source et directement lu pendant son exécution ce qui rend le langage **cross-platform**.
 <center>
@@ -285,13 +287,13 @@ Comme Spring Boot, il utilise l’**inversion de contrôle** ([IoC](https://gaye
 
 On retrouve le même principes:
 - **Controller**: ensemble de classe gérant les entrées/sorties de l’application
-- **Module**: ensemble de classe liant les différentes partie du projet
+- **Module**: ensemble de classe liant les différentes parties du projet
 - **Provider** (~Service): ensemble de classe gérant les logiques
 
 
-Avec Nest.js, vous pouvez ecrire votre code en Javascript classique (vanilla) ou en TypeScript.
+Avec Nest.js, vous pouvez écrire votre code en Javascript classique (vanilla) ou en TypeScript.
 > Il est conseillé d’utiliser TypeScript.<br/>
-> TypeScript est une variante du Javascript, « c’est la même chose mais avec du typage ».
+> TypeScript est une variante du Javascript, « c’est la même chose, mais avec du typage ».
 
 ---
 <!-- header: 'Nest.js' -->
@@ -316,7 +318,7 @@ Avec Nest.js, vous pouvez ecrire votre code en Javascript classique (vanilla) ou
 
  ## TypeScript
 
-Ce langage est une dérivé d'ECMAScript car il ajoute la notion de typage.
+Ce langage est un dérivé d'ECMAScript car il ajoute la notion de typage.
 
 ```TypeScript
 interface User {
@@ -359,7 +361,7 @@ Tutoriel
 
 ## Controller
 
-Un contrôleur sert à définir les comportement lors de réception de **requête HTTP** et renvoi une **réponse HTTP** au client.
+Un contrôleur sert à définir les comportements lors de réception de **requête HTTP** et renvoie une **réponse HTTP** au client.
 
 ---
 
@@ -383,19 +385,20 @@ export class HelloController {
 }
 ```
 
-L’annotation **@Controller** signaler au conteneur Nest IoC que cette classe est un contrôleur, et on peut utiliser certains paramètre pour modifier l’utilisation de cette classe (ex: path).<br/>
-Ensuite j’utilise l’annotation **@Get** pour définir la méthode HTTP servant à exécuter la méthode getHello.<br/>
+---
+L’annotation **@Controller** signaler au conteneur Nest IoC que cette classe est un contrôleur, et on peut utiliser certains paramètres pour modifier l’utilisation de cette classe (ex: path).<br/>
+Ensuite, j’utilise l’annotation **@Get** pour définir la méthode HTTP servant à exécuter la méthode getHello.<br/>
 Il existe toutes les méthodes HTTP: **@GET**, **@POST**, **@DELETE**, **@PUT**, …
 
 Dans le constructeur de la classe, vous pouvez voir qu’il y a un seul paramètre HelloService.
-Cela sert a demander au conteneur Nest IoC de nous fournir une instance d'un objet (HelloService).
+Cela sert à demander au conteneur Nest IoC de nous fournir une instance d'un objet (HelloService).
 
 ---
 <!-- header: 'Nest.js' -->
 
 ## Provider
 
-Beaucoup de classe peuvent être considérer comme un provider (service/repository/factories/helper/…) (e.q. aux components de Spring Boot).
+Beaucoup de classes peuvent être considérées comme un provider (service/repository/factories/helper/…) (e.q. aux composants de Spring Boot).
 Un provider peut être injecté comme une **dépendance**.
 
 --- 
@@ -418,8 +421,8 @@ export class HelloService {
 }
 ```
 
-Dans cet exemple, j’utilise l’annotation **@Injectable** pour signaler que cette classe peut être managé par le conteneur Nest IoC (e.q @Component de Spring Boot).<br/>
-Et je définie 2 méthodes pour renvoyer « Hello world », l’une avec le nom et l’autre sans.
+Dans cet exemple, j’utilise l’annotation **@Injectable** pour signaler que cette classe peut être managée par le conteneur Nest IoC (e.q @Component de Spring Boot).<br/>
+Et je définis 2 méthodes pour renvoyer « Hello world », l’une avec le nom et l’autre sans.
 
 ---
 <!-- header: 'Nest.js' -->
@@ -435,7 +438,7 @@ Pour garder votre code **organisé**, vous pouvez utiliser les modules.<br/>
 
 ---
 
-Par exemple, si vous définissez un ensemble de classe permettant de gérer des utilisateurs, vous devez créer un modules et y placer toutes vos classes dedans.
+Par exemple, si vous définissez un ensemble de classe permettant de gérer des utilisateurs, vous devez créer un module et y placer toutes vos classes dedans.
 
 Chaque application a un **module racine** défini dans le fichier « app.module.ts ».
 C ’est dans ce module que vous allez importer vos modules enfant (ex: User modules/Item module) et des modules externes (orm, hbs, …).
@@ -447,11 +450,11 @@ Un module utilisé dans plusieurs modules est appelé un **shared module**.
 <!-- header: 'Nest.js' -->
 
 ### Exemple
-Je créer les classe suivant:
+Je créais les classes suivantes:
 - HelloController: définie les endpoints
 - HelloService: définie le code métier
 
-Si je ne créer pas de nouveau module, à chaque fois que je souhaiterai utiliser mon code, je devrais importer chaque classe.
+Si je ne créer pas de nouveau module, à chaque fois que je souhaiterais utiliser mon code, je devrais importer chaque classe.
 
 ---
 
@@ -474,7 +477,7 @@ export class AppModule {}
 
 ---
 
-Alors que si je définie le module HelloModule, je n’aurai plus qu’a l’importer.
+Alors que si je définis le module HelloModule, je n’aurai plus qu’a l’importer.
 
 <center>
 
@@ -519,9 +522,9 @@ export class AppModule {}
 <!-- header: 'Nest.js' -->
 
 ## Pipes
-Les pipes sont utilisés souvent de 2 manières:
+Les pipes sont utilisés souvent de 2 manières :
 - Pour **transformer** les données d’input en une forme plus adapté (e.g., un string deviens un integer)
-- Pour **évaluer** les données d’entrée and les verifier, et si elles sont valides, les laisse continuer sinon lance une exception.
+- Pour **évaluer** les données d’entrée and les vérifier, et si elles sont valides, les laisse continuer sinon lance une exception.
 
 ![bg right 100%](../resources/images/nestjs-pipes.png)
 
@@ -623,7 +626,7 @@ if(error) {
 
 ## Guards
 
-Un Guard sert à une seul chose, vérifier si les requêtes HTTP entrant ont le **droit d’accéder** au point d’entrée demandé.
+Un Guard sert à une seul chose, vérifier si les requêtes HTTP entrantes ont le **droit d’accéder** au point d’entrée demandé.
 Il faut que la requête respecte des **conditions** (ex: rôle/permissions/…) que vous pouvais définir vous-même. (~Spring security)
 
 <center>
@@ -634,7 +637,7 @@ Il faut que la requête respecte des **conditions** (ex: rôle/permissions/…) 
 
 ---
 
-Possibilité de créer ses propre Guard, il faut **override** la fonction *canActivate* et renvoyer une Exception, Faux ou Vrai (ex: validateRequest).
+Possibilité de créer ses propres Guard, il faut **override** la fonction *canActivate* et renvoyer une Exception, Faux ou Vrai (ex: validateRequest).
 
 ```TypeScript
 @Injectable()
@@ -679,7 +682,6 @@ export class RolesModule {}
 <!-- header: 'Nest.js' -->
 
 ## Tests
-
 ### Jest Unit test
 
 <center>
