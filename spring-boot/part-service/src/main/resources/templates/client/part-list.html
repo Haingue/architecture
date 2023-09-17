@@ -1,0 +1,54 @@
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Part list</title>
+    <script type="text/javascript" src="/js/part-list.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="/css/part-list.css">
+</head>
+<body>
+<header th:replace="fragments/header :: header"></header>
+<div th:if="${error != null}" class="error">
+    <span th:text="${error.toString()}"></span>
+</div>
+<div th:if="${systemError != null}" class="system-error">
+    <span th:text="${systemError.toString()}"></span>
+</div>
+<main>
+    Part list:
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Supplier Code</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr th:each="part : ${partList}" th:id="${part.id}">
+            <td th:text="${part.id}">id</td>
+            <td th:text="${part.name}">name</td>
+            <td th:text="${part.supplierCode}">supplierCode</td>
+            <td th:text="${part.description}">description</td>
+            <td>
+                <a th:href="'/client/part/'+${part.id}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+    <div>
+        <form th:action="@{/client/part}" method="post">
+            <input name="id" type="number" />
+            <input name="name" type="text" />
+            <input name="supplierCode" type="text" value="0000" hidden />
+            <input name="description" type="text" />
+            <button>Submit</button>
+        </form>
+    </div>
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

@@ -86,7 +86,7 @@ footer: "Fabien HAINGUE"
 ## Fonctionnement
 
 [Java](<https://fr.wikipedia.org/wiki/Java_(technique)>) est un langage de **programmation orienté objet**.
-La version 1.0 de Java est sorti en **1995** par la société [Sun Microsystems](https://fr.wikipedia.org/wiki/Sun_Microsystems).
+La version 1.0 de Java est sortie en **1995** par la société [Sun Microsystems](https://fr.wikipedia.org/wiki/Sun_Microsystems).
 
 <br/>
 
@@ -134,7 +134,7 @@ Java possède trois éditions
 
 </center>
 La POO permet de faciliter la vie des développeurs.<br/>
-Plus longue à mettre en place mais permet de garder une bonne structure du code.
+Plus longue à mettre en place, mais permet de garder une bonne structure du code.
 
 ---
 
@@ -167,7 +167,7 @@ Optional<Object> wrapper = Optional.of(obj);
 wrapper.ifPresent(object -> System.out.println(object));
 Object resultObject = wrapper.orElseThrow(() -> new EntityNotFoundException());
 ```
-
+---
 ### Stream
 
 ```java
@@ -185,7 +185,7 @@ JVM options:
 
 ## Maven / Gradle
 
-Outils pour construire vos application Java et autre
+Outils pour construire vos applications Java et autres
 
 - Automatiser certaines tâches : compilation, tests unitaires et déploiement des applications qui composent le projet
 - Gérer des dépendances vis-à-vis des bibliothèques nécessaires au projet
@@ -212,7 +212,7 @@ Outils pour construire vos application Java et autre
 
 ## Spring framework
 
-Historiquement, le framework Spring est le premier à avoir été créé. Spring permet de construire et définir l’infrastructure d’une application Java.
+Historiquement, le framework Spring est le premier à avoir été créé. Spring permet de construire et de définir l’infrastructure d’une application Java.
 
 <center>
 
@@ -220,7 +220,7 @@ Historiquement, le framework Spring est le premier à avoir été créé. Spring
 
 </center>
 
-Ensuite plusieurs projet ont émergés de l’équipe Spring:
+Ensuite plusieurs projets ont émergé de l’équipe Spring:
 
 - Spring Data pour le traitement de données
 - Spring Web pour les applications Web.
@@ -267,7 +267,7 @@ public class ReservationSalleService {
 }
 ```
 
-<br/>
+---
 
 Couplage faible
 
@@ -292,16 +292,19 @@ public class ReservationSalleService {
 
 ---
 
-Spring prend en charge la création d'objets et la mise en relation d'objets. <center>
+Spring prend en charge la création et la mise en relation d'objets.
+
+<center>
 
 ![h:300](../resources/images/spring-ioc.png)
 
 </center>
+
 Spring est considéré comme un conteneur léger (*rien à voir avec la conteneurisation*)
 
 - Création des objets
 - Injection des dépendances
-- Aspects non fonctionnels
+- Aspects non-fonctionnels
 
 ---
 
@@ -326,8 +329,9 @@ public class ReservationSalleService {
   }
 }
 ```
-
 </div>
+
+---
 
 <div>
 Annotation
@@ -365,7 +369,7 @@ Les objets managés sont des **Beans**.
 
 <center>
 
-![](../resources/images/spring-boot-projects.png)
+![height:350px](../resources/images/spring-boot-projects.png)
 
 </center>
 
@@ -380,12 +384,12 @@ Libre au développeur de modifier ces valeurs par défaut.
 
 <center>
 
-![h:500](../resources/images/spring-boot-starters.png)
+![h:400](../resources/images/spring-boot-starters.png)
 
 </center>
 
 Tous ces projets peuvent être utilisés dans des projets Java.
-Par contre, grâce à Spring Boot l’utilisation est devenue beaucoup plus simple car ils ont créé des starters pour chaque projets Spring et tiers.
+Par contre, grâce à Spring Boot l’utilisation est devenue beaucoup plus simple, car ils ont créé des starters pour chaque projets Spring et tiers.
 
 [Liste des starters Spring Boot](https://www.javatpoint.com/spring-boot-starters)
 
@@ -408,7 +412,7 @@ Concrètement, il simplifie la manipulation des servlets Java ce qui permet de f
 
 ---
 
-Pour créer un point d'entré (_endpoint_) à votre application Web, vous devez créer un **Controller**.
+Pour créer un point d'entrée (_endpoint_) à votre application Web, vous devez créer un **Controller**.
 
 Il existe deux types de contrôleur:
 
@@ -417,7 +421,7 @@ Il existe deux types de contrôleur:
 - **RestController**
   Permet de renvoyer une réponse HTTP ([API Rest](https://aws.amazon.com/fr/what-is/restful-api/))
 
-Un fois votre choix fait, vous devez placer l'annotation **@Controller** ou **@RestController** au-dessus de votre classe.
+Une fois votre choix fait, vous devez placer l'annotation **@Controller** ou **@RestController** au-dessus de votre classe.
 
 ---
 
@@ -444,10 +448,10 @@ public class PersonController {
   }
 }
 ```
-
+---
 > La méthode _getPersonById_ renvoie une chaîne de caractère qui permet de définir le nom du patron HTML qui sera envoyé au client.
 
-> Un point d'entré dans un @Controller peut directement renvoyer de la donnée en utilisant l'annotation @ResponseBody placé juste avant la signature de fonction
+> Un point d'entrée dans un @Controller peut directement renvoyer de la donnée en utilisant l'annotation @ResponseBody placé juste avant la signature de fonction
 
 </div>
 
@@ -474,7 +478,7 @@ public class PersonRestController {
   }
 }
 ```
-
+---
 > L'objet ResponseEntity permet de définir l'état, les headers et le body de la réponse HTTP
 
 </div>
@@ -507,34 +511,38 @@ public class PersonController {
   }
 }
 ```
-
+---
 <center>
 
 &#8595;
-
-</center>
 
 ```html
 <div class="title">Hello <span th:text="${name}">Unknow</span></div>
 ```
 
-<center>
-
 &#8595;
 
-</center>
 
 ```html
-<div class="title">Hello <span th:text="${name}">Unknow</span></div>
+<div class="title">Hello <span>Paul</span></div>
 ```
+</center>
 
-> Avec Thymeleaf, vous pouvez manipuler du Java dans votre fichier HTML dans le but de dynamiser vos balise HTML pendant le rendu.
+---
+> Avec Thymeleaf, vous pouvez manipuler du Java dans votre fichier HTML dans le but de dynamiser vos balises HTML pendant le rendu.
 >
 > - Remplacer du texte
 > - Remplacer du HTML
 > - Remplacer des attributs
 > - Insérer le contenu d’un autre fichier (ex: header.html)
 > - Rediriger un appel vers un autre contrôleur en ajoutant des variables au model (ex: error)
+
+---
+<center>
+
+![](../resources/images/spring-boot-thymeleaf-code.png)
+
+</center>
 
 ---
 
@@ -544,11 +552,14 @@ public class PersonController {
 
 Ce projet permet de gérer les interactions avec un SGBD ([doc](https://gayerie.dev/epsi-b3-orm/spring_data/spring_data_jpa.html)).
 
-Grâce à divers modules, vous pourrez gérer la plupart des SGBD existant.
+Grâce à divers modules, vous pourrez gérer la plupart des SGBD existants.
 
+---
+
+### JPA
 Les requêtes sont abstraites grâce à des conventions de nommage.
 
-> On écrit des requête en **JPQL** depuis le code Java et les modules vont traduire le JPQL dans le langage spécifique de votre SGBD
+> On écrit des requêtes en **JPQL** depuis le code Java et les modules vont traduire le JPQL dans le langage spécifique de votre SGBD
 
 ---
 
@@ -565,7 +576,7 @@ public interface PersonRepository extends CrudRepository<PersonEntity, Long> {
 ```
 
 > Etendre la classe **CrudRepository** vous permet d'avoir plusieurs méthodes classiques sans devoir les écrire (save, update, delete, find, ...)
-> Ils existent plusieurs interface du même type ([voir article](https://www.baeldung.com/spring-data-repositories)).
+> Il existe plusieurs interface du même type ([voir article](https://www.baeldung.com/spring-data-repositories)).
 
 ---
 
@@ -582,18 +593,21 @@ Spring Security est un module permettant d’ajouter des méthodes de filtrage p
 ---
 
 Son fonctionnement est simple, il intercepte les requêtes HTTP reçu du client.
-Il applique des **filtres** pour vérifier l’identité du client
-Si un filtre authentifie la requête, Spring Security va laisser Spring Web travailler.
-Si aucun filtre ne l’authentifie, la requête sera renvoyée avec un **code HTTP** d’erreur (401) ou de redirection (301) pour rediriger le client vers la page de connexion.
 
-> Par défaut, Spring Security sécuriser automatiquement votre application.
-> Charge à vous de modifier cette configuration en surchargeant les méthodes.
+Il applique des **filtres** pour vérifier l’identité du client.
+-  Si un filtre authentifie la requête, Spring Security va laisser Spring Web travailler.
+-  Si aucun filtre ne l’authentifie, la requête sera renvoyée avec un **code HTTP** d’erreur (401) ou de redirection (301) pour rediriger le client vers la page de connexion.
 
 <center>
 
 ![bg right:40% 100%](../resources/images/spring-boot-security-filters.png)
 
 </center>
+
+---
+
+> Par défaut, Spring Security sécurise automatiquement votre application.
+> Charge à vous de modifier cette configuration en surchargeant les méthodes.
 
 ---
 
@@ -610,15 +624,15 @@ Si aucun filtre ne l’authentifie, la requête sera renvoyée avec un **code HT
 Pour modifier l'utilisation des filtres de sécurité, il vous faut surcharger la bean **SecurityFilterChain**.
 <br/>
 
-Vous aller pouvoir:
+Vous allez pouvoir :
 
 - Modifier les autorisations d'accès
 - Activer/Désactiver des fonctionnalités (CSRF, CORS, ...)
 - ...
-
+---
 > CSRF: technique pour manipuler un utilisateur connecté à lancer une requête au serveur
-> CORS: sécurité sur les navigateur pour empêcher une page web de chargé du contenu d’un serveur n’ayant pas la même origine (usurpation de site, …)
-> FrameOption: options personnalisable pour l’utilisation de votre application depuis des \<iframe\>
+> CORS: sécurité sur les navigateurs pour empêcher une page web de chargé du contenu d’un serveur n’ayant pas la même origine (usurpation de site, …)
+> FrameOption: options personnalisables pour l’utilisation de votre application depuis des \<iframe\>
 
 ---
 
@@ -663,7 +677,7 @@ public class SecurityConfiguration {
 
 ### Tests boîtes blanches
 
-Mise en place de tests en utilisant les composants interne de votre application (Service, Repository, ...).
+Mise en place de tests en utilisant les composants internes de votre application (Service, Repository, ...).
 
 ```java
 @SpringBootTest
@@ -725,7 +739,7 @@ public class ItemRestController {
 
 ---
 
-> Il y a plusieurs façon de faire des tests boîte noir ([voir article](https://docs.spring.io/spring-framework/reference/testing/spring-mvc-test-framework/vs-end-to-end-integration-tests.html))
+> Il y a plusieurs façons de faire des tests boîte noire ([voir article](https://docs.spring.io/spring-framework/reference/testing/spring-mvc-test-framework/vs-end-to-end-integration-tests.html))
 >
 > - MockMVC
 > - End-to-End
@@ -736,22 +750,23 @@ public class ItemRestController {
 
 ![bg right:30% 80%](../resources/images/spring-webflux-logo.png)
 
-Avec ce projet, vous aller pouvoir créer des application **réactive** ([doc](https://docs.spring.io/spring-framework/docs/5.0.0.M4/spring-framework-reference/html/web-reactive.html)).
+Avec ce projet, vous allez pouvoir créer des application **réactive** ([doc](https://docs.spring.io/spring-framework/docs/5.0.0.M4/spring-framework-reference/html/web-reactive.html)).
 
 > En informatique, la programmation réactive est un paradigme de programmation visant à conserver une cohérence d'ensemble en propageant les modifications d'une source réactive (modification d'une variable, entrée utilisateur, etc.) aux éléments dépendants de cette source.
 
 ---
 
-Pour une meilleure expérience, toute votre pile technique doit être réactif (API, SGBD, ...).
-<br/>
+Pour une meilleure expérience, toute votre pile technique doit être réactive (API, SGBD, ...).
+
+> Vous pouvez ajouter Spring Webflux à un projet Spring Boot existant est modifier petit à petit vos Controllers puis vos Services puis vos Repository...
+
+---
 
 ### Avantages:
 
 - Meilleurs performances
-- Adapté pour les débits faible (Portable, appareil en mouvement)
+- Adapté pour les débits faibles (smartphone, appareil en mouvement)
 - ...
-
-> Vous pouvez ajouter Spring Webflux a un projet Spring Boot existant est modifier petit à petit vos contrôleur puis vos service puis vos Repository...
 
 ---
 
@@ -767,7 +782,7 @@ Pour une meilleure expérience, toute votre pile technique doit être réactif (
 
 ## Spring WebClient
 
-Avec la création de Spring Webflux, les équipes Spring ont créer un client Web beaucoup plus pratique pour appeler des applications Web.
+Avec la création de Spring Webflux, les équipes Spring ont créé un client Web beaucoup plus pratique pour appeler des applications Web.
 
 Je vous conseille donc d'utiliser cet outil plutôt que les anciens comme RestTemplate ou autre.
 
@@ -793,6 +808,7 @@ public class WeatherClientConfig {
   }
 }
 ```
+---
 
 Utilisation du client
 
@@ -840,7 +856,7 @@ Spring Boot est compatible avec **Kotlin**.
 
 Kotlin est un langage moderne utilisant le principe d’inconsistance (réduction des boilerplate, null safe, réduction du nombre de lignes).
 
-> C’est le python du monde Java
+---
 
 ```kotlin
 @GetMapping("/")
@@ -850,6 +866,8 @@ fun blog(model: Model): String {
   return "blog"
 }
 ```
+
+> C’est le python du monde Java
 
 > Vous pouvez suivre le tutoriel [officiel](https://spring.io/guides/tutorials/spring-boot-kotlin/)
 
@@ -874,9 +892,12 @@ fun blog(model: Model): String {
   ```
 
   > Fin des println hasardeux !
+---
 
 - [Devtools](https://docs.spring.io/spring-boot/docs/2.0.6.RELEASE/reference/html/howto-hotswapping.html)
   Hotreload/Hotswap
+
+<br/><br/>
 
 - [Remote debug](https://www.baeldung.com/spring-debugging)
   JVM options:

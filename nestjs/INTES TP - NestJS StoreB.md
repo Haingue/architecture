@@ -10,6 +10,11 @@ Créer une application NestJs permettant de gérer un entrepôt d’objet.
 -	Obtenir tous les objets
 -	Rechercher un objet
 
+<center>
+
+![](../resources/Store-B_hybrid.png)
+
+</center>
 
 <br><br>
 ## Prérequis

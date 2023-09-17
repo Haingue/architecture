@@ -102,7 +102,7 @@ Quand une mise à jour est à faire cela est très compliqué, car il faut s’a
 1 gros serveur physique avec un hyperviseur<br/>
 Chaque VM créée possède des ressources réservées par l’hyperviseur (RAM/Disk/CPU).<br/>
 L’avantage est que si on redémarre une VM, les autres ne sont pas impactés.<br/>
-Et chaque VM peuvent avoir des installations différentes.
+Et chaque VMs peuvent avoir des installations différentes.
 
 ![bg right 85%](../resources/images/docker-principes-virtualization.png)
 
@@ -137,6 +137,8 @@ Il existe plusieurs moteurs de conteneurs, certains ont des usages différents:
 
 ![bg 40%](../resources/images/docker-engines.png)
 
+---
+
 > Si vous souhaitez mieux comprendre comment fonctionne un moteur de conteneur et comment nous sommes arrivés à ce niveau, je vous recommande grandement de regarder cette conférence: <br/> [De chroot à Docker à Podman à Wasm, 40 ans d'évolutation](https://www.youtube.com/watch?v=dikQOyAzdS4&pp=ygUQZGV2b3h4IGNvbnRhaW5lcg%3D%3D)
 
 ---
@@ -158,7 +160,7 @@ Docker a rendu la création de conteneur plus facile en deux étapes:
 
 ---
 
-![bg 100%](../resources/images/docker-container.png)
+![bg 95%](../resources/images/docker-container.png)
 
 ---
 
@@ -173,7 +175,7 @@ Un Dockerfile est un fichier écrit en [YAML](https://fr.wikipedia.org/wiki/YAML
 </p>
 <p>
   Toutes les images docker sont stockées dans un registre d'image.<br/>
-  Toutes les images que vous créez sont stockées sur votre registre local, mais il existe de notre registre sur internet comme [DockerHub](https://hub.docker.com/) qui est le registre officiel de Docker.
+  Toutes les images que vous créez sont stockées sur votre registre local, mais il existe des registres sur internet, comme [DockerHub](https://hub.docker.com/) qui est le registre officiel de Docker.
 <p>
 
 ---
@@ -192,10 +194,14 @@ Vous pouvez utiliser l'une de vos images ou utiliser une image officielle depuis
 
 Il y a plusieurs types d'image de base, pour choisir la bonne il faut d'abord comprendre ce dont vous avez besoins ([voir article](https://redhat-connect.gitbook.io/catalog-help/container-images/container-image-details/container-image-types)).
 
+---
+
 Une image doit être la plus légère possible pour pouvoir démarrer rapidement, avec le moins d'outils/librairies superflus pour limiter la surface de cyber-attaque.
 
 > Utiliser une image de base **slim** ou **distroless**, vous permez d'avoir une image très légère, mais avec peu d'outils pour lancer votre application (ex: [alpine](https://hub.docker.com/_/alpine)).<br/>
 > Utiliser une image **flatpack** vous permettra d'avoir accès à de nombreux outils, mais alourdira drastiquement votre image (ex: [debian](https://hub.docker.com/_/debian)).
+
+---
 
 > **Attention**: utilisez uniquement des images officielles et vérifiées, plus de 50% des images sur DockerHub (sur 4 millions) ont des vulnérabilités.
 > ![](../resources/images/docker-dockerhub-official-image.png)
@@ -266,6 +272,8 @@ ENTRYPOINT <commande>
 Vous pouvez optimiser vos images de conteneur en utilisant le [**multi-stage builds**](https://docs.docker.com/build/building/multi-stage/).
 Cela vous permet d'utiliser plusieurs images de conteneur pour fabriquer une image de conteneur optimisé.
 
+---
+
 Exemple:
 
 - Une image de conteneur lourd avec tous les outils de compilation (avec une grande surface d'attaque et des programmes en trop)
@@ -331,6 +339,8 @@ ENTRYPOINT ["sh", "-c", "java -jar /opt/app/$JAR_FILE --spring.profiles.active=$
 
 Vous pourrez trouver un tutoriel sur le [site officiel](https://docs.docker.com/get-started/ "lien vers le tutoriel officiel").
 
+---
+
 ### Télécharger une image
 
 ```shell
@@ -348,6 +358,8 @@ $ docker build -t <nom image>:<tag> -f <dockerfile> <chemin vers le dossier>
 > ```shell
 > ...$ docker build .
 > ```
+
+---
 
 ### Afficher les images de votre registre locale
 
@@ -419,7 +431,7 @@ Pour sécuriser vos conteneurs, vous pouvez définir des réseaux spécifiques.<
 
 > Par défaut, souvent le réseau utiliser par le moteur de conteneur est de type "réseau par pont" (_bridge_) qui permet d'isoler la communication entre un conteneur et son hôte.
 
-![](../resources/images/docker-network.png)
+![ bg right 100%](../resources/images/docker-network.png)
 
 ---
 
@@ -430,20 +442,20 @@ Pour sécuriser vos conteneurs, vous pouvez définir des réseaux spécifiques.<
   
   - **bridge**: Le pilote réseau par défaut. Si vous ne spécifiez pas de pilote, il s'agit du type de réseau que vous créez. Les réseaux de pont sont généralement utilisés lorsque vos applications s'exécutent dans des conteneurs autonomes qui doivent communiquer.
 
-- **hôte**: pour les conteneurs autonomes, supprimez l'isolation réseau entre le conteneur et l'hôte Docker, et utilisez directement la mise en réseau de l'hôte.
+  - **hôte**: pour les conteneurs autonomes, supprimez l'isolation réseau entre le conteneur et l'hôte Docker, et utilisez directement la mise en réseau de l'hôte.
 
-- **superposition**: les réseaux de superposition connectent plusieurs démons Docker ensemble et permettent aux services Swarm de communiquer entre eux. Vous pouvez également utiliser des réseaux superposés pour faciliter la communication entre un service swarm et un conteneur autonome, ou entre deux conteneurs autonomes sur différents démons Docker. Cette stratégie supprime la nécessité d'effectuer un routage au niveau du système d'exploitation entre ces conteneurs.
+  - **superposition**: les réseaux de superposition connectent plusieurs démons Docker ensemble et permettent aux services Swarm de communiquer entre eux. Vous pouvez également utiliser des réseaux superposés pour faciliter la communication entre un service swarm et un conteneur autonome, ou entre deux conteneurs autonomes sur différents démons Docker. Cette stratégie supprime la nécessité d'effectuer un routage au niveau du système d'exploitation entre ces conteneurs.
 
-- **ipvlan**: les réseaux IPvlan offrent aux utilisateurs un contrôle total sur l'adressage IPv4 et IPv6. Le pilote VLAN s'appuie sur cela en donnant aux opérateurs un contrôle complet du balisage VLAN de couche 2 et même du routage IPvlan L3 pour les utilisateurs intéressés par l'intégration du réseau sous-jacent.
+  - **ipvlan**: les réseaux IPvlan offrent aux utilisateurs un contrôle total sur l'adressage IPv4 et IPv6. Le pilote VLAN s'appuie sur cela en donnant aux opérateurs un contrôle complet du balisage VLAN de couche 2 et même du routage IPvlan L3 pour les utilisateurs intéressés par l'intégration du réseau sous-jacent.
 
   </div>
   <div class="w-full truncate">
 
-- **macvlan**: les réseaux Macvlan vous permettent d'attribuer une adresse MAC à un conteneur, le faisant apparaître comme un périphérique physique sur votre réseau. Le démon Docker achemine le trafic vers les conteneurs par leurs adresses MAC. L'utilisation du pilote macvlan est parfois le meilleur choix lorsqu'il s'agit d'applications héritées qui s'attendent à être directement connectées au réseau physique, plutôt que d'être acheminées via la pile réseau de l'hôte Docker.
+  - **macvlan**: les réseaux Macvlan vous permettent d'attribuer une adresse MAC à un conteneur, le faisant apparaître comme un périphérique physique sur votre réseau. Le démon Docker achemine le trafic vers les conteneurs par leurs adresses MAC. L'utilisation du pilote macvlan est parfois le meilleur choix lorsqu'il s'agit d'applications héritées qui s'attendent à être directement connectées au réseau physique, plutôt que d'être acheminées via la pile réseau de l'hôte Docker.
 
-- **none**: pour ce conteneur, désactivez tous les réseaux. Généralement utilisé en conjonction avec un pilote réseau personnalisé. none n'est pas disponible pour les services Swarm.
+  - **none**: pour ce conteneur, désactivez tous les réseaux. Généralement utilisé en conjonction avec un pilote réseau personnalisé. none n'est pas disponible pour les services Swarm.
 
-- **Plugins réseau**: vous pouvez installer et utiliser des plugins réseau tiers avec Docker. Ces plugins sont disponibles sur Docker Hub ou auprès de fournisseurs tiers. Consultez la documentation du fournisseur pour installer et utiliser un plug-in réseau donné.
+  - **Plugins réseau**: vous pouvez installer et utiliser des plugins réseau tiers avec Docker. Ces plugins sont disponibles sur Docker Hub ou auprès de fournisseurs tiers. Consultez la documentation du fournisseur pour installer et utiliser un plug-in réseau donné.
   </div>
 </div>
 
@@ -492,7 +504,7 @@ Principales caractéristiques et fonctionnalités de docker-compose :
 - **Configuration déclarative**: Avec docker-compose, tu peux décrire la structure de ton application et les services associés dans un fichier YAML. Cette configuration déclarative permet de spécifier les images de conteneurs, les dépendances, les variables d'environnement, les volumes, les ports exposés, etc.
 
 - **Gestion des services**: docker-compose permet de gérer et de contrôler plusieurs services conteneurisés en une seule commande. Tu peux définir des services individuels dans le fichier de configuration, qui peuvent être démarrés, arrêtés, redémarrés ou supprimés en tant qu'ensemble cohérent.
-
+---
 - **Orchestration multi-conteneurs**: docker-compose facilite le déploiement et l'orchestration d'applications multi-conteneurs. Tu peux définir des dépendances entre les services, spécifier l'ordre de démarrage et docker-compose s'occupera de les lancer dans l'ordre approprié et de gérer les dépendances.
 
 - **Gestion des réseaux**: docker-compose crée automatiquement un réseau isolé pour les services de ton application, permettant aux conteneurs de communiquer entre eux via des noms de service au lieu d'adresses IP. Cela facilite la communication et l'interaction entre les différents composants de ton application.
@@ -581,8 +593,9 @@ Si l'invité de commande n'est pas votre allié, vous pouvez installer [Docker D
 
 - **Toujours conteneuriser vos applications**<br/>
   Quand vous développez une application, pensez toujours à "comment vous allez la déployer en production" (propriétés différentes pour chaque environnement Test/Prod).<br/>
-  Cela doit être l’une de vos priorités, la conteneurisation est l’une des meilleurs solution pour ça donc je vous conseille vivement de la faire pour tous vos projets.
+  Cela doit être l’une de vos priorités, la conteneurisation est l’une des meilleurs solution pour ça donc je vous conseille vivement de le faire pour tous vos projets.
 
+---
 - **Multi-stage builds**<br/>
   Cela permet de réduire la surface d’attaque, mais également la taille de vos images ce qui améliore donc la vitesse de déploiement…
 
