@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="fr">
+<body>
+<footer th:fragment="footer" id="footer">
+    <span th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}">[Datetime]</span>
+    <div th:text="${environmentName}">X</div>
+    <div th:text="${authorities}">-</div>
+    <div th:text="${port}">X</div>
+</footer>
+</body>
+</html>

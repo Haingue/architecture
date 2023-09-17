@@ -1,0 +1,24 @@
+table {
+    border-collapse: collapse;
+    width: 100%
+}
+
+table, th, td {
+    border: solid 1px black;
+}
+
+.error {
+    margin: 1em auto;
+    padding: 1em;
+    width: 80%;
+    border: solid 1px #6e3b00;
+    background-color: #c46f00d8;
+}
+
+.system-error {
+    margin: 1em auto;
+    padding: 1em;
+    width: 80%;
+    border: solid 1px #6e001c;
+    background-color: #c40031a4;
+}

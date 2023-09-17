@@ -1,0 +1,46 @@
+version: '3.1'
+services:
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 9000:8080
+  omnidb-gui:
+    image: omnidbteam/omnidb:latest
+    restart: always
+    ports:
+      - 9001:8000
+    networks:
+      - intes
+    volumes:
+      - ./omnidb-server.volume:/etc/omnidb
+    # You need to run this command directly in the container:
+    #     python omnidb-server.py --createsuperuser=admin pass
+  motoradmin-db:
+    image: postgres
+    restart: always
+    ports:
+      - 9002:5432
+    networks:
+      - intes
+    volumes:
+      - ./motoradmin-db.volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: motoradmin
+  motoradmin:
+    depends_on:
+      - motoradmin-db
+    image: motoradmin/motoradmin:latest
+    ports:
+      - 9003:3000
+    networks:
+      - intes
+    volumes:
+      - ./motoradmin.volume:/app
+    environment:
+      SECRET_KEY_BASE:
+      DATABASE_URL: postgresql://user:password@motoradmin-db:5432/motoradmin
+networks:
+  intes:

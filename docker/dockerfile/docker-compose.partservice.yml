@@ -1,0 +1,33 @@
+version: '3.1'
+services:
+  part-service-db:
+    image: postgres
+    restart: always
+    ports:
+      - 8091:5432
+    networks:
+      - intes
+    #volumes:
+    #  - 'part-service-db:/var/lib/postgresql/data'
+    environment:
+      POSTGRES_USER: PartService_USER
+      POSTGRES_PASSWORD: kqe!12lsdjconz34aejw
+      POSTGRES_DB: PartService
+  part-service:
+    depends_on:
+      - part-service-db
+    image: haingue/intes-part-service:latest
+    restart: always
+    ports:
+      - 8090:8080
+    networks:
+      - intes
+    environment:
+      SECURITY_USER_NAME: admin
+      SECURITY_USER_PASSWORD: changeit
+      DB_HOST: part-service-db
+      DB_NAME: PartService
+      DB_USERNAME: PartService_USER
+      DB_PASSWORD: kqe!12lsdjconz34aejw
+networks:
+  intes:
