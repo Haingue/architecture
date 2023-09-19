@@ -17,7 +17,7 @@ Créer une application Spring Boot permettant de gérer un entrepôt d’objet.
 
 <center>
 
-![](../resources/Store-A_hybrid.png)
+![](../resources/PartService_hybrid.png)
 
 </center>
 
@@ -219,7 +219,7 @@ Ensuite, il faut ajouter les **propriétés Spring** permettant à l’applicati
 
 ```properties
 ## Database properties ##
-spring.datasource.url=jdbc:h2:mem:storeA
+spring.datasource.url=jdbc:h2:mem:PartService
 spring.datasource.driverClassName=org.h2.Driver
 spring.datasource.username=sa
 spring.datasource.password=password
