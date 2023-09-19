@@ -17,6 +17,11 @@ async function bootstrap() {
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   hbs.registerPartials(join(__dirname, '..', 'views/partials'));
   app.setViewEngine('hbs');
+  app.enableCors({
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+  })
 
   await app.listen(port, () => {
     console.log('[ENV]', process.env.NODE_ENV, config.get<string>('ENV_NAME'));
