@@ -3,6 +3,7 @@ package com.imt.intes.partservice.service;
 import com.imt.intes.partservice.dto.PartDto;
 import com.imt.intes.partservice.entity.PartEntity;
 import com.imt.intes.partservice.exception.IdUsedException;
+import com.imt.intes.partservice.exception.NoContentException;
 import com.imt.intes.partservice.exception.PartNotFoundException;
 import com.imt.intes.partservice.exception.PartNotValidException;
 import com.imt.intes.partservice.mapper.PartMapper;
@@ -57,5 +58,10 @@ public class PartService {
         return partRepository.findById(id)
                 .map(PartMapper::entityToDto)
                 .orElseThrow(PartNotFoundException::new);
+    }
+    public List<PartDto> loadAllPartsBySupplierCode (String supplierCode) {
+        List<PartEntity> result = partRepository.findAllBySupplierCodeOrderById(supplierCode);
+        if (result.isEmpty()) throw new NoContentException();
+        return result.stream().map(PartMapper::entityToDto).toList();
     }
 }

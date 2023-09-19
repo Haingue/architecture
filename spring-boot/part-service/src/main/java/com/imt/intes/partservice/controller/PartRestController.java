@@ -1,6 +1,7 @@
 package com.imt.intes.partservice.controller;
 
 import com.imt.intes.partservice.dto.PartDto;
+import com.imt.intes.partservice.exception.NoContentException;
 import com.imt.intes.partservice.exception.PartServiceException;
 import com.imt.intes.partservice.service.PartService;
 import org.slf4j.Logger;
@@ -20,10 +21,13 @@ public class PartRestController {
     private PartService partService;
 
     @GetMapping
-    public ResponseEntity<?> getParts () {
-        LOGGER.info("Retrieve parts");
+    public ResponseEntity<?> getParts (@RequestParam(required = false) String supplierCode) {
+        LOGGER.info("Retrieve parts: {}", supplierCode);
         try {
-            return ResponseEntity.ok(partService.loadAllParts());
+            if (supplierCode == null) return ResponseEntity.ok(partService.loadAllParts());
+            return ResponseEntity.ok(partService.loadAllPartsBySupplierCode(supplierCode));
+        } catch (NoContentException error) {
+            return ResponseEntity.noContent().build();
         } catch (PartServiceException error) {
             return ResponseEntity.badRequest().body(error);
         } catch (Exception systemError) {

@@ -5,9 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
-
-import javax.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableWebSecurity
@@ -32,12 +31,13 @@ public class SecurityConfiguration {
             .and()
                 .logout().permitAll();
 
-        http.csrf().disable();
+        http.csrf(AbstractHttpConfigurer::disable);
 
-        http.cors().disable();
+        http.cors(AbstractHttpConfigurer::disable);
 
         http.headers().frameOptions().sameOrigin();
 
         return http.build();
     }
+
 }

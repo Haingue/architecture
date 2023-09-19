@@ -6,6 +6,7 @@ import { Module } from '@nestjs/common';
 import { HelloModule } from './hello/hello.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { PrometheusModule } from "@willsoto/nestjs-prometheus";
 import entities from './typeorm';
 
 @Module({
@@ -14,7 +15,7 @@ import entities from './typeorm';
     AuthModule,
     ConfigModule.forRoot({
       envFilePath: `${process.env.NODE_ENV}.env`,
-      isGlobal: true
+      isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -30,6 +31,7 @@ import entities from './typeorm';
       }),
       inject: [ConfigService],
     }),
+    PrometheusModule.register(),
     UserModule,
     ItemModule,
     HelloModule,

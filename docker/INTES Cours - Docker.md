@@ -125,6 +125,11 @@ Le terme "Docker" désigne le logiciel/entreprise, il est souvent utilisé pour 
 
 ---
 
+![](https://jvns.ca/images/containers-arent-magic.jpg)
+[Source](https://jvns.ca/blog/2020/04/27/new-zine-how-containers-work/)
+
+---
+
 Il existe plusieurs moteurs de conteneurs, certains ont des usages différents:
 
 - [Docker](https://docs.docker.com/get-started/overview/#docker-architecture)
@@ -135,7 +140,7 @@ Il existe plusieurs moteurs de conteneurs, certains ont des usages différents:
 - [Mirantis](https://www.mirantis.com/software/mirantis-container-runtime/?utm_source=paid-search&utm_medium=google&utm_campaign=EMEA-EN-Brand&utm_term=mirantis%20container%20runtime&gclid=CjwKCAjwh8mlBhB_EiwAsztdBKMF4RDtSGVyXrOT2TAWiH_W75fF3FlrCtl5D0__CpgTlnUPQgOcIRoCT8IQAvD_BwE)
 - ...
 
-![bg 40%](../resources/images/docker-engines.png)
+![bg right 100%](../resources/images/docker-engines.png)
 
 ---
 

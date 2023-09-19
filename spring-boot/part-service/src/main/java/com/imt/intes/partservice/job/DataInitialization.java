@@ -3,7 +3,6 @@ package com.imt.intes.partservice.job;
 import com.imt.intes.partservice.dto.PartDto;
 import com.imt.intes.partservice.mapper.PartMapper;
 import com.imt.intes.partservice.repository.PartRepository;
-import com.imt.intes.partservice.service.PartService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -79,9 +79,7 @@ footer: "Fabien HAINGUE"
 ---
 <!-- header: 'Infrastructure' -->
 
-![bg 90%](resources/images/docker-principes-server.png)
-![bg 90%](resources/images/docker-principes-virtualization.png)
-![bg 100%](resources/images/docker-principes-conteneurs.png)
+![bg 100%](resources/images/docker-principes.png)
 
 ---
 <!-- header: 'Infrastructure' -->
@@ -99,10 +97,36 @@ footer: "Fabien HAINGUE"
 
 ## Orchestration
 
+Déploiement
+- Declaration
+
+Haute disponibilité
+- Replication
+- Distribution
+- Auto-healing
+
+Outils
+- Security
+- Isolation
+- Telemetry
+- ...
+
+<!-- TODO add image of k8s implementation logo -->
+
+---
+
+### Kubernetes
+
+<center>
+
+![](resources/images/architecture%20-%20kubernetes.png)
+
+</center>
+
 ---
 <!-- header: 'Infrastructure' -->
 
-## Infrastructure-as-code
+### Infrastructure-as-code
 
 ---
 <!-- header: 'Architectures d'applications' -->
@@ -113,17 +137,21 @@ footer: "Fabien HAINGUE"
 
 ---
 <!-- header: 'Architectures d'applications' -->
-## Monolythe
 
-## Micro-service
+## Architecture d'application
+### Monolythe
 
-## Serverless
+### Micro-service
+
+### Serverless
 
 ---
 <!-- header: 'Authentification' -->
 
-## Active Directory
+## Active Directory
+
 ## SSO
+
 ## RBAC
 
 ---
