@@ -10,6 +10,6 @@ import { InitSuppliersService } from './init-suppliers.service';
   imports: [TypeOrmModule.forFeature([Supplier])],
   controllers: [ClientSuppliersController, ServiceSuppliersController],
   providers: [SuppliersService, InitSuppliersService],
-  exports: [],
+  exports: [SuppliersService],
 })
 export class SuppliersModule {}
