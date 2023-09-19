@@ -12,8 +12,9 @@ Conteneuriser en utilisant les bonnes pratiques une application
 6. Rendre persistant vos bases de données
 7. Isoler vos conteneurs
 8. Modifiez vos image pour utiliser du multi-staging
-9. Publier vos images docker
-10. [BONUS] Utilisez des outils existant de la communauté
+9. Rendez vos images paramètrable
+10. Publier vos images docker
+11. [BONUS] Utilisez des outils existant de la communauté
 
 <br>
 
@@ -251,7 +252,40 @@ Cela permet de reduire la surface d'attaque de vos containers.
 
 Sécurisez vos images à l'aide des cours et des ressources internet.
 
-## 9. Bonus : publier votre image docker
+## 9. Rendez vos images paramètrable
+Pour rednre vos applications plus flexible avec l'utilisation de container, vous devez externaliser plusieurs paramètrages.
+
+L'une des bonnes façon de faire est d'utiliser les variables d'environnements.
+
+### Spring Boot
+Dans votre application properties, vous pouvez accèder aux variables d'environnements de cette manière:
+```properties
+...
+exemple.de.config=${NOM_DE_VARIABLE}
+...
+```
+
+### Nestjs
+Dans votre application properties, vous pouvez accèder aux variables d'environnements de cette manière:
+
+```TypeScript
+...
+const exempleDeConfig = ConfigService.get<number>('NOM_DE_VARIABLE')
+...
+```
+
+Pour plus d'information rendez-vous sur la [documentation](https://docs.nestjs.com/techniques/configuration#custom-env-file-path) !
+
+### Dockerfile
+Maintenant, vos applications sont paramètrable via le Dockerfile.
+Pour permettre à vos utiliseurs de déployer facilement votre application (avec docker-compose), vous pouvez utiliser les arguements dans votre Dockerfile pour définir vos variables d'environnements.
+
+```Dockerfile
+ARG SECURITY_USER_NAME=admin
+ENV SECURITY_USER_NAME=$SECURITY_USER_NAME
+```
+
+## 10. publier votre image docker
 Une fois votre image docker prête, vous pouvez la publier sur un registre d’image publique (ex : [DockerHub](https://hub.docker.com/search?q= "hub.docker.com"))
 
 1.	Créer un compte sur Docker Hub (gratuit)
@@ -282,7 +316,7 @@ Ex :
 $ docker pull YourLogin/ImageName:latest
 ```
 
-## 10. [BONUS] Utilisez des outils existant de la communauté
+## 11. [BONUS] Utilisez des outils existant de la communauté
 Il existe de nombreux outils que vous pouvez installer via docker, essayez s'en.
 
 > Sur DockerHub, vous pouvez trouver toutes les images du monde.<br/>

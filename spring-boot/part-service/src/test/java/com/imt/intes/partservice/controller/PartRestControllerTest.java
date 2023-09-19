@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -56,6 +57,7 @@ class PartRestControllerTest {
         partRepository.deleteById(DEFAULT_PART.id());
 
         mvc.perform(post("/service/part")
+                        .with(SecurityMockMvcRequestPostProcessors.user("admin").password("admin"))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(DEFAULT_PART)))
                 .andExpect(MockMvcResultMatchers.status().isCreated());
@@ -69,6 +71,7 @@ class PartRestControllerTest {
         originalPart.setName("updated name");
         originalPart.setDescription("updated description");
         MvcResult result = mvc.perform(put("/service/part")
+                        .with(SecurityMockMvcRequestPostProcessors.user("admin").password("admin"))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(originalPart)))
                 .andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
@@ -82,6 +85,7 @@ class PartRestControllerTest {
         PartEntity originalPart = partRepository.save(PartMapper.dtoToEntity(DEFAULT_PART));
 
         mvc.perform(delete("/service/part/"+1L)
+                        .with(SecurityMockMvcRequestPostProcessors.user("admin").password("admin"))
                         .content(mapper.writeValueAsString(originalPart.getId())))
                 .andExpect(MockMvcResultMatchers.status().is2xxSuccessful());
     }
