@@ -1,5 +1,5 @@
 <template>
-  <form action="/client/part" method="post" class="w-full p-4">
+  <form action="/client/part" method="post" class="w-full p-4 hidden">
     <label>Ajouter une pièce:</label>
     <br />
     <input name="id" type="number" placeholder="Id" />
