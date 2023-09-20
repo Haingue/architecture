@@ -29,11 +29,13 @@ Projet centralisant tous les supports pour le cours d'Intégration de service (a
 - Maven
 - Nodejs
 - Container engine
-    - Docker
+    - [Docker](https://www.docker.com/)
     - [Podman](https://podman.io/)
-- [JSON server](https://github.com/typicode/json-server)
-- [Motor Admin](https://www.getmotoradmin.com/)
-- [Adminer](https://www.adminer.org/)
+- [JSON server](https://github.com/typicode/json-server): outil pour simuler une API Web à partir d'un JSON
+- Interface de base de données
+    - [Motor Admin](https://www.getmotoradmin.com/)
+    - [Adminer](https://www.adminer.org/)
+- [Marp](https://marp.app/): outil pour générer un présentation à partir d'un markdown
 
 <br>
 

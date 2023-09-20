@@ -121,7 +121,7 @@ C’est un **langage interprété**.<br>
 C’est-à-dire que le code source et directement lu pendant son exécution ce qui rend le langage **cross-platform**.
 <center>
 
-![](../resources/images/nestjs-interpreter-node.png)
+![](../resources/images/nestjs-interprete.png)
 
 </center>
 
@@ -268,7 +268,7 @@ C’est un **langage interprété**.<br>
 C’est-à-dire que le code source et directement lu pendant son exécution ce qui rend le langage **cross-platform**.
 <center>
 
-![](../resources/images/nestjs-interprete.png)
+![](../resources/images/nestjs-interpreter-node.png)
 
 </center>
 

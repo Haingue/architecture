@@ -124,9 +124,120 @@ Outils
 </center>
 
 ---
+
+<detailt>
+<summary>Exemple d'utiliation de K8S</summary>
+
+```YML
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: intes
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-part-deployment
+  namespace: intes
+  labels:
+    app: api-part
+spec:
+  selector:
+    matchLabels:
+      app: api-part
+  template:
+    metadata:
+      labels:
+        app: api-part
+    spec:
+      containers:
+        - name: api-part
+          image: haingue/api-part:arm64
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: api-part-scale
+  namespace: intes
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: api-part-deployment
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 80
+    - type: Object
+      object:
+        metric:
+          name: requests-per-second
+        describedObject:
+          apiVersion: networking.k8s.io/v1beta1
+          kind: Ingress
+          name: api-part-ingress
+        target:
+          type: Value
+          value: 500
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-part-service
+  namespace: intes
+  labels:
+    app: api-part
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+  selector:
+    app: api-part
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-part-ingress
+  namespace: intes
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: api-part.imt.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: api-part-service
+                port:
+                  number: 8080
+```
+</detailt>
+
+---
 <!-- header: 'Infrastructure' -->
 
 ### Infrastructure-as-code
+
+<center>
+
+![](resources/images/infra-as-code-kubernetes.png)
+
+</center>
 
 ---
 <!-- header: 'Architectures d'applications' -->
@@ -139,11 +250,20 @@ Outils
 <!-- header: 'Architectures d'applications' -->
 
 ## Architecture d'application
-### Monolythe
+### Monolith VS Micro-service
 
-### Micro-service
+<center>
+
+![height:400px](resources/images/monolith-vs-microservice.jpg)
+
+</center>
+
+---
 
 ### Serverless
+L'informatique serverless est un modèle de développement cloud-native qui permet aux développeurs de créer et d'exécuter des applications sans avoir à gérer des serveurs.
+
+> C'est comme créer une lambda expression
 
 ---
 <!-- header: 'Authentification' -->
@@ -157,10 +277,101 @@ Outils
 ---
 <!-- header: 'Big data' -->
 
+## ETL
+
+<center>
+
+![](resources/images/etl.png)
+
+</center>
+
+---
+
+## DataPlatforme
+
+<center>
+
+![height:600px](resources/images/data-platform.png)
+
+</center>
+
+---
+
+### DataLake
+
+### DataWarehouse
+
+---
+
+### LakeHouse
+
+<center>
+
+![height:500px](resources/images/lakehouse.png)
+</center>
+
 ---
 <!-- header: 'Ops' -->
 
 ## DevOps
+
+<center>
+
+![height:500px](resources/images/devops.svg)
+
+</center>
+
+---
+
+<center>
+
+![height:700px](resources/images/devops-technologies.jpeg)
+
+</center>
+
+---
+
 ### DevSecOps
 
+<center>
+
+![height:500px](resources/images/devsecops.webp)
+
+</center>
+
+---
+
 ## GitOps
+
+<center>
+
+![height:500px](resources/images/gitops.jpg)
+
+</center>
+
+---
+
+<center>
+
+![height:650px](resources/images/gitops-technologies.webp)
+
+</center>
+
+--- 
+
+## Exemple
+
+<center>
+
+![](resources/images/architecture-microservice.png)
+
+</center>
+
+---
+
+# Pratiquer
+
+[Redhat developers: environnement gratuit et complet](https://developers.redhat.com/)
+[Kubernetes: tutoriels](https://kubernetes.io/fr/docs/tutorials/)
+[Devops: document microsoft pour microsoft Azure](https://azure.microsoft.com/fr-fr/solutions/devops/tutorial)
+[Devoxx: conférences de présentation et retours d'expérience](https://www.youtube.com/@DevoxxFRvideos)
