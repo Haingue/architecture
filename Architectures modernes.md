@@ -125,7 +125,7 @@ Outils
 
 ---
 
-<detailt>
+<details>
 <summary>Exemple d'utiliation de K8S</summary>
 
 ```YML
@@ -226,7 +226,7 @@ spec:
                 port:
                   number: 8080
 ```
-</detailt>
+</details>
 
 ---
 <!-- header: 'Infrastructure' -->
@@ -235,7 +235,7 @@ spec:
 
 <center>
 
-![](resources/images/infra-as-code-kubernetes.png)
+![height:400px](resources/images/infra-as-code-kubernetes.png)
 
 </center>
 
@@ -244,7 +244,11 @@ spec:
 
 ## Type d'application
 ### Statefull
+Application gardant un état interne, ce qui la rend difficile à répliquée.
+Ex: sessions
+
 ### Stateless
+Application sans état, ce qui la rend facile à répliquée.
 
 ---
 <!-- header: 'Architectures d'applications' -->
@@ -269,10 +273,14 @@ L'informatique serverless est un modèle de développement cloud-native qui perm
 <!-- header: 'Authentification' -->
 
 ## Active Directory
+Annuaire d'utilisateur.
 
 ## SSO
+Sigle-Sign-on permet de se connecter à toutes les applications autorisé avec un seul compte
 
 ## RBAC
+Permet de définir les droits par utilisateur.
+Un droit = une fonctionnalité
 
 ---
 <!-- header: 'Big data' -->
@@ -293,21 +301,6 @@ L'informatique serverless est un modèle de développement cloud-native qui perm
 
 ![height:600px](resources/images/data-platform.png)
 
-</center>
-
----
-
-### DataLake
-
-### DataWarehouse
-
----
-
-### LakeHouse
-
-<center>
-
-![height:500px](resources/images/lakehouse.png)
 </center>
 
 ---
