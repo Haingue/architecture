@@ -125,6 +125,10 @@ Notez que les performances de nombreux systèmes se dégradent avant d'atteindre
 
 ---
 
+Méthodologie permettant de créer une synergie entre les développeurs et les intégrateurs.
+
+---
+
 ### Technologies
 
 <center>
