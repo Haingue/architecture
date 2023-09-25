@@ -288,11 +288,11 @@ Permet de garantir le bon fontionnement d'une application et d'empécher la regr
 
 ## Type d'application
 ### Statefull
-Application gardant un état interne, ce qui la rend difficile à répliquée.
-Ex: sessions
+Application gardant un état interne, ce qui la rend difficile à répliquer.
+Ex: sessions utilistateur
 
 ### Stateless
-Application sans état, ce qui la rend facile à répliquée.
+Application sans état, ce qui la rend facile à répliquer.
 
 ---
 <!-- header: 'Architectures d'applications' -->
@@ -407,7 +407,7 @@ Un droit = une fonctionnalité
 
 </center>
 
---- 
+---
 <!-- header: 'Conclusion' -->
 
 ## Exemple
@@ -423,6 +423,7 @@ Un droit = une fonctionnalité
 # Pratiquer
 
 [Redhat developers: environnement gratuit et complet](https://developers.redhat.com/)
+
 [Kubernetes: tutoriels](https://kubernetes.io/fr/docs/tutorials/)
 [Devops: document microsoft pour microsoft Azure](https://azure.microsoft.com/fr-fr/solutions/devops/tutorial)
 [Devoxx: conférences de présentation et retours d'expérience](https://www.youtube.com/@DevoxxFRvideos)
