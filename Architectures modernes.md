@@ -74,12 +74,7 @@ footer: "Fabien HAINGUE"
 - Architectures d'applications
 - Authentification
 - Big data
-- Ops
-
----
-<!-- header: 'Infrastructure' -->
-
-![bg 100%](resources/images/docker-principes.png)
+- Méthodologies
 
 ---
 <!-- header: 'Infrastructure' -->
@@ -91,6 +86,11 @@ footer: "Fabien HAINGUE"
 ### Virtualisation
 
 ### Conteneurisation
+
+---
+<!-- header: 'Infrastructure' -->
+
+![bg 100%](resources/images/docker-principes.png)
 
 ---
 <!-- header: 'Infrastructure' -->
@@ -240,6 +240,50 @@ spec:
 </center>
 
 ---
+<!-- header: 'Infrastructure' -->
+
+### Infrastructure locale ou sur le cloud ?
+
+![bg](resources/images/architecture-local-or-cloud.webp)
+
+---
+<!-- header: 'Architectures d'applications' -->
+## Pratiques de développement
+
+---
+<!-- header: 'Architectures d'applications' -->
+### Test Driven Development
+Permet de garantir le bon fontionnement d'une application et d'empécher la regression des versions de l'application.
+
+<center>
+
+![height:460px](resources/images/architecture-tdd.gif)
+
+</center>
+
+---
+<!-- header: 'Architectures d'applications' -->
+
+### Domain Driven Development
+
+<center>
+
+![height:460px](resources/images/architecture-ddd.jpg)
+
+</center>
+
+---
+<!-- header: 'Architectures d'applications' -->
+
+### Behavior Driven Development
+
+<center>
+
+![](resources/images/architecture-bdd.png)
+
+</center>
+
+---
 <!-- header: 'Architectures d'applications' -->
 
 ## Type d'application
@@ -272,20 +316,22 @@ L'informatique serverless est un modèle de développement cloud-native qui perm
 ---
 <!-- header: 'Authentification' -->
 
-## Active Directory
-Annuaire d'utilisateur.
+## Outils
+### Active Directory
+Annuaire d'utilisateur
 
-## SSO
+### SSO
 Sigle-Sign-on permet de se connecter à toutes les applications autorisé avec un seul compte
 
-## RBAC
+### RBAC
 Permet de définir les droits par utilisateur.
 Un droit = une fonctionnalité
 
 ---
 <!-- header: 'Big data' -->
+## Data & Big data
 
-## ETL
+### ETL
 
 <center>
 
@@ -295,7 +341,7 @@ Un droit = une fonctionnalité
 
 ---
 
-## DataPlatforme
+### DataPlatforme
 
 <center>
 
@@ -304,9 +350,20 @@ Un droit = une fonctionnalité
 </center>
 
 ---
-<!-- header: 'Ops' -->
+<!-- header: 'Méthodologies' -->
+## Méthodologies
 
-## DevOps
+### Agile & Scrum
+<center>
+
+![height:500px](resources/images/architecture-agiles.png)
+
+</center>
+
+---
+<!-- header: 'Méthodologies' -->
+
+### DevOps
 
 <center>
 
@@ -351,12 +408,13 @@ Un droit = une fonctionnalité
 </center>
 
 --- 
+<!-- header: 'Conclusion' -->
 
 ## Exemple
 
 <center>
 
-![](resources/images/architecture-microservice.png)
+![height:600](resources/images/architecture-microservice.png)
 
 </center>
 
@@ -368,3 +426,5 @@ Un droit = une fonctionnalité
 [Kubernetes: tutoriels](https://kubernetes.io/fr/docs/tutorials/)
 [Devops: document microsoft pour microsoft Azure](https://azure.microsoft.com/fr-fr/solutions/devops/tutorial)
 [Devoxx: conférences de présentation et retours d'expérience](https://www.youtube.com/@DevoxxFRvideos)
+
+[Cheatsheets Google](https://googlecloudcheatsheet.withgoogle.com/)
