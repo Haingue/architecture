@@ -1,8 +1,8 @@
 version: '3.7'
 
 volumes:
-    prometheus_data: {}
-    grafana_data: {}
+  prometheus_data: {}
+  grafana_data: {}
 
 services:
   prometheus:
@@ -34,7 +34,7 @@ services:
 
   grafana:
     image: grafana/grafana
-    user: "472"
+    user: '472'
     depends_on:
       - prometheus
     ports:
