@@ -1,22 +1,20 @@
 # Sujet TP – Monitoring
 
-Dans ce TP, vous aller apprendre à utiliser déployer un monitoring.
+Dans ce TP, vous allez apprendre à utiliseret déployer un monitoring.
 
 <br><br>
 
-## Objectif
+## Objectifs
 
-Monitorez vos application NestJs et Spring-Boot.
-
-- Monitorez vos application
+- Monitorez vos applications
   - Adaptez vos applications pour **exposer des métriques**
   - Utiliser l'API ProductService
 
 - Mettez en place un monitoring
   - Ecrivez un docker-compose permettant de lancer Prometheus/Grafana/AlertManager et vos applications
-  - Adaptez la configuration de Prometheus pour **collecter vos les métriques**
-  - Créer un dashboard global et un technique par application
-  - Créer des alertes
+  - Adaptez la configuration de Prometheus pour **collecter vos métriques**
+  - Créez un dashboard global et un technique par application
+  - Créez des alertes
   - Fiabilisez vos services
 
 ---
@@ -26,8 +24,8 @@ Monitorez vos application NestJs et Spring-Boot.
 Pour démarrer, vous devez avoir un composant à monitorer.
 Pour cela, 2 options:
 
-- Utiliser l'API Product Service example ([docker hub](https://hub.docker.com/r/haingue/product_service))
-- Utiliser votre propre application
+- Utilisez l'API Product Service exemple ([docker hub](https://hub.docker.com/r/haingue/product_service))
+- Utilisez votre propre application
 
 ### Option 1: Lancer une application web
 
@@ -49,7 +47,7 @@ Rendez-vous sur `http://localhost:8085/swagger-ui/index.html` pour tester l'API
 
 #### Spring-Boot
 
-- Ajoutez Prometheus à vos dépendance pour générer automatiquement des métriques
+- Ajoutez Prometheus à vos dépendances pour générer automatiquement des métriques
   ```xml
       <dependency>
   		<groupId>org.springframework.boot</groupId>
@@ -78,11 +76,11 @@ Rendez-vous sur `http://localhost:8085/swagger-ui/index.html` pour tester l'API
 
 #### Nestjs
 
-- Installation de nestjs-prometheus
+- Installez nestjs-prometheus
   ```shell
   npm install @willsoto/nestjs-prometheus prom-client
   ```
-- Configurer Nestjs
+- Configurez Nestjs
     <center>
         app.module.ts
     </center>
@@ -128,7 +126,7 @@ Pour cela, nous allons utiliser [Prometheus](https://prometheus.io/docs/introduc
 
 ### 2.1. Instanciez Prometheus
 
-D'après la [documentation officiel de Prometheus](https://prometheus.io/docs/prometheus/latest/installation/), vous pouvez utiliser un conteneur pour créer votre première instance.
+D'après la [documentation officielle de Prometheus](https://prometheus.io/docs/prometheus/latest/installation/), vous pouvez utiliser un conteneur pour créer votre première instance.
 
 <details>
 <summary>Cliquez pour voir une aide</summary>
@@ -150,7 +148,9 @@ Vous devez configurer Prometheus pour monitorer votre application et ajuster cer
 <summary>Cliquez pour voir une aide</summary>
 
 Il faut créer un fichier [prometheus.yml](prometheus/conf/prometheus.yml) et le partager avec le conteneur.
-Dans ce fichier, il y aura toutes les propriétés de Prometheus dont les cybles à monitorer.
+Dans ce fichier, il y aura toutes les propriétés de Prometheus dont les cibles à monitorer.
+
+> ce fichier peut être sauvegardé sur votre repository Git
 
 </details>
 
@@ -179,7 +179,7 @@ Pour cela nous allons utiliser [Grafana](https://grafana.com/) !
 
 ### 3.1. Instanciez Grafana
 
-D'après la [documentation officiel de Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/installation/), vous pouvez utiliser un conteneur pour créer votre première instance.
+D'après la [documentation officielle de Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/installation/), vous pouvez utiliser un conteneur pour créer votre première instance.
 
 <details>
 <summary>Cliquez pour voir une aide</summary>
@@ -201,8 +201,9 @@ Ensuite, vous pouvez soit créer une Row, une Visualization ou importer des él�
 
 - Row: élément permettant de grouper des visualizations
 - Visualization: éléments visuel permettant d'afficher des données et de définir des alertes
+  Vous pouvez installer des plugins pour utiliser differents type de visuels 
 
-> Je vous laisse regarder la démo et la documentation officiel pour aller plus loin:
+> Je vous laisse regarder la démo et la documentation officielle pour aller plus loin:
 > [Grafana dashboards](https://grafana.com/docs/grafana/latest/dashboards/)
 > [Grafana alerting](https://grafana.com/docs/grafana/latest/alerting/)
 
@@ -219,14 +220,18 @@ Depuis l'édition d'un dashboard, vous pouvez le partager en cliquant sur le bou
 ### 3.5. Configurer Grafana
 Si vous voulez configurer automatiquement Grafana, vous pouvez donner au conteneurs des fichiers YAML pour préremplir l'application (datasource, dashboard, ...)
 
-Pour cele, il vous suffit de remplacer les fichiers ce trouvant dans le dossier _/etc/grafana/provisioning/_ du conteneur.
+Pour cela, il vous suffit de remplacer les fichiers ce trouvant dans le dossier _/etc/grafana/provisioning/_ du conteneur.
 
 ---
 
 ## 4. AlertManager
 
-A ce stade, vous monitorez vos application mais n'être pas alarmé en cas de problème.
+A ce stade, vous monitorez vos application mais vous n'être pas alarmé en cas de problème.
 Pour cela nous allons utiliser [AlertManager](https://github.com/prometheus/alertmanager) !
+
+> Sachez que Prometheus, permet d'envoyer des alertes.
+> mais dans la vie de tout les jours, il faut avoir un paramétrage fin des alertes sinon les membres de votre équipes deviendront "sourds et aveugle" (c.a.d ils n'y feront plus attention.
+> C'est ce que AlertManager permet de faire.
 
 
 ### 4.1. Instanciez AlertManager
@@ -238,8 +243,8 @@ Pour cela nous allons utiliser [AlertManager](https://github.com/prometheus/aler
 ### 4.3. Configurez Prometheus
 Sachez que Prometheus peut envoyer des alertes à différents type de système et que vous êtes libre de créer n'importe quelle alerte.
 
-#### 4.3.1. Configurer les cannaux de communication
-Pour cela, vous devez modifier la configuration de prometheus pour ajouter des cannaux (ou receiver dans la documentation officiel).
+#### 4.3.1. Configurer les canaux de communication
+Pour cela, vous devez modifier la configuration de prometheus pour ajouter des canaux (ou receiver dans la documentation officielle).
 
 <details>
 <summary>Cliquez pour voir un exemple</summary>
@@ -284,7 +289,9 @@ alert.rules
 </details>
 
 ### 4.4. Testez AlertManager
-[TODO]
+Si vous avez mis une alerte sur l'état de votre application, alors si vous stopper son conteneur alors vous aller voir une alerte sur AlertManager.
+
+Si vous avez configurer des "receivers" dans AlertManager alors vous allez recevoir les alertes via ces canaux.
 
 > Vous pouvez utiliser l'exemple de ce repository si vous avez des difficultés à démarrer.
 > <details>
@@ -300,12 +307,12 @@ alert.rules
 
 ## 5. Déployez vos applications en même temps que votre monitoring
 Pour gérer le monitoring de vos applications, plusieurs possibilitées s'offre à vous:
-- Créer un monitoring complet pour toutes vos applications et gérer la configuration indépendament de votre projet/équipe
-- Créer un monitoring complet par application
-- Ajouter uniquement une instance prometheus pour chaque application
+- Créer un monitoring complet pour toutes vos applications et gérer la configuration indépendament de votre projet/équipe.
+- Créer un monitoring complet par application.
+- Ajouter uniquement une instance prometheus pour chaque application.
 
 ### 5.1 Ajoutez Prometheus/Grafana/AlertManager à vos docker-compose
-Vous pouvez ajouter toutes vos configuration dans le repository Git de votre projet, ensuite vous pouvez ajouter les services necessaire (conteneurs) à votre docker-compose ou autre solution permettant de déployer votre application.
+Vous pouvez ajouter toutes vos configuration dans le repository Git de votre projet, ensuite vous pouvez ajouter les services nécessaires (conteneurs) à votre docker-compose ou autre solution permettant de déployer votre application.
 
 <details>
 <summary>Cliquer pour voir une solution</summary>
