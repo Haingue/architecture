@@ -21,7 +21,8 @@ Projet centralisant tous les supports pour le cours d'Intégration de service (a
     - [TP NestJs SupplierService](./nestjs/INTES%20TP%20-%20NestJS%20SupplierService.md)
 
 ### Monitoring
-- [GitHub (IMT_Monitoring)](https://github.com/Haingue/imt_monitoring)
+- [Cours monitoring)](./monitoring/INTES%20Cours%20-%20Monitoring.md)
+- [TP Prometheus/Grafana/AlertManager](./monitoring/INTES%20TP%20-%20Monitoring.md)
 
 ## Tools
 - Git
@@ -61,6 +62,8 @@ Créez une issue directement depuis GitHub.
         - Part & Supplier service
         - Tools
         - Architecture moderne
+- 0.3
+    - Nouvelle version des support de monitoring
 
 <br>
 
