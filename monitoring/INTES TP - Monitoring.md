@@ -161,7 +161,10 @@ Rendez-vous sur l'interface de Prometheus et essayez de visualiser certaines mes
 <details>
 <summary>Cliquez pour voir une aide</summary>
 Pour afficher le nombre de requête avec un code 2xx par server:
+
+```
 sum(http_server_requests_seconds_count{status=~"2.."}) by (instance)
+```
 </details>
 
 ### 2.4. Bonus
