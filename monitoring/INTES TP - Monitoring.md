@@ -239,6 +239,8 @@ Pour cela nous allons utiliser [AlertManager](https://github.com/prometheus/aler
 Sachez que Prometheus peut envoyer des alertes à différents type de système et que vous êtes libre de créer n'importe quelle alerte.
 
 #### 4.3.1. Configurer les cannaux de communication
+Pour cela, vous devez modifier la configuration de prometheus pour ajouter des cannaux (ou receiver dans la documentation officiel).
+
 <details>
 <summary>Cliquez pour voir un exemple</summary>
 
@@ -255,6 +257,9 @@ alerting:
       - "alertmanager:9093"
 ```
 </details>
+
+> Pour envoyer des emails, vous pouvez suivre cette vidéo
+> [PROMETHEUS - 23. AlertManager : envoyez un mail (gmail)](https://www.youtube.com/watch?v=b371v8Lc4fI)
 
 #### 4.3.2. Configurer les alertes
 <details>
