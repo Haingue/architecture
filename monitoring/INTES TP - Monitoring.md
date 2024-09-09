@@ -150,7 +150,7 @@ Vous devez configurer Prometheus pour monitorer votre application et ajuster cer
 Il faut créer un fichier [prometheus.yml](prometheus/conf/prometheus.yml) et le partager avec le conteneur.
 Dans ce fichier, il y aura toutes les propriétés de Prometheus dont les cibles à monitorer.
 
-> ce fichier peut être sauvegardé sur votre repository Git
+> Ce fichier peut être sauvegardé sur votre repository Git
 
 </details>
 
@@ -233,8 +233,8 @@ A ce stade, vous monitorez vos application mais vous n'être pas alarmé en cas 
 Pour cela nous allons utiliser [AlertManager](https://github.com/prometheus/alertmanager) !
 
 > Sachez que Prometheus, permet d'envoyer des alertes.
-> mais dans la vie de tout les jours, il faut avoir un paramétrage fin des alertes sinon les membres de votre équipes deviendront "sourds et aveugle" (c.a.d ils n'y feront plus attention.
-> C'est ce que AlertManager permet de faire.
+> mais dans la vie de tout les jours, il faut avoir un paramétrage fin des alertes sinon les membres de votre équipes deviendront "sourds et aveugle" (c.a.d ils n'y feront plus attention).
+> AlertManager permet d'envoyer des alertes sous certaine condition et permet d'éviter le SPAM.
 
 
 ### 4.1. Instanciez AlertManager

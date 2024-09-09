@@ -50,7 +50,7 @@ footer: "Fabien HAINGUE"
 
 ### INTES
 
-### 2023-2024
+### 2024-2025
 
   </div>
   
@@ -90,9 +90,9 @@ Pour mieux comprendre pourquoi on est arrivé à la conteneurisation, il faut co
 
 **Serveur**:
 1 gros serveur physique<br/>
-OS et bin/lib adapté aux applications installées dessus.<br/>
-Toutes les composants doivent être compatibles entre eux.<br/>
-Quand une mise à jour est à faire cela est très compliqué, car il faut s’assurer que tout soit compatible et redémarrer le serveur redémarre également ses applications.
+OS et bin/lib adaptés aux applications installées dessus.<br/>
+Toutes les composants doivent être **compatibles** entre eux.<br/>
+Quand une mise à jour est à faire cela est très compliqué, car il faut s’assurer que tout soit compatible et redémarrer le serveur redémarre également **toutes** ses applications.
 
 ![bg right 80%](../resources/images/docker-principes-server.png)
 
@@ -102,7 +102,7 @@ Quand une mise à jour est à faire cela est très compliqué, car il faut s’a
 1 gros serveur physique avec un hyperviseur<br/>
 Chaque VM créée possède des ressources réservées par l’hyperviseur (RAM/Disk/CPU).<br/>
 L’avantage est que si on redémarre une VM, les autres ne sont pas impactés.<br/>
-Et chaque VMs peuvent avoir des installations différentes.
+Et chaque VMs peuvent avoir des **installations différentes**.
 
 ![bg right 85%](../resources/images/docker-principes-virtualization.png)
 
@@ -110,7 +110,7 @@ Et chaque VMs peuvent avoir des installations différentes.
 
 **Conteneurisation**:
 1 serveur physique ou virtuel avec un moteur de conteneur<br/>
-Chaque conteneur est un processus sur son système hôte, ce qui permet de libérer des ressources (RAM/CPU) quand il ne les utilise pas.<br/>
+Chaque conteneur est un **processus** sur son système hôte, ce qui permet de libérer des ressources (RAM/CPU) quand il ne les utilise pas.<br/>
 Comme la virtualisation, la VM ou le container est indépendant du serveur hôte et de ses voisins (OS libre de choix, version d’outils au choix)
 
 ## ![bg right 85%](../resources/images/docker-principes-conteneurs.png)
@@ -121,7 +121,7 @@ Comme la virtualisation, la VM ou le container est indépendant du serveur hôte
 
 Depuis 2015, il existe l’Open Container Initiatives qui est une sorte d’association qui définit les règles de fonctionnement d’un conteneur.
 
-Le terme "Docker" désigne le logiciel/entreprise, il est souvent utilisé pour parler de conteneur ou moteur de conteneur mais c'est un abus de langage.
+Le terme "Docker" désigne le logiciel/entreprise, il est souvent utilisé pour parler de conteneur ou moteur de conteneur car ils ont popularisé la conteneurisation mais c'est un abus de langage.
 
 ---
 
@@ -153,7 +153,7 @@ Il existe plusieurs moteurs de conteneurs, certains ont des usages différents:
 Un conteneur est un groupe de processus isolé de son hôte.
 Docker a rendu la création de conteneur plus facile en deux étapes:
 
-1. Créer une image de conteneur (recette du plat)
+1. Créer une image de conteneur ***(recette de cuisine)***
    - Ecrire un fichier de configuration (Dockerflile en YAML)
      - Spécifier l'image de base
      - Installer les dépendances
@@ -161,7 +161,7 @@ Docker a rendu la création de conteneur plus facile en deux étapes:
      - Exposer les ports
      - Définir la commande de démarrage
    - Fabriquer l'image de conteneur (binaire)
-2. Lancer un conteneur à partir d'une image (réalisation du plat)
+2. Lancer un conteneur à partir d'une image ***(réalisation de la recette)***
 
 ---
 
@@ -172,15 +172,16 @@ Docker a rendu la création de conteneur plus facile en deux étapes:
 ## Image de conteneur
 
 <p>
-  Une image de conteneur va donc décrire comment créer un conteneur pour exécuter votre programme.
-  Et pour cela, vous avez besoin d'un fichier [Dockerfile](https://docs.docker.com/engine/reference/builder/).
+  Une image de conteneur va décrire comment créer un conteneur pour exécuter votre programme.
 
-Un Dockerfile est un fichier écrit en [YAML](https://fr.wikipedia.org/wiki/YAML) qui sert à décrire toutes les étapes pour créer votre conteneur.
+  Et pour cela, vous avez besoin d'un fichier **[Dockerfile](https://docs.docker.com/engine/reference/builder/)**.
+
+Un Dockerfile est un fichier écrit en **[YAML](https://fr.wikipedia.org/wiki/YAML)** qui sert à décrire toutes les étapes pour créer votre conteneur.
 
 </p>
 <p>
   Toutes les images docker sont stockées dans un registre d'image.<br/>
-  Toutes les images que vous créez sont stockées sur votre registre local, mais il existe des registres sur internet, comme [DockerHub](https://hub.docker.com/) qui est le registre officiel de Docker.
+  Toutes les images que vous créez sont stockées sur votre registre local, mais il existe des registres sur internet, comme <span><b><a href="https://hub.docker.com/">DockerHub</a></b></span> qui est le registre officiel de Docker.
 <p>
 
 ---
@@ -201,9 +202,9 @@ Il y a plusieurs types d'image de base, pour choisir la bonne il faut d'abord co
 
 ---
 
-Une image doit être la plus légère possible pour pouvoir démarrer rapidement, avec le moins d'outils/librairies superflus pour limiter la surface de cyber-attaque.
+Une image doit être la plus légère possible pour pouvoir démarrer rapidement et avec le moins d'outils/librairies superflus pour limiter la surface de cyber-attaque.
 
-> Utiliser une image de base **slim** ou **distroless**, vous permez d'avoir une image très légère, mais avec peu d'outils pour lancer votre application (ex: [alpine](https://hub.docker.com/_/alpine)).<br/>
+> Utiliser une image de base **slim** ou **distroless** vous permettra d'avoir une image très légère, mais avec peu d'outils pour lancer votre application (ex: [alpine](https://hub.docker.com/_/alpine)).<br/>
 > Utiliser une image **flatpack** vous permettra d'avoir accès à de nombreux outils, mais alourdira drastiquement votre image (ex: [debian](https://hub.docker.com/_/debian)).
 
 ---
@@ -298,7 +299,7 @@ FROM <image de base 1> as <nom de l'étape 1>
 FROM <image de base 2> as <nom de l'étape 2>
 ```
 
-Vous pouvez Transférer des fichiers entre chaque étape (ex: archive compilé) avec cette instruction:
+Vous pouvez Transférer des fichiers entre chaque étape (ex: code compilé) avec cette instruction:
 
 ```yaml
 COPY --from=<nom du container source> <chemin dans le conteneur source> <chemin vers le conteneur destinataire>
@@ -399,7 +400,7 @@ Une fois supprimés, vous perdez vos données.<br/>
 Si vous voulez garder des données venant de vos conteneurs, il vous faut utiliser un [**Volumes**](https://docs.docker.com/storage/volumes/).
 ![bg right:33% 100%](../resources/images/docker-volume.png)
 
-Un volume est un espace réservé sur le stockage de l'hôte, où vos conteneurs peuvent s'y lier.<br/>
+Un volume est un lien vers un espace de stockage qui se trouve sur l'hôte, vos conteneurs peuvent utiliser se lien pour y stocker des fichiers.<br/>
 Une fois vos conteneurs détruits, vos volumes restent présents et peuvent être réutilisés par d'autres conteneurs.
 
 ---
@@ -522,6 +523,10 @@ Exemple "_docker-compose.yml_":
 
 ```yaml
 version: "3.9"
+volumes:
+  db-data:
+networks:
+  overlay:
 services:
   wordpress:
     image: wordpress
@@ -550,10 +555,6 @@ services:
       reservations:
         cpus: "0.25"
         memory: 20M
-volumes:
-  db-data:
-networks:
-  overlay:
 ```
 
 ---
@@ -582,28 +583,42 @@ $ docker-compose events
 $ docker-compose down
 ```
 
+> Par défaut, toutes ses commandes vont chercher à utiliser un fichier dans le dossier courant nommé "docker-compose.yml" ou "compose.yml"
+
 ---
 
 ## Docker Desktop
 
-Si l'invité de commande n'est pas votre allié, vous pouvez installer [Docker Desktop](https://www.docker.com/products/docker-desktop/) qui vous permettra d'avoir une interface ergonomique pour gérer vos conteneurs.
+Si l'invité de commande n'est pas votre allié, vous pouvez installer **[Docker Desktop](https://www.docker.com/products/docker-desktop/)** qui vous permettra d'avoir une interface ergonomique pour gérer vos conteneurs.
 
 ![bg left:42% 100%](../resources/images/docker-docker-desktop.png)
 
-> **Conseil**: cet outil est parfait pour le développement, mais pas pour de la production, donc familiarisez-vous avec les commandes pour mieux déployer en production.
+> **Conseil**: cet outil est parfait pour le développement, mais pas pour de la production, donc familiarisez-vous avec les commandes pour mieux gérer vos déploiement.
 
 ---
 
 ## Tips
 
 - **Toujours conteneuriser vos applications**<br/>
-  Quand vous développez une application, pensez toujours à "comment vous allez la déployer en production" (propriétés différentes pour chaque environnement Test/Prod).<br/>
-  Cela doit être l’une de vos priorités, la conteneurisation est l’une des meilleurs solution pour ça donc je vous conseille vivement de le faire pour tous vos projets.
+  Quand vous développez une application, pensez toujours à "comment vous allez la déployer en production" (propriétés différentes pour chaque environnement Test/Prod, gestion des secrets, ...).<br/>
+  Cela doit être l’une de vos priorités, la conteneurisation est l’une des meilleurs solution pour ça donc je vous conseille vivement de le faire pour tous vos projets (Cloud ready).
 
 ---
 - **Multi-stage builds**<br/>
   Cela permet de réduire la surface d’attaque, mais également la taille de vos images ce qui améliore donc la vitesse de déploiement…
-
+<br/>
 - **Utilsez les images officielles**<br/>
-  Il y a énormément d’images disponibles sur internet (docker-hub), la plus pars son soit des images avec des spywares ou des images avec des failles de sécurité.<br/>
+  Il y a énormément d’images disponibles sur internet (docker-hub), la plupart son soit des images avec des spywares ou des images avec des failles de sécurité.<br/>
   C’est pour cela, qu’il faut absolument utiliser les images officielles créées par un organisme officiel, car elles sont vérifiées et régulièrement mis à jour.
+
+---
+
+## Aller plus loin
+
+- [Best pratices](https://docs.docker.com/build/building/best-practices/)
+- [Secrets managment](https://docs.docker.com/engine/swarm/secrets/)
+- [Kubernetes](https://fr.wikipedia.org/wiki/Kubernetes)
+- Awesome list
+  - [Docker exemples](https://github.com/docker/awesome-compose)
+  - [Awesome containers](https://github.com/pditommaso/awesome-containers)
+  - [Awesome docker](https://github.com/veggiemonk/awesome-docker?tab=readme-ov-file)

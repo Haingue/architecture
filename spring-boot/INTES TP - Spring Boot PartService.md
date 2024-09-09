@@ -9,11 +9,11 @@ Dans ce TP, vous allez apprendre/revoir comment utiliser Spring Boot et les modu
 Créer une application Spring Boot permettant de gérer un entrepôt d’objet.
 
 1. Initialiser un projet Spring Boot
-2. Obtenir tous les objets
-3. Rechercher un objet
-4. Ajout d’objet
-5. Modification d’objet
-6. Suppression d’objet
+2. Obtenir tous les objets d'un entrepôt
+3. Rechercher un objet dans un entrepôt
+4. Ajout d’objet dans l'entrepôt
+5. Modification d’objet dans un entrepôt
+6. Suppression d’objet dans un entrepôt
 
 <center>
 
@@ -25,13 +25,13 @@ Créer une application Spring Boot permettant de gérer un entrepôt d’objet.
 
 ## Prérequis
 
-- [Java installé sur votre machine](https://www.oracle.com/fr/java/technologies/downloads/#java17)
+- [Java installé sur votre machine](https://www.oracle.com/fr/java/technologies/downloads/#java21)
   - Version 8 minimum
-  - Version 17 conseillée
+  - Version 21 conseillée
 - IDE installé et configuré
   - Eclipse / [Spring Tool Suite](https://spring.io/tools "IDE officiel de Spring")
   - [VS Code](https://code.visualstudio.com/docs/java/java-spring-boot "VS Code pour Spring Boot")
-  - IntelliJ Comunity
+  - [IntelliJ Comunity](https://www.jetbrains.com/toolbox-app/ "Installez la toolbox Jetbrain pour mieux gérer votre installation")
 - [Docker installé sur votre machine](https://docs.docker.com/engine/install/ "Documentation officielle")
 
 <br><br>
@@ -80,6 +80,8 @@ Rendez-vous sur [http://localhost:8080](http://localhost:8080 "lien de votre app
 
 Bravo, votre installation fonctionne !
 
+> Prenez le temps de lire les informations présentes dans les logs, vous allez voir comment Spring analyse et démarre comme vu dans le cours.
+
 <br><br>
 
 ## 2. Hello World
@@ -101,6 +103,7 @@ Et lancez la commande suivante :
 ```shell
 $ mvn test
 ```
+> Ce fichier contient le test qui vérifiera si votre contrôleur fonctionne, n’hésitez pas à y jeter un coup d’œil pour le comprendre.
 <details>
 <summary>Cliquez pour voir le contenu de ce fichier.</summary>
 
@@ -121,7 +124,6 @@ class HelloRestControllerTest {
     }
 }
 ```
-> Ce fichier contient le test qui vérifiera si votre contrôleur fonctionne, n’hésitez pas à y jeter un coup d’œil pour le comprendre.
 </details>
 
 <br><br>
@@ -410,7 +412,7 @@ Cette configuration permet de rendre public toutes actions de lecture sur les ur
 
 Libre à vous de configurer la sécurité que vous souhaitez.
 
-###### _PS : si vous êtes sur le même réseau, vous êtes capable d’accéder aux Endpoints de vos collègue 😉_
+###### PS : si vous êtes sur le même réseau, vous êtes capable d’accéder aux Endpoints de vos collègue 😉
 
 <br><br>
 
