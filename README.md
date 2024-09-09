@@ -1,9 +1,16 @@
-# IMT - Intégration de services
-Projet centralisant tous les supports pour le cours d'Intégration de service (abr: INTES) pour l'[IMT Nord Europe](https://imt-nord-europe.fr/).
+# Architecture
+
+## Interventions
+### IMT - Intégration de services
+Projet centralisant tous les supports pour le cours d'intégration de service (abr: INTES) pour l'[IMT Nord Europe](https://imt-nord-europe.fr/).
 
 <br>
 
 ## Getting Started
+## Gestion de projet
+- [Architecture moderne](./Architectures%20modernes.md)
+- [Gestion de projet informatique](./Gestion%20de%20projet%20informatique.md)
+
 ### Docker
 - [Cours Docker](./docker/INTES%20Cours%20-%20Docker.md)
 - [TP Docker](./docker/INTES%20TP%20-%20Docker.md)
@@ -64,6 +71,9 @@ Créez une issue directement depuis GitHub.
         - Architecture moderne
 - 0.3
     - Nouvelle version des support de monitoring
+- 0.4
+    - Nouvelle version pour 2024 - 2025
+      - Ajout des supports liès à la gestion de projet
 
 <br>
 

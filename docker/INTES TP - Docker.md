@@ -6,9 +6,9 @@ Dans ce TP, vous aller apprendre/revoir comment utiliser Docker et déployer une
 Conteneuriser en utilisant les bonnes pratiques une application
 1. Créer un docker-compose pour créer une base de donnée PostgreSQL
 2. Créer une image docker de votre application Spring-Boot
-3. Ajouter votre image Spring-Boot votre docker-compose
+3. Ajouter votre image Spring-Boot à votre docker-compose
 4. Créer une image docker de votre application Nestjs
-5. Ajouter votre image Nestjs votre docker-compose
+5. Ajouter votre image Nestjs à votre docker-compose
 6. Rendre persistant vos bases de données
 7. Isoler vos conteneurs
 8. Modifiez vos image pour utiliser du multi-staging
@@ -19,16 +19,42 @@ Conteneuriser en utilisant les bonnes pratiques une application
 <br>
 
 ## Prérequis
--	[Docker installé sur votre machine](https://docs.docker.com/engine/install/ "Documentation officielle")
+-	Moteur de conteneur installé sur votre machine (Idéallement Docker Desktop)
+    - Docker Desktop (**[doc](https://docs.docker.com/engine/install/ "Documentation officielle pour installer Docker Desktop")**)
+    - Podman (**[doc](https://podman.io/docs/installation "Documentation officielle pour installer Podman") + [compose](https://github.com/containers/podman-compose)**)
 
 <br><br>
 
 ## 1. Utilisez une base de données conteneurisée
 Vous pouvez vous aidez du fichier « ***dockerfile/docker-compose.db.yml*** » de l’archive « Ressources.rar » disponible sur MyLearningSpace > Intes.
 
+<details>
+<summary>Voir le contenu du fichier</summary>
+
+```yml
+version: '3.9'
+networks:
+  intes:
+services:
+  intes_db:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    networks:
+      - intes
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
+      POSTGRES_DB: INTES
+```
+</details>
+
 <br><br>
 
 ## 2. Créer une image docker de votre application Spring-Boot
+Spring Boot est un framework Java, il vous faut donc utiliser une image de base [Java](https://hub.docker.com/_/openjdk) et y placer votre application.
+
 A l’aide du cours, conteneurisez votre application Spring-Boot en utilisant directement l’archive **Jar** fabriquée avec maven.
 <br>
 
@@ -105,7 +131,7 @@ Ensuite, vous devez trouver la command système permettant de lancer votre appli
 <details>
     <summary>Solution</summary>
 
-    ```Dockerfile
+    ```dockerfile
     # Base image
     FROM node:18
 
@@ -190,7 +216,7 @@ Chaque image/technologie précise quel dossier est necéssaire pour persister de
 
 Grâce à un volume, vous allez pouvoir faire en sorte de toujours garder vos données même quand votre container est détruit.
 
-> Pensez à lire la documentation !
+> Pensez à lire la documentation des conteneurs utilisés !
 
 <details>
 <summary>Solution</summary>
@@ -253,7 +279,7 @@ Cela permet de reduire la surface d'attaque de vos containers.
 Sécurisez vos images à l'aide des cours et des ressources internet.
 
 ## 9. Rendez vos images paramètrable
-Pour rednre vos applications plus flexible avec l'utilisation de container, vous devez externaliser plusieurs paramètrages.
+Pour rendre vos applications plus flexible avec l'utilisation de container, vous devez externaliser plusieurs paramètrages.
 
 L'une des bonnes façon de faire est d'utiliser les variables d'environnements.
 
@@ -264,6 +290,12 @@ Dans votre application properties, vous pouvez accèder aux variables d'environn
 exemple.de.config=${NOM_DE_VARIABLE}
 ...
 ```
+> Spring Boot utilise un ordre de priorité pour définir des paramètres ([voir documentation](https://docs.spring.io/spring-boot/docs/2.1.14.RELEASE/reference/html/boot-features-external-config.html))
+> Ex:
+>   - export SPRING_PROFILES_ACTIVE=prod
+>   - export SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/test
+>   - export SPRING_DATASOURCE_USERNAME=username
+>   - export SPRING_DATASOURCE_PASSWORD=azerty
 
 ### Nestjs
 Dans votre application properties, vous pouvez accèder aux variables d'environnements de cette manière:
@@ -281,7 +313,9 @@ Maintenant, vos applications sont paramètrable via le Dockerfile.
 Pour permettre à vos utiliseurs de déployer facilement votre application (avec docker-compose), vous pouvez utiliser les arguements dans votre Dockerfile pour définir vos variables d'environnements.
 
 ```Dockerfile
+# Define one argument
 ARG SECURITY_USER_NAME=admin
+# Define one environment variable using the argument
 ENV SECURITY_USER_NAME=$SECURITY_USER_NAME
 ```
 

@@ -54,7 +54,7 @@ footer: "Fabien HAINGUE"
 
 ### INTES
 
-### 2023-2024
+### 2024-2025
 
   </div>
   
@@ -118,7 +118,7 @@ Java possède trois éditions
 | 8 (LTS)  |     2014     |      2030      |
 | 11 (LTS) |     2018     |      2026      |
 | 17 (LTS) |     2021     |      2029      |
-| 21 (LST) |     2023     |       ?        |
+| 21 (LST) |     2023     |      2031      |
 
 </center>
 
@@ -177,7 +177,9 @@ stream.filter(obj -> obj != null).map(obj -> obj.hashCode()).collect(Collectors.
 ### Remote debug
 
 JVM options:
+```
 -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
+```
 
 ---
 
@@ -216,7 +218,7 @@ Historiquement, le framework Spring est le premier à avoir été créé. Spring
 
 <center>
 
-**2004 (1.0)** -> **2017 (5.0)**
+**2004 (1.0)** -> **2022 (6.0)**
 
 </center>
 
