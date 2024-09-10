@@ -1,26 +1,26 @@
+# Sujet TP – Conception de projet
 
-Suejt : application evenementiel
+Dans ce TP commun, nous allons définir un projet, le décrire et concevoir son architecture pour nos prochains TP de Spring-Boot et NestJS.
 
-Roles:
-- Administrateur
-- Organisateur
-- Particiant
-(- Propriétaire)
+<br><br>
 
-Capacités:
-- Rendre plus facile l'organisation d'event
-  - Oraganiser des events
-  - Gérer la vente des tickets
-  - Chercher du personel
-- Rendre plus facile l'accès à des events
-  - Chercher des events
-  - Acheter des tickets
-  - Revente des tickets
-- Augmenter la confiance envers les organisateur
-  - Système de votes
+## Objectif
+
+Définir un projet informatique complet:
+
+1. Imaginer le projet
+2. Décrire le fonctionnement
+3. Détailler le fontionnement
+4. Lister les objectifs/motivations du projet
+5. Lister les capacités du porjet
+6. Concevoir l'architecture
+
+
 
 # Context
+
 ## Global
+
 ```plantuml
 @startuml
 left to right direction
@@ -60,7 +60,9 @@ e --> n
 ```
 
 ## Details
+
 ### Rechercher les events les mieux notés
+
 ```plantuml
 @startuml
 participant Participant as p
@@ -75,6 +77,7 @@ e --> p : Envoi le détails des events les mieux notés
 @enduml
 ```
 ### Annuler un event
+
 ```plantuml
 @startuml
 participant Participant as p
@@ -92,6 +95,7 @@ e --> e : Supprime l'event
 ```
 
 # Motivations
+
 ```plantuml
 @startuml
 archimate #Motivation "Augmenter la confiance envers les organisateur" as trust <<motivation-driver>>
@@ -122,6 +126,7 @@ app --> evaluate
 ```
 
 # Architecture
+
 ```plantuml
 @startuml
 rectangle AppUI as app_ui
@@ -144,14 +149,16 @@ m_service -- m_bdd
 ```
 
 ## EventService
+
 ### Entitée
+
 | Event |
 | --- |
 | __id__: UUID |
 | title: String |
 | description: String |
 | ticketPrice: double |
-| organisator: UUID |
+| organizer: UUID |
 | location: Location |
 | datetime: LocalDatetime |
 
@@ -162,20 +169,22 @@ m_service -- m_bdd
 
 
 ### Contrat de service
-| Method | url | body | Result | Description |
-| --- | --- | --- | --- | --- |
-| GET | /event | [ ]: Collection\<Event> | 200 ou 204 | List 10 events |
-| GET | /event/{id} | {}: Event | 200 ou 404 | Renvoi un event sinon error |
-| POST | /event | {}: Event | 201 ou 400 ou 401 | Créer un event |
-| PUT | /event | {}: Event | 200 ou 400 ou 401 ou 404 | Modifier un event |
+
+| Method | url | request body| response body | Result | Description |
+| --- | --- | --- | --- | --- | --- |
+| GET | /event | | [ ]: Collection\<Event> | 200 ou 204 | List 10 events |
+| GET | /event/{id} | | {}: Event | 200 ou 404 | Renvoi un event sinon error |
+| POST | /event | {}: Event | {}: Event | 201 ou 400 ou 401 | Créer un event |
+| PUT | /event | {}: Event | {}: Event | 200 ou 400 ou 401 ou 404 | Modifier un event |
 | DELETE | /event/cancel/{id} | | 200 ou 401 ou 404 | Annuler un event |
 
 ## TicketService
+
 ### Entitée
 | Ticket |
 | --- |
 | __id__: UUID |
-| event: Envent |
+| event: Event |
 | participant: UUID |
 | paymentDatetime: LocalDatetime |
 | creationDatetime: LocalDatetime |
@@ -185,5 +194,42 @@ m_service -- m_bdd
 | __id__: UUID |
 | title: String |
 | ticketPrice: double |
-| organisator: UUID |
 | datetime: LocalDatetime |
+
+### Contrat de service
+
+| Method | url | request body| response body | Result | Description |
+| --- | --- | --- | --- | --- | --- |
+| GET | /ticket/{id} | | {}:Ticket | 200 ou 404 | Récupére un tickets |
+| GET | /ticket?eventId={eventId} | | [ ]: Collection\<Ticket> | 200 ou 204 | Lister tous les tickets d'un event |
+| POST | /buy-ticket | Ticket | Ticket | 200 ou 204 | Acheter un ticket |
+| POST | /sell-ticket/{id} | | Ticket | 200 ou 400 | Revendre un ticket |
+
+## MarkService
+
+### Entitée
+
+| Mark |
+| --- |
+| __id__: UUID |
+| event: Event |
+| participant: UUID |
+| value: int |
+| creationDatetime: LocalDatetime |
+
+| Event |
+| --- |
+| __id__: UUID |
+| title: String |
+| organizer: UUID |
+| datetime: LocalDatetime |
+
+### Contrat de service
+
+| Method | url | request body| response body | Result | Description |
+| --- | --- | --- | --- | --- | --- |
+| GET | /mark/{id} | | {}:Mark | 200 ou 404 | Récupére une mark |
+| GET | /mark?eventId={eventId} | | [ ]: Collection\<Mark> | 200 ou 204 | Lister toutes les mark d'un event |
+| GET | /top-event | | [ ]: Collection\<Event> | 200 ou 204 | Lister le top 10 des meilleurs event |
+| GET | /top-organisator | | [ ]: Collection\<UUID> | 200 ou 204 | Lister le top 10 des meilleurs organisateur |
+| POST | /evaluate | Mark |Mark | 200 ou 400 ou 401 | Evaluer un event |
