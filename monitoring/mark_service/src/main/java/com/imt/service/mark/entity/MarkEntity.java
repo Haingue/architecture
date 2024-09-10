@@ -3,6 +3,7 @@ package com.imt.service.mark.entity;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -15,7 +16,7 @@ public class MarkEntity {
     private UUID id;
     @Column
     private UUID participant;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private EventEntity event;
     @Column
     private int markValue;
