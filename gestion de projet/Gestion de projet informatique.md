@@ -426,6 +426,11 @@ Il est donc important de présenter et valider des maquettes de l'interface aux 
 
 </center>
 
+#### User story
+![](../resources/images/user-story.png)
+
+---
+<!-- header: 'Gestion de projet' -->
 #### Versionnement
 - MVP: Minimum Viable Product
 - MMP: Minimum Marketable Product
