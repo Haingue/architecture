@@ -10,7 +10,8 @@ import com.imt.service.mark.mapper.MarkMapper;
 
 public enum MarkExemples {
     
-    Mark_1 (UUID.randomUUID(), UserExemples.User_1.getId(), EventExemples.Event_1.toDto(), 3, LocalDateTime.now());
+    Mark_1 (UUID.randomUUID(), UserExemples.User_1.getId(), EventExemples.Event_1.toDto(), 3, LocalDateTime.now()),
+    Mark_2 (UUID.randomUUID(), UserExemples.User_2.getId(), EventExemples.Event_1.toDto(), 4, LocalDateTime.now());
 
     private UUID id;
     private UUID participant;

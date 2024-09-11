@@ -12,8 +12,8 @@ public class EventMapper {
             entity.getId(),
             entity.getTitle(),
             entity.getOrganizer(),
-            entity.getCreationDatetime(),
-            entity.getMarks().stream().map(MarkMapper::mapToDto).collect(Collectors.toSet())
+            entity.getCreationDatetime()
+            //, entity.getMarks().stream().map(MarkMapper::mapToDto).collect(Collectors.toSet())
         );
     }
 
@@ -23,7 +23,7 @@ public class EventMapper {
         entity.setTitle(dto.title());
         entity.setOrganizer(dto.organizer());
         entity.setCreationDatetime(dto.creationDatetime());
-        entity.setMarks(dto.marks().stream().map(MarkMapper::mapToEntity).collect(Collectors.toSet()));
+        // entity.setMarks(dto.marks().stream().map(MarkMapper::mapToEntity).collect(Collectors.toSet()));
         return entity;
     }
 

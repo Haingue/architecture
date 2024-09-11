@@ -8,6 +8,6 @@ public record EventDto (
     UUID id,
     String title,
     UUID organizer,
-    LocalDateTime creationDatetime,
-    Set<MarkDto> marks
+    LocalDateTime creationDatetime
+    // ,Set<MarkDto> marks
 ){}

@@ -1,10 +1,12 @@
 package com.imt.service.mark.configuration.security;
 
 import java.io.IOException;
+import java.util.Collections;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
@@ -31,15 +33,15 @@ public class CustomFilter implements Filter {
             if (isValidUri(uri)) {
                 String username = request.getHeader("Authorization");
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                    username, null, null);
+                    username, null, Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
+                // return;
             }
         } catch (Exception e) {
             LOGGER.error("Cannot set user authentication: {}", e);
         }
  
         filterChain.doFilter(request, response);
-        throw new UnsupportedOperationException("Unimplemented method 'doFilter'");
     }
 
     private boolean isValidUri (String uri) {

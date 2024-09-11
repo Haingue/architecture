@@ -11,13 +11,16 @@ import com.imt.service.mark.mapper.EventMapper;
 
 public enum EventExemples {
     
-    Event_1 (UUID.randomUUID(), "Event test 1", UserExemples.User_1.getId(), LocalDateTime.now(), Set.of());
+    Event_1 (UUID.randomUUID(), "Event test 1", UserExemples.User_1.getId(), LocalDateTime.now(), Set.of()),
+    Event_2 (UUID.randomUUID(), "Event test 2", UserExemples.User_1.getId(), LocalDateTime.now(), Set.of()),
+    Event_3 (UUID.randomUUID(), "Event test 3", UserExemples.User_1.getId(), LocalDateTime.now(), Set.of()),
+    Event_4 (UUID.randomUUID(), "Event test 4", UserExemples.User_1.getId(), LocalDateTime.now(), Set.of());
 
-    private UUID id;
-    private String title;
-    private UUID organizer;
-    private LocalDateTime creationDatetime;
-    private Set<MarkDto> marks;
+    public final UUID id;
+    public final String title;
+    public final UUID organizer;
+    public final LocalDateTime creationDatetime;
+    public final Set<MarkDto> marks;
 
     private EventExemples(UUID id, String title, UUID organizer, LocalDateTime creationDatetime, Set<MarkDto> marks) {
         this.id = id;
@@ -32,8 +35,8 @@ public enum EventExemples {
             id,
             title,
             organizer,
-            creationDatetime,
-            marks
+            creationDatetime
+            // ,marks
         );
     }
 

@@ -1,15 +1,18 @@
 package com.imt.service.mark.mapper;
 
+import com.imt.service.mark.dto.EventDto;
 import com.imt.service.mark.dto.MarkDto;
 import com.imt.service.mark.entity.MarkEntity;
 
 public class MarkMapper {
     
     public static MarkDto mapToDto (MarkEntity entity) {
+        EventDto eventDto = null;
+        if (entity.getEvent() != null) eventDto = EventMapper.mapToDto(entity.getEvent());
         return new MarkDto(
             entity.getId(),
             entity.getParticipant(),
-            EventMapper.mapToDto(entity.getEvent()),
+            eventDto,
             entity.getMarkValue(),
             entity.getCreationDatetime()
         );
