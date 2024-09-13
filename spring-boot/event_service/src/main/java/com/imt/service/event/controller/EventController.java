@@ -1,5 +1,6 @@
 package com.imt.service.event.controller;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -29,24 +30,13 @@ public class EventController {
     private EventService eventService;
 
     @GetMapping
-    public ResponseEntity<?> getAllEvents () {
-        LOGGER.info("Load all event");
-        try {
-            return ResponseEntity.ok(eventService.findAllEvent());
-        } catch (RuntimeException exception) {
-            LOGGER.warn("Bad request", exception);
-            return ResponseEntity.badRequest().build();
-        } catch (Exception exception) {
-            LOGGER.error("Error", exception);
-            return ResponseEntity.internalServerError().build();
-        }
-    }
-
-    @GetMapping
-    public ResponseEntity<?> getEvent (@PathParam("id") UUID id) {
+    public ResponseEntity<?> getEvent (@PathParam(value = "id") Optional<UUID> id) {
         LOGGER.info("Load one event: {}", id);
         try {
-            return ResponseEntity.ok(eventService.findEvent(id));
+            if (id.isPresent()) {
+                return ResponseEntity.ok(eventService.findEvent(id.get()));
+            }
+            return ResponseEntity.ok(eventService.findAllEvent());
         } catch (RuntimeException exception) {
             LOGGER.warn("Event not found", exception);
             return ResponseEntity.notFound().build();
@@ -86,6 +76,5 @@ public class EventController {
             return ResponseEntity.internalServerError().build();
         }
     }
-    
-    
+
 }

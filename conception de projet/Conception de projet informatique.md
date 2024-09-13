@@ -437,6 +437,11 @@ Il est donc important de présenter et valider des maquettes de l'interface aux 
 - MMR: Minimum Marketable Release
 
 ---
+<!-- header: 'Finaliser un projet' -->
+## Finaliser un projet 
+#### SLA
+
+---
 <!-- header: 'Fin' -->
 
 ## Livres

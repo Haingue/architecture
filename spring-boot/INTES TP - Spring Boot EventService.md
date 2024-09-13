@@ -17,7 +17,20 @@ Créer une application Spring Boot permettant de gérer l'organisation d'événe
 
 <center>
 
-![](../resources/PartService_hybrid.png)
+```plantuml
+@startuml
+archimate #Business "Gestion des event" as event_service <<business-process>>
+archimate #Business "Find best event" as find_event <<business-function>>
+archimate #Business "Organize event" as organize_event <<business-function>>
+archimate #Business "Update event" as update_event <<business-function>>
+archimate #Business "Cancel event" as cancel_event <<business-function>>
+
+event_service --> find_event
+event_service --> organize_event
+event_service --> update_event
+event_service --> cancel_event
+@enduml
+```
 
 </center>
 
@@ -226,7 +239,7 @@ Ensuite, il faut ajouter les **propriétés Spring** permettant à l’applicati
 
 ```properties
 ## Database properties ##
-spring.datasource.url=jdbc:h2:mem:PartService
+spring.datasource.url=jdbc:h2:mem:EventService
 spring.datasource.driverClassName=org.h2.Driver
 spring.datasource.username=sa
 spring.datasource.password=password
@@ -242,15 +255,25 @@ Maintenant, votre application est prête pour créer vos entités et les méthod
 
 <center>
 
-| Event |
-| --- |
-| __id__: UUID |
-| title: String |
-| description: String |
-| ticketPrice: double |
-| organizer: UUID |
-| location: Location |
-| datetime: LocalDatetime |
+```plantuml
+@startuml
+Class Event {
+  **id**: UUID
+  title: String
+  description: String
+  ticketPrice: double
+  organizer: UUID
+  location: Location
+  datetime: LocalDatetime
+}
+Class Location {
+  **address**: String
+  capacity: int
+}
+
+Event "location" *-- Location
+@enduml
+```
 
 </center>
 
@@ -258,16 +281,14 @@ Maintenant, votre application est prête pour créer vos entités et les méthod
 
 <br>
 
-**Méthodes** :
+**Méthodes métiers**
+- EventDto findOneEvent (UUID eventId)
+- List\<EventDto> findAllEvent (int page, int number)
+- EventDto organizeEvent (EventDto newEventDto)
+- EventDto updateEvent (EventDto eventDto)
+- void cancelEvent (UUID eventId)
 
-- EventEntity save (EventEntity entity)
-- Void delete (EventEntity entity)
-- EventEntity findFirstByTitle (String title)
-- EventEntity findFirstByOrganizer (String organizer)
-- List<EventEntity> findAll ()
-- Page<EventEntity> findAll (Pageable page)
-
-Placez le fichier **EventRepositoryTest** dans votre dossier src/**tests**/java/com/imt/intes/partservice/repository pour vérifier votre code.
+Placez le fichier **EventRepositoryTest** dans votre dossier src/**tests**/java/com/imt/service/eventservice/repository pour vérifier votre code.
 
 
 <details>
@@ -496,14 +517,14 @@ Pour cela, vous pouvez définir un nouveau service qui enverra une requête http
 
 Essayez d’ajouter des utilisateurs, rôles (« USER », « ADMIN ») ainsi que des relations entre part et user.
 
-> | UserEntity |            |
-> | :--------- | :--------- |
-> | login      | String     |
-> | password   | String     |
-> | role       | RoleEntity |
+| UserEntity |            |
+| :--------- | :--------- |
+| login      | String     |
+| password   | String     |
+| role       | RoleEntity |
 
-<br>
+| RoleEntity |        |
+| :--------- | :----- |
+| id         | String |
 
-> | RoleEntity |        |
-> | :--------- | :----- |
-> | id         | String |
+> Vous pouvez utiliser cet article: [Medium](https://medium.com/@nagarjun_nagesh/customizing-authentication-in-spring-boot-aa60bd13aebe)

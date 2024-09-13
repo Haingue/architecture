@@ -233,3 +233,13 @@ m_service -- m_bdd
 | GET | /top-event | | [ ]: Collection\<Event> | 200 ou 204 | Lister le top 10 des meilleurs event |
 | GET | /top-organisator | | [ ]: Collection\<UUID> | 200 ou 204 | Lister le top 10 des meilleurs organisateur |
 | POST | /evaluate | Mark |Mark | 200 ou 400 ou 401 | Evaluer un event |
+
+# Mockup
+
+## JSON-Server
+Vous pouvez utiliser [json-server](https://www.npmjs.com/package/json-server) pour créer une première version minimaliste de vos micro-service pour pouvoir créer rapidement une maquette du projet.
+![](./event-app_mockup.json)
+
+```shell
+json-server ./event-app_mockup.json
+```

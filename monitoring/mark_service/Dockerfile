@@ -1,4 +1,4 @@
-FROM maven:3-openjdk-21-slim as builder
+FROM maven:3.9.9-amazoncorretto-21 as builder
 WORKDIR /app
 COPY pom.xml .
 RUN mvn dependency:go-offline

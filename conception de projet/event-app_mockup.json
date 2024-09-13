@@ -1,0 +1,32 @@
+{
+  "event": [
+    {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "title": "IMT - Cours architecture",
+      "description": "Cours d'architecture logiciel",
+      "ticketPrice": 5.5,
+      "organizer": "2f919fbc-e2ee-449b-a217-f19ffe0a13f1",
+      "location": {
+        "address": "Rue Guglielmo Marconi, 59650 Villeneuve-d'Ascq",
+        "capacity": 1500
+      },
+      "datetime": "2024-09-13T13:10:38.020Z"
+    }
+  ],
+  "ticket": [
+  ],
+  "mark": [
+    {
+      "id": "0ad4575a-48cb-44a8-8471-2016b96a2376",
+      "participant": "44783600-8465-476f-9a36-23331f25852b",
+      "event": {
+        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "title": "IMT - Cours architecture",
+        "organizer": "2f919fbc-e2ee-449b-a217-f19ffe0a13f1",
+        "creationDatetime": "2024-09-13T13:10:38.020Z"
+      },
+      "markValue": 3,
+      "creationDatetime": "2024-09-13T13:23:55.077Z"
+    }
+  ]
+}
