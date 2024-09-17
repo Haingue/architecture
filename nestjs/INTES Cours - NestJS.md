@@ -23,16 +23,18 @@ footer: "Fabien HAINGUE"
 <!-- _header: '' -->
 <!-- _footer: '' -->
 <!-- _paginate: skip -->
+
 <div class="grid grid-cols-3 grid-flow-col gap-2 text-center">
   <div class="row-span-1">
 
-![](../resources/images/IMT-logo.png)
+![width:200px](../resources/images/IMT-logo.png)
 
   </div>
 
   <div class="row-span-1 row-start-3">
   
   ![](../resources/images/cc.svg)
+  
   </div>
   
   <div class="row-span-3 col-span-3">

@@ -106,6 +106,8 @@ Pour un système de streaming audio, cette mesure peut se concentrer sur le déb
 Dans quelle mesure votre service est-il « complet ». Une mesure de la fraction de votre système, mettant l'accent sur les ressources les plus contraintes (par exemple, dans un système à mémoire limitée, afficher la mémoire ; dans un système à contraintes d'E/S, afficher les E/S).
 Notez que les performances de nombreux systèmes se dégradent avant d'atteindre une utilisation à 100 %, il est donc essentiel d'avoir un objectif d'utilisation.
 
+---
+
 > Dans les systèmes complexes, la saturation peut être complétée par une mesure de charge de plus haut niveau : votre service peut-il gérer correctement le double du trafic, gérer seulement 10 % de trafic en plus ou encore moins de trafic qu'il n'en reçoit actuellement ?
 >
 > Pour les services très simples qui n'ont aucun paramètre modifiant la complexité de la requête (par exemple, "Donnez-moi une occasion" ou "J'ai besoin d'un entier monotone globalement unique") et qui changent rarement de configuration, une valeur statique provenant d'un test de charge peut être adéquate.
