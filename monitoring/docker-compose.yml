@@ -6,7 +6,7 @@ volumes:
 
 services:
   prometheus:
-    image: prom/prometheus:v2.36.2
+    image: prom/prometheus:main
     volumes:
       - ./prometheus/conf/:/etc/prometheus/
       - prometheus_data:/prometheus
@@ -22,7 +22,7 @@ services:
     restart: always
 
   alertmanager:
-    image: prom/alertmanager
+    image: prom/alertmanager:main
     ports:
       - 9093:9093
     volumes:
@@ -33,7 +33,7 @@ services:
       - '--storage.path=/alertmanager'
 
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana-enterprise:main
     user: '472'
     depends_on:
       - prometheus
