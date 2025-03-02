@@ -1,13 +1,13 @@
 # Sujet TP – Monitoring
 
-Dans ce TP, vous allez apprendre à utiliseret déployer un monitoring.
+Dans ce TP, vous allez apprendre à utiliser et déployer un système de monitoring.
 
 <br><br>
 
 ## Objectifs
 
 - Monitorez vos applications
-  - Adaptez vos applications pour **exposer des métriques**
+  - Adaptez vos applications pour **exposer des mesures**
   - Utiliser l'API ProductService
 
 - Mettez en place un monitoring
@@ -114,17 +114,17 @@ Rendez-vous sur `http://localhost:8085/swagger-ui/index.html` pour tester l'API
 
 ---
 
-## 2. Prometheus
+### 2. Prometheus
 
 Pour commencer, le composant le plus important de votre architecture est l'outils qui collectera et centralisera vos mesures.
 
 Pour cela, nous allons utiliser [Prometheus](https://prometheus.io/docs/introduction/overview/) !
 
-[Prometheus tutoriel](https://prometheus.io/docs/prometheus/latest/getting_started/)
+> N'hésitez pas à vous rendre sur le site officiel de Prometheus !
+> - [Prometheus tutoriel](https://prometheus.io/docs/prometheus/latest/getting_started/)
+> - [Prometheus documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/)
 
-[Prometheus documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/)
-
-### 2.1. Instanciez Prometheus
+#### 2.1. Instanciez Prometheus
 
 D'après la [documentation officielle de Prometheus](https://prometheus.io/docs/prometheus/latest/installation/), vous pouvez utiliser un conteneur pour créer votre première instance.
 
@@ -140,7 +140,7 @@ ports:
 
 </details>
 
-### 2.2. Configurez Prometheus
+#### 2.2. Configurez Prometheus
 
 Vous devez configurer Prometheus pour monitorer votre application et ajuster certains comportement.
 
@@ -154,7 +154,7 @@ Dans ce fichier, il y aura toutes les propriétés de Prometheus dont les cibles
 
 </details>
 
-### 2.3. Testez Prometheus
+#### 2.3. Testez Prometheus
 
 Rendez-vous sur l'interface de Prometheus et essayez de visualiser certaines mesures de votre applications.
 
@@ -167,20 +167,21 @@ sum(http_server_requests_seconds_count{status=~"2.."}) by (instance)
 ```
 </details>
 
-### 2.4. Bonus
+#### 2.4. Bonus
 
 - Rendez votre conteneur persistent
 
 ---
 
-## 3. Grafana
+### 3. Grafana
 
 Maintenant que vous collectez des mesures, il vous faut les visualiser.
 Pour cela nous allons utiliser [Grafana](https://grafana.com/) !
 
-[Grafana documentation](https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker/)
+> N'hésitez pas à vous rendre sur le site officiel de Grafana !
+> - [Grafana documentation](https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker/)
 
-### 3.1. Instanciez Grafana
+#### 3.1. Instanciez Grafana
 
 D'après la [documentation officielle de Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/installation/), vous pouvez utiliser un conteneur pour créer votre première instance.
 
@@ -198,7 +199,7 @@ grafana:
 
 </details>
 
-### 3.2. Créez votre premier dashboard
+#### 3.2. Créez votre premier dashboard
 Pour créer un dashboard, il suffit de cliquer sur le bouton `+` puis sur `New dashboard`.
 Ensuite, vous pouvez soit créer une Row, une Visualization ou importer des éléments d'autre personne.
 
@@ -210,47 +211,47 @@ Ensuite, vous pouvez soit créer une Row, une Visualization ou importer des él�
 > [Grafana dashboards](https://grafana.com/docs/grafana/latest/dashboards/)
 > [Grafana alerting](https://grafana.com/docs/grafana/latest/alerting/)
 
-### 3.3. Importez un dashboard détaillé
+#### 3.3. Importez un dashboard détaillé
 Rendez-vous sur [Grafana labs](https://grafana.com/grafana/dashboards/) pour pouvoir trouver le dashboard qu'il vous faut ([exemple](https://grafana.com/grafana/dashboards/3662-prometheus-2-0-overview/)).
 
 > Pour importer un dashboard, il suffit de copier son identifiant dans votre grafana `DashBoard > New > Import`.
 
-### 3.4. Exportez votre dashboard
+#### 3.4. Exportez votre dashboard
 Depuis l'édition d'un dashboard, vous pouvez le partager en cliquant sur le bouton de partage.
 
 > Cela permet de générer un fichier JSON, ce fichier peut être placé sur Git et automatiquement importer lors de la création d'une instance Grafana. 
 
-### 3.5. Configurer Grafana
+#### 3.5. Configurer Grafana
 Si vous voulez configurer automatiquement Grafana, vous pouvez donner au conteneurs des fichiers YAML pour préremplir l'application (datasource, dashboard, ...)
 
 Pour cela, il vous suffit de remplacer les fichiers ce trouvant dans le dossier _/etc/grafana/provisioning/_ du conteneur.
 
 ---
 
-## 4. AlertManager
+### 4. AlertManager
 
-A ce stade, vous monitorez vos application mais vous n'être pas alarmé en cas de problème.
+A ce stade, vous monitorez vos application mais vous n'être pas alerté en cas de problème.
 Pour cela nous allons utiliser [AlertManager](https://github.com/prometheus/alertmanager) !
 
 > Sachez que Prometheus, permet d'envoyer des alertes.
 > mais dans la vie de tout les jours, il faut avoir un paramétrage fin des alertes sinon les membres de votre équipes deviendront "sourds et aveugle" (c.a.d ils n'y feront plus attention).
-> AlertManager permet d'envoyer des alertes sous certaine condition et permet d'éviter le SPAM.
+> AlertManager permet d'envoyer des alertes sous certaine condition et permet d'éviter le **SPAM**.
 
 
-### 4.1. Instanciez AlertManager
+#### 4.1. Instanciez AlertManager
 [Docker Hub](https://hub.docker.com/r/prom/alertmanager/)
 
-### 4.2. Configurez AlertManager
+#### 4.2. Configurez AlertManager
 [AlertManager documentation](https://prometheus.io/docs/alerting/latest/configuration/)
 
-### 4.3. Configurez Prometheus
+#### 4.3. Configurez Prometheus
 Sachez que Prometheus peut envoyer des alertes à différents type de système et que vous êtes libre de créer n'importe quelle alerte.
 
-#### 4.3.1. Configurer les canaux de communication
+##### 4.3.1. Configurer les canaux de communication
 Pour cela, vous devez modifier la configuration de prometheus pour ajouter des canaux (ou receiver dans la documentation officielle).
 
 <details>
-<summary>Cliquez pour voir un exemple</summary>
+<summary>Cliquez pour voir un exemple de configuration Prometheus</summary>
 
 prometheus.yml
 ```yml
@@ -269,7 +270,7 @@ alerting:
 > Pour envoyer des emails, vous pouvez suivre cette vidéo
 > [PROMETHEUS - 23. AlertManager : envoyez un mail (gmail)](https://www.youtube.com/watch?v=b371v8Lc4fI)
 
-#### 4.3.2. Configurer les alertes
+##### 4.3.2. Configurer les alertes
 <details>
 <summary>Cliquez pour voir un exemple</summary>
 
@@ -291,7 +292,7 @@ alert.rules
 ```
 </details>
 
-### 4.4. Testez AlertManager
+#### 4.4. Testez AlertManager
 Si vous avez mis une alerte sur l'état de votre application, alors si vous stopper son conteneur alors vous aller voir une alerte sur AlertManager.
 
 Si vous avez configurer des "receivers" dans AlertManager alors vous allez recevoir les alertes via ces canaux.
@@ -308,13 +309,25 @@ Si vous avez configurer des "receivers" dans AlertManager alors vous allez recev
 
 ---
 
-## 5. Déployez vos applications en même temps que votre monitoring
+### 5. Créer vos écrans de monitoring
+
+#### 5.1 Créer un écrans Technique
+Vous pouvez créer un écran monitorant tous vos composant en utilisant le principe des **Golden Signals**
+
+#### 5.2 Créer un écrans Global
+Vous pouvez créer un écran simpliste pour savoir quel est l'état du système rapidement.
+
+> Faites preuve de créativité en utilisant toutes les possibilités de Grafana ou d'alert manager.
+
+---
+
+### 6. Déployez vos applications en même temps que votre monitoring
 Pour gérer le monitoring de vos applications, plusieurs possibilitées s'offre à vous:
 - Créer un monitoring complet pour toutes vos applications et gérer la configuration indépendament de votre projet/équipe.
 - Créer un monitoring complet par application.
 - Ajouter uniquement une instance prometheus pour chaque application.
 
-### 5.1 Ajoutez Prometheus/Grafana/AlertManager à vos docker-compose
+#### 6.1 Ajoutez Prometheus/Grafana/AlertManager à vos docker-compose
 Vous pouvez ajouter toutes vos configuration dans le repository Git de votre projet, ensuite vous pouvez ajouter les services nécessaires (conteneurs) à votre docker-compose ou autre solution permettant de déployer votre application.
 
 <details>

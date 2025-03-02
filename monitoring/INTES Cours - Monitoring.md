@@ -23,6 +23,7 @@ footer: "Fabien HAINGUE"
 <!-- _header: '' -->
 <!-- _footer: '' -->
 <!-- _paginate: skip -->
+
 <div class="grid grid-cols-3 grid-flow-col gap-2 text-center">
   <div class="row-span-1">
 
@@ -33,6 +34,7 @@ footer: "Fabien HAINGUE"
   <div class="row-span-1 row-start-3">
   
   ![](../resources/images/cc.svg)
+
   </div>
   
   <div class="row-span-3 col-span-3">
@@ -43,7 +45,7 @@ footer: "Fabien HAINGUE"
 
 ### INTES
 
-### 2024-2025
+### 2025-2026
 
   </div>
   
@@ -143,6 +145,7 @@ Méthodologie permettant de créer une synergie entre les développeurs et les i
 
 ## Minimalisme & pertinence
 ### Mauvais monitoring
+
 <center>
 
 ![bg  right 60%](../resources/images/montoring-bad-exemple.png)
@@ -157,6 +160,7 @@ Méthodologie permettant de créer une synergie entre les développeurs et les i
 
 ## Minimalisme & pertinence
 ### Bon monitoring
+
 <center>
 
 ![bg  left 60%](../resources/images/monitoring-good-exemple.png)
@@ -170,6 +174,7 @@ Méthodologie permettant de créer une synergie entre les développeurs et les i
 
 ## Minimalisme & pertinence
 ### Bon monitoring
+
 <center>
 
 ![bg  left 60%](../resources/images/monitoring-good-exemple-2.png)
@@ -183,6 +188,7 @@ Méthodologie permettant de créer une synergie entre les développeurs et les i
 
 ## Minimalisme & pertinence
 ### Bon monitoring
+
 <center>
 
 ![bg  left 60%](../resources/images/monitoring-good-exemple-3.png)
