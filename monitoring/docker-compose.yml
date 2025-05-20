@@ -20,6 +20,9 @@ services:
     links:
       - alertmanager:alertmanager
     restart: always
+    # For Linux/MAC installation, add theses lines to use host.docker.internal
+    # extra_hosts:
+    #  - host.docker.internal:host-gateway
 
   alertmanager:
     image: prom/alertmanager:main
