@@ -377,9 +377,53 @@ Plus longue à mettre en place, mais permet de garder une bonne structure du cod
 
 - **Classes** : Une classe est un modèle ou un plan pour créer des objets. Elle définit un type de données en regroupant des attributs (données) et des méthodes (fonctions).
 
+```java
+public class Person {
+}
+```
+
 - **Attributs** : Les attributs sont des variables qui appartiennent à une classe. Ils représentent les données ou l'état d'un objet.
 
-- **Méthodes** : Les méthodes sont des fonctions définies dans une classe. Elles décrivent les comportements ou les actions que les objets de la classe peuvent effectuer.
+```java
+public class Person {
+  String name;
+  int age;
+}
+```
+
+- **Constructeur** : Un constructeur est une méthode spéciale d'une classe qui est appelée lors de l'instanciation d'un objet. Il est utilisé pour initialiser les attributs de l'objet.
+
+```java
+public class Person {
+  String name;
+  int age;
+
+  Person (String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
+}
+```
+
+- **Méthodes** : Les méthodes sont des fonctions définies dans une classe. Elles décrivent les comportements ou les actions que les objets de la classe peuvent effectuer. On dit que l'on "**invoque**" une méthode et que l'on fait appel à une fonction.
+
+```java
+public class Person {
+  String name;
+  int age;
+
+  Person (String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  String toString() {
+    return name + "(" + age + (age > 1 ? "ans" : "an") + ")";
+  }
+}
+```
+
+---
 
 - **Membres** : Les membres d'une classe sont ses attributs et ses méthodes. Ils constituent les éléments fondamentaux d'une classe.
 
@@ -391,11 +435,40 @@ Plus longue à mettre en place, mais permet de garder une bonne structure du cod
 
 - **Instancier** (new) : Instancier une classe signifie créer un nouvel objet à partir de cette classe en utilisant le mot-clé `new`. Cela alloue de la mémoire pour le nouvel objet.
 
-- **Notation** pointée & référence : La notation pointée est utilisée pour accéder aux membres (attributs et méthodes) d'un objet via une référence. Une référence est une variable qui pointe vers un objet.
+```java
+public class Application {
+  void main (String... args) {
+    Person javaDesigner = new Person("James Gosling", 70);
+    System.out.println(javaDesigner.toString());
+  }
+}
+```
 
-- **Constructeur** : Un constructeur est une méthode spéciale d'une classe qui est appelée lors de l'instanciation d'un objet. Il est utilisé pour initialiser les attributs de l'objet.
+- **Notation pointée & référence** : La notation pointée est utilisée pour accéder aux membres (attributs et méthodes) d'un objet via une référence. Une référence est une variable qui pointe vers un objet.
+
+```java
+public class Application {
+  void main (String... args) {
+    Person javaDesigner = new Person("James Gosling", 0);
+    javaDesigner.age = 2025 - 1955;
+    System.out.println("Name: " + javaDesigner.name);
+    System.out.println("Age: " + javaDesigner.age);
+  }
+}
+```
 
 - **Variable** : Une variable est un espace de stockage nommé qui contient des données. En Java, les variables peuvent être de différents types et peuvent représenter des valeurs primitives ou des références à des objets.
+
+
+```java
+public class Application {
+  void main (String... args) {
+    int javaDesignerAge = 2025 - 1955
+    Person javaDesigner = new Person("James Gosling", javaDesignerAge);
+    System.out.println(javaDesigner.toString());
+  }
+}
+```
 
 ---
 
@@ -611,6 +684,48 @@ Un Integer ou un Double nécessite donc environ 16 à 24 octets (en-tête + vale
       return "Example";
   }
   ```
+
+#### Hello World
+Il existe plus d'une 30 de manière d'écrire un hello world en Java.
+
+##### Basic
+```java
+public class Hello {
+    public static void main (String[ ] args){
+        System.out.println("Hello world");
+    }
+}
+```
+##### Par référence
+```java
+public class HelloParRéférence {
+    public static void main (String[ ] args){
+        Consumer<String> hello = System.out::println;
+        hello.accept("Hello world");
+        /*** or ***/
+        Arrays.asList("Hello world").foreach(System.out::println);
+    }
+}
+```
+##### Via javascript
+```java
+public class HelloParSciptEngine {
+    public static void main (String[ ] args){
+        ScriptEngine engine = new ScriptEngineManager().getEngineByName("rhino");
+        Object result = engine.eval("print('Hello world');");
+    }
+}
+```
+##### Par réflexion
+```java
+public class HelloParReflexion {
+    public static void main (String[ ] args){
+      Class<PrintStream> classPrint = PrintStream.class;
+      Method method = classPrint.getMethod("println", String.class);
+      method.invoke(System.out, "Hello world");
+    }
+}
+```
 
 ---
 
@@ -836,7 +951,7 @@ Un objet en Java est une instance d'une classe. Il représente une entité concr
 - Visitor
 - ...
 
-> Vous pouvez vous rendre sur le site (refactoring.guru)[https://refactoring.guru/fr/design-patterns] pour identifier/comprendre le patron de conception qui pourrait vous aider.
+> Vous pouvez vous rendre sur le site [refactoring.guru](https://refactoring.guru/fr/design-patterns) pour identifier/comprendre le patron de conception qui pourrait vous aider.
 
 ---
 
@@ -866,7 +981,7 @@ Les caractéristiques clés d'un composant incluent :
 
 ## Tips
 
-### Exception
+### Exception
 
 ```java
 public class FinallyExample {
@@ -933,8 +1048,101 @@ JVM options:
 ```
 
 ---
+<!-- header: 'Outils' -->
 
-<!-- header: 'Maven / Gradle' -->
+## Outils
+
+---
+
+### IDE
+Pour développer des applications de minère plus ergonomique et efficace, vous devez utiliser un environnement de développement intégré ("EDI" en français, "IDE" en anglais).
+
+- IntelliJ
+- VS Code
+- Netbeans
+- Eclipse
+- ...
+
+---
+
+### Debugger
+Fini les println pour tester votre code, devenez vrai pro avec le debbeger Java.
+
+<center>
+
+<img src="../resources/images//java-debugger-window.png"/>
+
+</center>
+
+Possibilités:
+1. **Points d'arrêt (Breakpoints)**<br/>
+  Vous pouvez définir des points d'arrêt dans votre code pour examiner l'état du programme à ce moment-là.
+1. **Exécution pas à pas (Step Through)**<br/>
+  **Step Over** : Exécute la ligne de code actuelle et passe à la suivante, sans entrer dans les méthodes appelées.<br/>
+  **Step Into** : Entre dans la méthode appelée à la ligne de code actuelle pour l'exécuter ligne par ligne.<br/>
+  **Step Out** : Termine l'exécution de la méthode actuelle et retourne à la méthode appelante.
+1. **Inspection des variables**<br/>
+  Permet de voir les valeurs des variables à un moment donné pendant l'exécution du programme.<br/>
+1. **Pile d'appels (Call Stack)**<br/>
+  Affiche la séquence des appels de méthode qui ont conduit à l'endroit actuel dans le code.<br/>
+1. **Évaluation des expressions**<br/>
+  Permet d'évaluer des expressions ou des appels de méthode pendant que le programme est en pause.<br/>
+1. **Surveillance (Watches)**<br/>
+  Permet de surveiller les valeurs de certaines expressions ou variables tout au long de l'exécution.<br/>
+1. **Gestion des exceptions**<br/>
+  Permet de capturer les exceptions levées pendant l'exécution et d'inspecter leur état.<br/>
+1. **Modification à chaud (Hot Swap)**<br/>
+  Permet de modifier le code source pendant le débogage et de recharger les modifications sans redémarrer le programme.<br/>
+1. **Débogage à distance**<br/>
+  Permet de déboguer une application Java qui s'exécute sur une machine distante.<br/>
+
+---
+
+### JMX
+Java Management Extensions est une technologie Java qui fournit des outils pour gérer et surveiller les applications, les services système, les réseaux et autres ressources
+
+Outils:
+- Java Mission Control
+- ...
+
+<center>
+
+<img src="../resources/images/java-jmc.png" />
+
+</center>
+
+---
+
+### JShell
+JShell est un outil interactif de ligne de commande introduit dans Java 9, qui permet d'exécuter des snippets de code Java sans avoir besoin de créer une classe ou une méthode main. C'est un REPL (Read-Eval-Print Loop) pour Java, qui facilite l'apprentissage, le prototypage et le test rapide de code.
+
+<center>
+
+<img src="../resources/images/java-jshell.jpg" />
+
+</center>
+
+**Caractéristiques de JShell**
+- Exécution immédiate<br>
+  Exécute des expressions et des instructions Java immédiatement, sans avoir besoin de compiler un programme complet.
+- Feedback instantané<br>
+  Affiche les résultats des expressions et des instructions exécutées.
+- Déclarations et définitions<br/>
+  Permet de déclarer des variables, des méthodes, et même des classes.
+- Commandes JShell<br/>
+  Fournit des commandes spécifiques pour gérer l'environnement JShell, comme /list, /edit, et /exit.
+
+---
+
+### JBang
+JBang est un outil qui permet d'exécuter des scripts Java directement, sans avoir besoin de configurer un projet complet avec des outils comme Maven ou Gradle. Il est conçu pour simplifier l'exécution de code Java, en particulier pour les petits scripts, les démonstrations, et les tests rapides.
+
+> Voir le lunch talk du Devoxx France pour une démo de 15min !<br/>
+> [JBang, un fichier Java pour les gouverner tous ?](https://www.youtube.com/watch?v=eHTDiYFtuI8)
+> 
+> Et la documentation officiel: [jbang.dev](https://www.jbang.dev/)
+
+---
 
 ## Maven / Gradle
 
@@ -955,24 +1163,70 @@ Outils pour construire vos applications Java et autres
 
 ---
 
-```java
-public class Hello {
-    public static void main (String[ ] args){
-        System.out.println("Hello");
-    }
-}
-```
-```java
-public class HelloParRéférence {
-    public static void main (String[ ] args){
-        Arrays.asList("Hello").foreach(System.out::println);
-    }
-}
-```
+<center>
 
+![](../resources/images/maven-example.gif)
+
+</center>
 
 ---
+<!-- header: 'Conteneurisation' -->
+
+## JVM & Conteneurisation
+Java est parfaitement conteneurisable, mais il faut passer par certaine étapes pour optimiser vos conteneurs.
+
+Pour que votre architectire applicatif conteneurisés soit viable, il faut que le temps de démarrage de votre application soit le plus court possible et que vous soyez capable de détecter les anormalités de votre application(c.a.d de la JVM).
+
+- Taille des images <br/>
+  Il existe des outils pour inclure uniquement les bibliothèques utilisées dans votre application (taille ~800Mo à <1Mo)
+- Démarrage rapide<br/>
+  Il existe également des outils pour compiler votre application de manière native et complètement supprimer la JVM
+- ...
+
+> Une super conférence de seulement 43min parle de différents moyen d'optimiser la taille des conteneurs Java:<br/>
+> [La JVM et Docker, vers une symbiose parfaite !](https://www.youtube.com/watch?v=scqMQ6bfHCo)
+
+---
+<!-- header: 'Kotlin' -->
+
+## Kotlin
+Kotlin est un langage de programmation moderne, statiquement typé, qui s'exécute sur la machine virtuelle Java (JVM). Il a été développé par **JetBrains**, l'entreprise derrière des outils de développement populaires comme IntelliJ IDEA.
+
+Kotlin est conçu pour être concis, expressif et sûr, tout en étant entièrement interopérable avec Java.
+
+```kotlin
+// Définition d'une classe de données
+data class Person(val name: String, val age: Int)
+
+// Fonction principale
+fun main() {
+    // Création d'une instance de Person
+    val person = Person("Alice", 30)
+
+    // Utilisation d'une expression lambda pour filtrer une liste
+    val people = listOf(Person("Alice", 30), Person("Bob", 25))
+    val adults = people.filter { it.age >= 18 }
+
+    // Affichage des résultats
+    println("Adults: $adults")
+}
+```
+
+> C'est la version **Python**esque de Java
+
+---
+<!-- header: 'Conclusion' -->
+
+## Conclusion
+En 2025, Java reste l'un des langages de programmation les plus populaires et les plus utilisés dans le monde.
+
+Malgré la JVM, Java reste un langage peu énergivore et être très léger (source: [programmation.developpez.com](https://programmation.developpez.com/actu/253829/Programmation-une-etude-revele-les-langages-les-plus-voraces-en-energie-Perl-Python-et-Ruby-en-tete-C-Rust-et-Cplusplus-les-langages-les-plus-verts/#:~:text=Le%20top%205%20des%20langages,Lua%20(45%2C98).))
+
+---
+<!-- header: 'Sources' -->
+
 ## Sources
 
 - [jmdoudoux.fr](https://www.jmdoudoux.fr/java/dej/chap-presentation.htm)
 - [developpez.com](https://java.developpez.com/)
+- [Devoxx France](https://www.youtube.com/@DevoxxFRvideos)
