@@ -4,9 +4,7 @@ import com.imt.pokemon.core.pokemon.Pokemon;
 import com.imt.pokemon.core.pokemon.PokemonType;
 import com.imt.pokemon.core.pokemon.effect.PokemonEffect;
 
-import java.util.Random;
-
-public class QuickAttack extends PokemonAttack {
+public class QuickAttack extends BaseAttack {
 
     public QuickAttack() {
         super(Integer.MAX_VALUE, "Quick attack",  true, PokemonType.NORMAL,  40, 100, 30, PokemonEffect.NORMAL, 0.0, PokemonEffect.NORMAL, 0.0);

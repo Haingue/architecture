@@ -4,9 +4,10 @@ import com.imt.pokemon.core.pokemon.Pokemon;
 import com.imt.pokemon.core.pokemon.attack.AttackResult;
 import com.imt.pokemon.core.pokemon.attack.PokemonAttack;
 
+import java.util.Observable;
 import java.util.Random;
 
-public class Duel<P extends Pokemon> {
+public class Duel<P extends Pokemon> extends Observable {
 
     private P pokemon1;
     private P pokemon2;
@@ -65,6 +66,7 @@ public class Duel<P extends Pokemon> {
         AttackResult secondResult = secondAttack.invoke(secondPlayer, firstPlayer);
         System.out.println(secondPlayer.getName()+" invoke "+secondAttack+":"+secondResult);
         this.turnCounter++;
+        this.notifyObservers();
     }
 
     @Override

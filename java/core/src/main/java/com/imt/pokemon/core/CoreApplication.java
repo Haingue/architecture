@@ -3,9 +3,6 @@ package com.imt.pokemon.core;
 import com.imt.pokemon.core.duel.Duel;
 import com.imt.pokemon.core.pokemon.Pokemon;
 import com.imt.pokemon.core.pokemon.PokemonFactory;
-import com.imt.pokemon.core.pokemon.attack.AttackResult;
-import com.imt.pokemon.core.pokemon.attack.PokemonAttack;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication

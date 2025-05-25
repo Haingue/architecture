@@ -1,7 +1,6 @@
 package com.imt.pokemon.core.pokemon;
 
 import com.imt.pokemon.core.pokemon.attack.*;
-import com.imt.pokemon.core.pokemon.effect.PokemonEffect;
 
 import java.util.List;
 import java.util.UUID;

@@ -4,7 +4,7 @@ import com.imt.pokemon.core.pokemon.Pokemon;
 import com.imt.pokemon.core.pokemon.PokemonType;
 import com.imt.pokemon.core.pokemon.effect.PokemonEffect;
 
-public class Swift extends PokemonAttack {
+public class Swift extends BaseAttack {
 
     public Swift() {
         super(1, "Swift", false, PokemonType.NORMAL, 60, -1, 20, PokemonEffect.NORMAL, 0.0, PokemonEffect.NORMAL, 0.0);

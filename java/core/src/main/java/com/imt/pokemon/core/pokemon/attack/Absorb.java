@@ -4,7 +4,7 @@ import com.imt.pokemon.core.pokemon.Pokemon;
 import com.imt.pokemon.core.pokemon.PokemonType;
 import com.imt.pokemon.core.pokemon.effect.PokemonEffect;
 
-public class Absorb extends PokemonAttack {
+public class Absorb extends BaseAttack {
     public Absorb () {
         super(1, "Absorb", false, PokemonType.GRASS, 20, 100, 25, PokemonEffect.NORMAL, 0.0, PokemonEffect.NORMAL, 0.0);
     }

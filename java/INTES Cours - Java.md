@@ -1,6 +1,6 @@
 ---
-# marp: true
-marp: false
+marp: true
+# marp: false
 theme: default
 paginate: true
 style: |
@@ -70,111 +70,11 @@ footer: "Fabien HAINGUE"
 
 ## Sommaire
 
-- Les origines de Java
-  - Histoire
-  - Crossplatforme
-  - Fonctionnement
-- Versions et licenses
-  - liste des version avec licence
-  - LTS ?
-- La programmation orientée objet
-  - Vocabulaire
-    - classes
-    - attributs
-    - méthodes
-    - membres
-    - état
-    - comportement
-    - instancier (new)
-    - notation pointé & référence
-    - constructeur
-    - variable
-  - Les types
-    - primitif
-    - objet
-    - classe
-  - Object
-    - Instance d'objet
-      - constructeur (notion de surcharge et de chainage)
-    - Poid
-    - auto-référence (this)
-    - paramètre de fonction (toujours par copie => si objet alors copie de la référence)
-    - Comparaison (ref != état)
-    - Méthode commune
-      - equals
-      - toString
-      - ...
-    - Modificateur (static / abstract / final)
-  - Paquetage (package) & modules
-- La visibilité
-  - public
-  - private
-  - protected
-{java-poo-steps.jpg}
-- La conception orientée objet
-  - Accesseurs (getter) / Mutateur (setter)
-  - Wrapper
-  - Encapsulation
-  - Heritage (spécialisation & Polymorphisme & Redéfinition & Substitution & Transtypage)
-  - Classe/methode abstraite (exemple: pièces echec)
-  - Les types de classe
-    - Objet
-    - Interface (défintion -> Implémentation)
-    - Enum (+constantes)
-    - Records
-  - Patron de conception - Design pattern
-    - Singleton
-    - Factory
-    - Iterator
-    - Adapter
-    - Decorator
-    - Composite
-    - Observer
-    - Strategie
-    - Visitor
-    - ...
-    - (more...)[https://refactoring.guru/fr/design-patterns]
-  - Approche orienté composant
-    - composant (robuste, générique, abstrait)
-    - Loi de demeter
-- Les APIs du SDK à connaître + Opérateurs & syntaxe
-  - condition
-  - loop
-  - exception
-  - try-catch
-  - lambda expression
-  - type générique (diamond type)
-  - StringBuilder
-  - Optional
-  - Streams
-  - Thread
-  - Immutable
-  - Varargs
-  - var
-  - Underscores in numeric literals
-  - Map.of || List.of
-  - instanceof-resource
-  - try with resource
-  - loops with break/continue
-  - Assertions
-- Les libs à connaître
-  - Swing / JavaFX
-  - Apache commons
-  - Log4J
-  - Jackson / Gson : JSON parsing, ...
-- Tooling
-  - IDE
-  - Debbugueur
-  - JMX / JMC / JBang
-  - JShell / JBang
-  - Maven / Graddle
-- JVM & Conteneurisation
-  - Garbage collectors
-  - Graal VM
-- Kotlin
-- Conclusion
-  - Java en 2025 ?
-  - Toujours d'actualité ?
+- Java
+- POO & COO
+- Astuces
+- Outils
+- Conclusions
 
 ---
 
@@ -191,7 +91,11 @@ A l'époque, Java se démarquait des autres langages car il était **indépendan
 Pour cela Java s'abstrait du système d'exploitation grâce à la Java Virtual Machine, c'est un **langage interprété**.
 
 ---
+
 ## JVM
+
+![bg right:70% 50%](../resources/images/java-jvm.png)
+
 ---
 <!-- header: 'JVM' -->
 
@@ -266,9 +170,19 @@ Si la taille du heap ne permet pas le stockage d'un objet en cours de création,
 
 ### Garbage collector
 
+<center>
+
+<img src="../resources/images/java-objectlifecycle.png" />
+
+</center>
+
 Le ramasse-miettes est une fonctionnalité de la JVM qui a pour rôle de gérer la mémoire notamment en libérant celle des objets qui ne sont plus utilisés.
 
 La règle principale pour déterminer qu'un objet n'est plus utilisé est de vérifier qu'il n'existe plus aucun autre objet qui lui fait référence. Ainsi un objet est considéré comme libérable par le ramasse-miettes lorsqu'il n'existe plus aucune référence dans la JVM pointant vers cet objet.
+
+---
+
+![bg left 98%](../resources/images/java-objectlifecycle2.jpg)
 
 Lorsque le ramasse-miettes va libérer la mémoire d'un objet, il a l'obligation d'exécuter un éventuel **finalizer** définit dans la classe de l'objet. Attention, l'exécution complète de ce finalizer n'est pas garantie : si une exception survient durant son exécution, les traitements sont interrompus et la mémoire de l'objet est libérée sans que le finalizer soit entièrement exécuté.
 
@@ -279,13 +193,16 @@ La mise en oeuvre d'un ramasse-miettes possède plusieurs avantages :
 - elle améliore la productivité du développeur qui est déchargé de la libération explicite de la mémoire
 - elle participe activement à la bonne intégrité de la machine virtuelle : une instruction ne peut jamais utiliser un objet qui n'existe plus en mémoire
 
+![bg right:40% 100%](../resources/images/developpeur-heureux-michael-scott.jpg)
+
 ---
+
 
 Mais elle possède aussi plusieurs inconvénients :
 - le ramasse-miettes consomme des ressources en terme de CPU et de mémoire
 - il peut être à l'origine de la dégradation plus ou moins importante des performances de la machine virtuelle
-- le mode de fonctionnement du ramasse miettes n'interdit pas les fuites de mémoires si
-- le développeur ne prend pas certaines précautions. Généralement issues d'erreurs de programmation subtiles, ces fuites sont assez difficiles à corriger.
+- le mode de fonctionnement du ramasse miettes n'interdit pas les fuites de mémoires si le développeur ne prend pas certaines précautions
+- Généralement issues d'erreurs de programmation subtiles, ces fuites sont assez difficiles à corriger.
 
 <center>
 
@@ -295,11 +212,11 @@ Mais elle possède aussi plusieurs inconvénients :
 
 ---
 
-![](../resources/images/java-memory-list.png)
+![bg right 90%](../resources/images/java-memory-list.png)
 
 > Pour plus d'information, vous pouvez vous rendre sur le blog (jmdoudoux.fr)[https://www.jmdoudoux.fr/java/dej/chap-jvm.htm] pour avoir plus d'information su la JVM.
-> Ou visionner la conférence (Sous le capot d'une application JVM - Java Flight Recorder)[https://www.youtube.com/watch?v=wa_EtTUx-z0]
 
+> Ou visionner la conférence (Sous le capot d'une application JVM - Java Flight Recorder)[https://www.youtube.com/watch?v=wa_EtTUx-z0]
 
 ---
 
@@ -326,6 +243,8 @@ Il existe de nombreuses implémentations de JVM dont les plus connues sont celle
 <!-- header: 'Editions et versions' -->
 
 ## Editions et versions
+
+![bg left 80%](../resources/images/java-release.png)
 
 ---
 
@@ -379,8 +298,11 @@ Plus longue à mettre en place, mais permet de garder une bonne structure du cod
 
 ```java
 public class Person {
+  /* code */
 }
 ```
+
+---
 
 - **Attributs** : Les attributs sont des variables qui appartiennent à une classe. Ils représentent les données ou l'état d'un objet.
 
@@ -390,6 +312,23 @@ public class Person {
   int age;
 }
 ```
+
+---
+
+- **Méthodes** : Les méthodes sont des fonctions définies dans une classe. Elles décrivent les comportements ou les actions que les objets de la classe peuvent effectuer. On dit que l'on "**invoque**" une méthode et que l'on fait appel à une fonction.
+
+```java
+public class Person {
+  String name;
+  int age;
+
+  String toString() {
+    return name + "(" + age + (age > 1 ? "ans" : "an") + ")";
+  }
+}
+```
+
+---
 
 - **Constructeur** : Un constructeur est une méthode spéciale d'une classe qui est appelée lors de l'instanciation d'un objet. Il est utilisé pour initialiser les attributs de l'objet.
 
@@ -405,33 +344,15 @@ public class Person {
 }
 ```
 
-- **Méthodes** : Les méthodes sont des fonctions définies dans une classe. Elles décrivent les comportements ou les actions que les objets de la classe peuvent effectuer. On dit que l'on "**invoque**" une méthode et que l'on fait appel à une fonction.
-
-```java
-public class Person {
-  String name;
-  int age;
-
-  Person (String name, int age) {
-    this.name = name;
-    this.age = age;
-  }
-
-  String toString() {
-    return name + "(" + age + (age > 1 ? "ans" : "an") + ")";
-  }
-}
-```
-
 ---
 
 - **Membres** : Les membres d'une classe sont ses attributs et ses méthodes. Ils constituent les éléments fondamentaux d'une classe.
 
 - **État** : L'état d'un objet est défini par les valeurs de ses attributs à un moment donné. Il représente les données contenues dans l'objet.
 
----
-
 - **Comportement** : Le comportement d'un objet est défini par ses méthodes. Il décrit ce que l'objet peut faire ou les actions qu'il peut effectuer.
+
+---
 
 - **Instancier** (new) : Instancier une classe signifie créer un nouvel objet à partir de cette classe en utilisant le mot-clé `new`. Cela alloue de la mémoire pour le nouvel objet.
 
@@ -443,6 +364,8 @@ public class Application {
   }
 }
 ```
+
+---
 
 - **Notation pointée & référence** : La notation pointée est utilisée pour accéder aux membres (attributs et méthodes) d'un objet via une référence. Une référence est une variable qui pointe vers un objet.
 
@@ -457,8 +380,9 @@ public class Application {
 }
 ```
 
-- **Variable** : Une variable est un espace de stockage nommé qui contient des données. En Java, les variables peuvent être de différents types et peuvent représenter des valeurs primitives ou des références à des objets.
+---
 
+- **Variable** : Une variable est un espace de stockage nommé qui contient des données. En Java, les variables peuvent être de différents types et peuvent représenter des valeurs primitives ou des références à des objets.
 
 ```java
 public class Application {
@@ -474,10 +398,10 @@ public class Application {
 
 ### Principes
 - **Encapsulation**
-  - **Description** : L'encapsulation est le mécanisme qui consiste à regrouper les données (attributs) et les méthodes (fonctions) qui manipulent ces données au sein d'une même unité appelée classe. Elle permet de restreindre l'accès direct à certains composants d'un objet, ce qui est un moyen de prévenir les interférences et les erreurs involontaires.
+  - L'encapsulation est le mécanisme qui consiste à regrouper les données (attributs) et les méthodes (fonctions) qui manipulent ces données au sein d'une même unité appelée classe. Elle permet de restreindre l'accès direct à certains composants d'un objet, ce qui est un moyen de prévenir les interférences et les erreurs involontaires.
 
   - **Utilisation** : En utilisant des modificateurs d'accès comme private, protected, et public, on peut contrôler la visibilité des membres d'une classe. Les méthodes publiques, souvent appelées getters et setters, sont utilisées pour accéder et modifier les attributs privés.
-
+---
   - **Exemple** :
     ```java
     public class Person {
@@ -495,11 +419,13 @@ public class Application {
     }
     ```
 
+---
+
 - **Abstraction**
-  - **Description** : L'abstraction consiste à cacher les détails complexes et à montrer seulement les fonctionnalités essentielles de l'objet. Cela permet de réduire la complexité et d'augmenter l'efficacité du programme.
+  - L'abstraction consiste à cacher les détails complexes et à montrer seulement les fonctionnalités essentielles de l'objet. Cela permet de réduire la complexité et d'augmenter l'efficacité du programme.
 
   - **Utilisation** : Les classes abstraites et les interfaces sont utilisées pour définir des contrats que les sous-classes doivent implémenter. Cela permet de se concentrer sur ce que l'objet fait plutôt que sur la manière dont il le fait.
-
+---
   - **Exemple** :
     ```java
     abstract class Animal {
@@ -518,11 +444,13 @@ public class Application {
     }
     ```
 
+---
+
 - Héritage
-  - **Description** : L'héritage est un mécanisme qui permet à une classe (appelée sous-classe ou classe dérivée) d'hériter des propriétés et des comportements d'une autre classe (appelée super-classe ou classe de base). Cela favorise la réutilisation du code.
+  - L'héritage est un mécanisme qui permet à une classe (appelée sous-classe ou classe dérivée) d'hériter des propriétés et des comportements d'une autre classe (appelée super-classe ou classe de base). Cela favorise la réutilisation du code.
 
   - **Utilisation** : L'héritage permet de créer une hiérarchie de classes où les sous-classes peuvent ajouter ou modifier des comportements tout en réutilisant le code de la super-classe.
-
+---
   - **Exemple** :
     ```java
     class Vehicle {
@@ -551,12 +479,14 @@ public class Application {
         }
     }
     ```
-  
+
+---
+
 - Polymorphisme
-  - **Description** : Le polymorphisme permet à des objets de différentes classes d'être traités de manière uniforme. Cela signifie qu'une méthode peut avoir plusieurs formes ou comportements en fonction de la classe à laquelle elle appartient.
+  - Le polymorphisme permet à des objets de différentes classes d'être traités de manière uniforme. Cela signifie qu'une méthode peut avoir plusieurs formes ou comportements en fonction de la classe à laquelle elle appartient.
 
   - **Utilisation** : Le polymorphisme est souvent réalisé par le biais de la surcharge de méthodes (méthodes avec le même nom mais des paramètres différents) et de l'écrasement de méthodes (redéfinition d'une méthode de la super-classe dans une sous-classe).
-
+---
   - **Exemple** :
     ```java
     class Animal {
@@ -593,45 +523,48 @@ public class Application {
 ---
 
 ### Types Primitifs
-  - byte<br/>
-    Taille : 8 bits<br/>
-    Exemple : ```byte b = 100;```<br/>
+  - byte
+    Taille : 8 bits
+    Exemple : ```byte b = 100;```
     Exemple avec wrapper : ```Byte b = Byte.valueof(100)```
-  - short<br/>
-    Taille : 16 bits<br/>
-    Exemple : ```short s = 1000;```<br/>
+  - short
+    Taille : 16 bits
+    Exemple : ```short s = 1000;```
     Exemple avec wrapper : ```Short s = Short.valueof(1000)```
-  - int<br/>
-    Taille : 32 bits<br/>
-    Exemple : ```int i = 100000;```<br/>
+----
+  - int
+    Taille : 32 bits
+    Exemple : ```int i = 100000;```
     Exemple avec wrapper : ```Int i = Int.valueof(100000)```
-  - long<br/>
-    Taille : 64 bits<br/>
-    Exemple : ```long l = 100000L;```<br/>
+  - long
+    Taille : 64 bits
+    Exemple : ```long l = 100000L;```
     Exemple avec wrapper : ```Long l = Long.valueof(100000L)```
-  - float<br/>
-    Taille : 32 bits<br/>
-    Exemple : ```float f = 234.5f;```<br/>
+---
+  - float
+    Taille : 32 bits
+    Exemple : ```float f = 234.5f;```
     Exemple avec wrapper : ```Float f = Float.valueof(234.5f)```
-  - double<br/>
-    Taille : 64 bits<br/>
-    Exemple : ```double d = 123.4;```<br/>
+  - double
+    Taille : 64 bits
+    Exemple : ```double d = 123.4;```
     Exemple avec wrapper : ```Double d = Double.valueof(123.4)```
-  - char<br/>
-    Taille : 16 bits<br/>
-    Exemple : ```char c = 'A';```<br/>
+----
+  - char
+    Taille : 16 bits
+    Exemple : ```char c = 'A';```
     Exemple avec wrapper : ;```;Char c = Char.valueof('A')```
-  - boolean<br/>
-    Taille : non spécifiée (généralement 1 bit)<br/>
-    Exemple : ```boolean bool = true;```<br/>
+  - boolean
+    Taille : non spécifiée (généralement 1 bit)
+    Exemple : ```boolean bool = true;```
     Exemple avec wrapper : ```Boolean b = Boolean.valueof(true)```
 
 > Pour chaque type primitif, il existe une classe standard permettant de l'emballer sous forme d'objet.
-> Cela vous donnes accès à des méthodes très utiles pour le developpement, mais n'oubliez pas que chaque objet Java à un poid !
+> Cela vous donnes accès à des méthodes très utiles pour le developpement, mais n'oubliez pas que chaque objet Java a un poid !
 
 ---
 
-#### le poids des objects
+#### Le poids des objects
 
 ```java
 public class ObjectSizeExample {
@@ -652,10 +585,11 @@ public class ObjectSizeExample {
     }
 }
 ```
+---
 **Explication**
-Types Primitifs : int et double sont des types primitifs. Ils occupent directement la mémoire nécessaire pour stocker leur valeur (4 octets pour int et 8 octets pour double selon l'architecture de votre système).
+**Types Primitifs** : int et double sont des types primitifs. Ils occupent directement la mémoire nécessaire pour stocker leur valeur (4 octets pour int et 8 octets pour double selon l'architecture de votre système).
 
-Wrappers : Integer et Double sont des objets. En plus de la mémoire nécessaire pour stocker la valeur, ils ont un surcoût mémoire dû aux métadonnées de l'objet (comme l'en-tête de l'objet, qui peut inclure des informations sur le type, le hashcode, etc.).
+**Wrappers** : Integer et Double sont des objets. En plus de la mémoire nécessaire pour stocker la valeur, ils ont un surcoût mémoire dû aux métadonnées de l'objet (comme l'en-tête de l'objet, qui peut inclure des informations sur le type, le hashcode, etc.).
 
 **Estimation de la Taille Mémoire**
 Un objet en Java a généralement un en-tête de 12 à 16 octets (selon l'architecture JVM).
@@ -670,6 +604,9 @@ Un Integer ou un Double nécessite donc environ 16 à 24 octets (en-tête + vale
   Exemple : ```List<String> list = new ArrayList<>();```
 - Tableaux
   Exemple : ```int[] arr = {1, 2, 3};```
+
+---
+
 - Enums
   Exemple :
   ```java
@@ -685,10 +622,12 @@ Un Integer ou un Double nécessite donc environ 16 à 24 octets (en-tête + vale
   }
   ```
 
-#### Hello World
-Il existe plus d'une 30 de manière d'écrire un hello world en Java.
+---
 
-##### Basic
+#### Hello World
+Il existe plus d'une trentaine de manières d'écrire un hello world en Java.
+
+##### Simple
 ```java
 public class Hello {
     public static void main (String[ ] args){
@@ -696,6 +635,7 @@ public class Hello {
     }
 }
 ```
+---
 ##### Par référence
 ```java
 public class HelloParRéférence {
@@ -707,6 +647,7 @@ public class HelloParRéférence {
     }
 }
 ```
+---
 ##### Via javascript
 ```java
 public class HelloParSciptEngine {
@@ -716,6 +657,7 @@ public class HelloParSciptEngine {
     }
 }
 ```
+---
 ##### Par réflexion
 ```java
 public class HelloParReflexion {
@@ -732,46 +674,51 @@ public class HelloParReflexion {
 ### Objet
 Un objet en Java est une instance d'une classe. Il représente une entité concrète qui encapsule un état (données) et un comportement (méthodes).
 
+---
+
 #### Instance d'objet
 - **Constructeur** : Une méthode spéciale utilisée pour initialiser un nouvel objet. Le constructeur a le même nom que la classe et n'a pas de type de retour.
   - **Surcharge** de constructeur : Une classe peut avoir plusieurs constructeurs avec des listes de paramètres différentes. Cela permet de créer des objets de différentes manières.
   - **Chaînage de constructeurs** : Utilisation du mot-clé ```this()``` pour appeler un autre constructeur de la même classe, permettant ainsi de réutiliser le code d'initialisation.
-
+---
 - **Auto-référence**
   - ```this``` : Un mot-clé qui fait référence à l'instance actuelle de la classe. Il est utilisé pour différencier les attributs de la classe des paramètres de méthode ayant le même nom.
 
 - **Paramètre de fonction**
   - **Passage par copie** : En Java, les paramètres de méthode sont toujours passés par copie. Pour les objets, cela signifie que la référence à l'objet est copiée, pas l'objet lui-même. Ainsi, les modifications apportées à l'objet dans la méthode affectent l'objet original.
-
+---
 - **Comparaison**
   - **Référence vs État** : La comparaison de deux objets peut se faire de deux manières:
     - **Référence** : Utilisation de l'opérateur == pour vérifier si deux références pointent vers le même objet.
     - **État** : Utilisation de la méthode equals() pour vérifier si deux objets ont le même état (mêmes valeurs d'attributs).
-
+---
 - **Méthode commune**
     - ```equals()``` : Méthode utilisée pour comparer l'égalité de deux objets en fonction de leur état.
     - ```toString()``` : Méthode qui retourne une représentation sous forme de chaîne de caractères de l'objet.
     - ```hashCode()``` : Méthode qui retourne un code de hachage pour l'objet, utilisé dans les collections basées sur le hachage comme HashMap.
-
+---
 - **Modificateurs**
-  - **Modificateurs d'accès**<br/>
+  - **Modificateurs d'accès**
     Ces *access modifiers* permettent de contrôler l'encapsulation et la visibilité des membres d'une classe, ce qui est essentiel pour concevoir des applications robustes et maintenables.
 
-    <center>
+    ![bg right 90%](../resources/images/java-visibility.png)
 
-      <img src="../resources/images/java-visibility.png" />
-
-    </center>
-
+---
+  -
     - ```public``` : Accessible partout.
     - ```private``` : Accessible uniquement dans la classe.
     - ```protected``` : Accessible dans la classe, les sous-classes et le même package.
     - ```package-private``` (par défaut) : Accessible uniquement dans le même package.
-  - **Modificateurs de restrictions**<br/>
+
+---
+
+  - **Modificateurs de restrictions**
     Les *non-access modifiers* sont utilisés pour spécifier des comportements ou des propriétés supplémentaires des membres de classe ou des méthodes, sans affecter leur visibilité.
     - ```static``` : Indique qu'un membre (attribut ou méthode) appartient à la classe elle-même plutôt qu'à une instance spécifique de la classe.
     - ```abstract``` : Utilisé pour déclarer une classe ou une méthode qui doit être implémentée par une sous-classe. Une classe abstraite ne peut pas être instanciée.
     - ```final``` : Indique qu'une variable ne peut pas être modifiée après son initialisation, qu'une méthode ne peut pas être redéfinie, ou qu'une classe ne peut pas être héritée.
+---
+  - **Modificateurs de restrictions (moins connues)**
     - ```synchronized``` : Indique qu'une méthode ou un bloc de code ne peut être exécuté que par un seul thread à la fois.
     - ```volatile``` : Indique qu'une variable est stockée dans la mémoire principale et non dans le cache du thread, garantissant ainsi que les modifications apportées par un thread sont visibles par les autres threads.
     - ```transient``` : Indique qu'un attribut ne doit pas être sérialisé lorsque l'objet est converti en un flux d'octets.
@@ -779,15 +726,12 @@ Un objet en Java est une instance d'une classe. Il représente une entité concr
 
 ---
 
-> Démo sur les principes de l'encapsulation
-
----
+> Démo sur les principes de la POO
 
   <details>
-
     <summary>Exemple complet</summary>
 
-    ```java
+  ```java
     // Classe de base abstraite
     abstract class Animal {
         private String name;
@@ -899,7 +843,253 @@ Un objet en Java est une instance d'une classe. Il représente une entité concr
             System.out.println(dog1.toString());
         }
     }
-    ```
+  ```
+
+  </details>
+
+  <details>
+    <summary>Exemple avec les pokemon</summary>
+
+  ```plantuml
+    @startuml
+
+    !theme plain
+    top to bottom direction
+    skinparam linetype ortho
+
+    class Absorb {
+      + invoke(Pokemon, Pokemon): AttackResult
+    }
+    enum AttackResult << enumeration >> {
+      + SUCCESS: 
+      + isSuccessful: boolean
+      + FAIL: 
+      + message: String
+      + BURNED: 
+      + CRITICAL: 
+      + MISSED: 
+      + ABSORBED: 
+      + NO_EFFECT_ON_GHOST: 
+      + valueOf(String): AttackResult
+      + values(): AttackResult[]
+    }
+    class BaseAttack {
+      - baseAccuracy: int
+      - selfEffect: PokemonEffect
+      - isPhysical: boolean
+      - basePower: int
+      - name: String
+      - type: PokemonType
+      - targetEffectSuccessRate: double
+      - basePowerPoint: int
+      - targetEffect: PokemonEffect
+      - priority: int
+      - selfEffectSuccessRate: double
+      + getBasePowerPoint(): int
+      + isPhysical(): boolean
+      + getSelfEffect(): PokemonEffect
+      + getPriority(): int
+      + getName(): String
+      + getSelfEffectSuccessRate(): double
+      + getType(): PokemonType
+      + getBaseAccuracy(): int
+      + invoke(Pokemon, Pokemon): AttackResult
+      + getTargetEffectSuccessRate(): double
+      + toString(): String
+      + isMoveAccurate(Pokemon, Pokemon): boolean
+      + getBasePower(): int
+      + isBefore(Pokemon, Pokemon, PokemonAttack): boolean
+      + equals(Object): boolean
+      + getTargetEffect(): PokemonEffect
+    }
+    class CaughtPokemon {
+      - pokemon: Pokemon
+      - caughtDatetime: LocalDate
+      - surname: String
+      + setCaughtDatetime(LocalDate): void
+      + getPokemon(): Pokemon
+      + getSurname(): String
+      + setSurname(String): void
+      + getCaughtDatetime(): LocalDate
+      + setPokemon(Pokemon): void
+    }
+    class CoreApplication {
+      + main(String[]): void
+    }
+    class Duel<P> {
+      - turnCounter: int
+      - pokemon2: P
+      - rd: Random
+      - pokemon1: P
+      + toString(): String
+      + getPlayers(): Pokemon[]
+      + play(): void
+      + isfinish(): boolean
+      + getWinner(): P
+    }
+    class Flamethrower
+    class Pokemon {
+      - physicalAttackPoint: int
+      - specialAttackPoint: int
+      - uuid: UUID
+      - sprite: String
+      - initialHealthPoint: int
+      - effect: PokemonEffect
+      - attackList: List<PokemonAttack>
+      - defensePoint: int
+      - type: PokemonType
+      - level: int
+      - evasionPoint: int
+      - speedPoint: int
+      - accuracyPoint: int
+      - name: String
+      - damagePoint: int
+      + getType(): PokemonType
+      + getInitialHealthPoint(): int
+      + setLevel(int): void
+      + getSpecialAttackPoint(): int
+      + getUuid(): UUID
+      + getName(): String
+      + getDefensePoint(): int
+      + setSpecialAttackPoint(int): void
+      + getEffect(): PokemonEffect
+      + setAttackList(List<PokemonAttack>): void
+      + getHealthPoint(): int
+      + setSprite(String): void
+      + getSpeedPoint(): int
+      + setInitialHealthPoint(int): void
+      + setName(String): void
+      + getAccuracyPoint(): int
+      + setDefensePoint(int): void
+      + getEvasionPoint(): int
+      + setEvasionPoint(int): void
+      + isAlive(): boolean
+      + isType(PokemonType): boolean
+      + getDamagePoint(): int
+      + setType(PokemonType): void
+      + setPhysicalAttackPoint(int): void
+      + setEffect(PokemonEffect): void
+      + getLevel(): int
+      + setSpeedPoint(int): void
+      + getAttackList(): List<PokemonAttack>
+      + toString(): String
+      + setAccuracyPoint(int): void
+      + getPhysicalAttackPoint(): int
+      + getSprite(): String
+      + setUuid(UUID): void
+      + setDamagePoint(int): void
+    }
+    interface PokemonAttack << interface >> {
+      + isMoveAccurate(Pokemon, Pokemon): boolean
+      + invoke(Pokemon, Pokemon): AttackResult
+      + isBefore(Pokemon, Pokemon, PokemonAttack): boolean
+    }
+    enum PokemonEffect << enumeration >> {
+      + CURSE: 
+      + DISABLED: 
+      + ASLEEP: 
+      + FAINTED: 
+      + NIGHTMARE: 
+      + INFATUATED: 
+      + BADLY_POISONED: 
+      + FLINCHED: 
+      + ATTRACT: 
+      + LEECH_SEED: 
+      + TAUNT: 
+      + BURNED: 
+      + ENCORED: 
+      + PARALYZED: 
+      + POISONED: 
+      + PERISH_SONG: 
+      + NORMAL: 
+      + FROZEN: 
+      + EMBARGO: 
+      + TORMENT: 
+      + HEAL_BLOCK: 
+      + YAWN: 
+      + CONFUSED: 
+      + SUBSTITUTE: 
+      + values(): PokemonEffect[]
+      + valueOf(String): PokemonEffect
+    }
+    class PokemonFactory {
+      + generatePokemon(NAME): Pokemon
+    }
+    enum PokemonType << enumeration >> {
+      + electric: double
+      + fairy: double
+      + ICE: 
+      + ghost: double
+      + poison: double
+      + FLYING: 
+      + fire: double
+      + steel: double
+      + normal: double
+      + grass: double
+      + NORMAL: 
+      + ice: double
+      + BUG: 
+      + STEEL: 
+      + GROUND: 
+      + ROCK: 
+      + WATER: 
+      + ground: double
+      + FIRE: 
+      + rock: double
+      + GHOST: 
+      + GRASS: 
+      + flying: double
+      + PSYCHIC: 
+      + dragon: double
+      + DARK: 
+      + dark: double
+      + POISON: 
+      + FIGHTING: 
+      + DRAGON: 
+      + bug: double
+      + FAIRY: 
+      + ELECTRIC: 
+      + water: double
+      + psychic: double
+      + fighting: double
+      + getBonusAgainst(PokemonType): double
+      + valueOf(String): PokemonType
+      + values(): PokemonType[]
+    }
+    class QuickAttack {
+      + isBefore(Pokemon, Pokemon, PokemonAttack): boolean
+    }
+    class Swift {
+      + isMoveAccurate(Pokemon, Pokemon): boolean
+    }
+    class Thunderbolt
+    class WaterGun
+
+    Absorb           -[#000082,plain]-^  BaseAttack      
+    BaseAttack       -[#008200,dashed]-^  PokemonAttack   
+    BaseAttack      "1" *-[#595959,plain]-> "targetEffect\n1" PokemonEffect   
+    BaseAttack      "1" *-[#595959,plain]-> "type\n1" PokemonType     
+    CaughtPokemon   "1" *-[#595959,plain]-> "pokemon\n1" Pokemon         
+    CoreApplication  -[#595959,dashed]->  Duel            : "«create»"
+    Duel             -[#595959,dashed]->  Pokemon         
+    Duel             -[#595959,dashed]->  Pokemon         : "«create»"
+    Flamethrower     -[#000082,plain]-^  BaseAttack      
+    Pokemon         "1" *-[#595959,plain]-> "attackList\n*" PokemonAttack   
+    Pokemon         "1" *-[#595959,plain]-> "effect\n1" PokemonEffect   
+    Pokemon         "1" *-[#595959,plain]-> "type\n1" PokemonType     
+    PokemonFactory   -[#595959,dashed]->  Absorb          : "«create»"
+    PokemonFactory   -[#595959,dashed]->  Flamethrower    : "«create»"
+    PokemonFactory   -[#595959,dashed]->  Pokemon         : "«create»"
+    PokemonFactory   -[#595959,dashed]->  QuickAttack     : "«create»"
+    PokemonFactory   -[#595959,dashed]->  Swift           : "«create»"
+    PokemonFactory   -[#595959,dashed]->  Thunderbolt     : "«create»"
+    PokemonFactory   -[#595959,dashed]->  WaterGun        : "«create»"
+    QuickAttack      -[#000082,plain]-^  BaseAttack      
+    Swift            -[#000082,plain]-^  BaseAttack      
+    Thunderbolt      -[#000082,plain]-^  BaseAttack      
+    WaterGun         -[#000082,plain]-^  BaseAttack      
+    @enduml
+  ```
 
   </details>
 
@@ -910,10 +1100,6 @@ Un objet en Java est une instance d'une classe. Il représente une entité concr
 <img src="../resources/images/java-poo-steps.png">
 
 </center>
-
----
-
-
 
 ---
 
@@ -934,9 +1120,11 @@ Un objet en Java est une instance d'une classe. Il représente une entité concr
 
 <center>
 
-![bg right:70% 100%](../resources/images/java-diagramme-classe.png)
+![100%](../resources/images/java-diagramme-classe.png)
 
 </center>
+
+---
 
 ### Patron de conception
 
@@ -962,6 +1150,8 @@ La POC n'est pas sans similitudes avec la POO, puisqu'elle revient à utiliser u
 
 La POC est particulièrement pratique pour le travail en équipe et permet d'industrialiser la création de logiciels.
 
+---
+
 ### Composant
 Les caractéristiques clés d'un composant incluent :
 - Encapsulation : Un composant cache ses détails d'implémentation et expose uniquement les interfaces nécessaires pour interagir avec lui.
@@ -969,13 +1159,29 @@ Les caractéristiques clés d'un composant incluent :
 - Indépendance : Les composants peuvent être développés et déployés indépendamment les uns des autres.
 - Interopérabilité : Les composants peuvent interagir avec d'autres composants via des interfaces standardisées.
 
+---
+
 ### Loi de demeter
+
+> "Ne parlez qu'à vos amis immédiats"
 
 <center>
 
 <img src="../resources/images/LoD-follow.jpg" width=500px/>
 
 </center>
+
+---
+
+## Clean Architecture
+- DDD
+  - Architecture Onion
+  - Architecture Hexagonal
+- ECI
+- ...
+
+> Il existe de nombreuse pratique pour concevoir une architecture logiciel, d'un projet à l'autre il faut parfois tordre les pratiques mais l'important c'est **KISS** (Keep In Stupid and Simple) !
+> Utilisez ce qu'il faut au bon moment, n'ayez pas peur de réarchitecturer vos applications, cela à un coup mais si vous avez fait les bon choix étapes par étapes alors votre code devrai être adaptable facilement.
 
 ---
 
@@ -1008,6 +1214,8 @@ public class FinallyExample {
 }
 ```
 
+---
+
 ### Instanceof
 ```java
   if (myAnimal instanceof Dog) {
@@ -1026,6 +1234,20 @@ for (String address : addresses) {
 String csv = builder.toString();
 ```
 
+---
+
+### Map & Set
+- TreeMap / TreeSet
+- HashMap / HashSet
+- EnumMap / EnumSet
+- IdentityHashMap / IdentityHashSet
+- ConcurrentHashMap / ConcurrentHashSet
+- ...
+
+> Surcharger la méthode equals et compareTo permet de modifier le comportement de ces implémentations
+
+---
+
 ### Optional
 
 ```java
@@ -1033,12 +1255,14 @@ Optional<Object> wrapper = Optional.of(obj);
 wrapper.ifPresent(object -> System.out.println(object));
 Object resultObject = wrapper.orElseThrow(() -> new EntityNotFoundException());
 ```
----
+
 ### Stream
 
 ```java
 stream.filter(obj -> obj != null).map(obj -> obj.hashCode()).collect(Collectors.toList());
 ```
+
+---
 
 ### Remote debug
 
@@ -1074,34 +1298,40 @@ Fini les println pour tester votre code, devenez vrai pro avec le debbeger Java.
 
 </center>
 
-Possibilités:
-1. **Points d'arrêt (Breakpoints)**<br/>
+---
+
+#### Possibilités
+1. **Points d'arrêt (Breakpoints)**
   Vous pouvez définir des points d'arrêt dans votre code pour examiner l'état du programme à ce moment-là.
-1. **Exécution pas à pas (Step Through)**<br/>
-  **Step Over** : Exécute la ligne de code actuelle et passe à la suivante, sans entrer dans les méthodes appelées.<br/>
-  **Step Into** : Entre dans la méthode appelée à la ligne de code actuelle pour l'exécuter ligne par ligne.<br/>
+2. **Exécution pas à pas (Step Through)**
+  **Step Over** : Exécute la ligne de code actuelle et passe à la suivante, sans entrer dans les méthodes appelées.
+  **Step Into** : Entre dans la méthode appelée à la ligne de code actuelle pour l'exécuter ligne par ligne.
   **Step Out** : Termine l'exécution de la méthode actuelle et retourne à la méthode appelante.
-1. **Inspection des variables**<br/>
-  Permet de voir les valeurs des variables à un moment donné pendant l'exécution du programme.<br/>
-1. **Pile d'appels (Call Stack)**<br/>
-  Affiche la séquence des appels de méthode qui ont conduit à l'endroit actuel dans le code.<br/>
-1. **Évaluation des expressions**<br/>
-  Permet d'évaluer des expressions ou des appels de méthode pendant que le programme est en pause.<br/>
-1. **Surveillance (Watches)**<br/>
-  Permet de surveiller les valeurs de certaines expressions ou variables tout au long de l'exécution.<br/>
-1. **Gestion des exceptions**<br/>
-  Permet de capturer les exceptions levées pendant l'exécution et d'inspecter leur état.<br/>
-1. **Modification à chaud (Hot Swap)**<br/>
-  Permet de modifier le code source pendant le débogage et de recharger les modifications sans redémarrer le programme.<br/>
-1. **Débogage à distance**<br/>
-  Permet de déboguer une application Java qui s'exécute sur une machine distante.<br/>
+---
+3. **Inspection des variables**
+  Permet de voir les valeurs des variables à un moment donné pendant l'exécution du programme.
+4. **Pile d'appels (Call Stack)**
+  Affiche la séquence des appels de méthode qui ont conduit à l'endroit actuel dans le code.
+5. **Évaluation des expressions**
+  Permet d'évaluer des expressions ou des appels de méthode pendant que le programme est en pause.
+6. **Surveillance (Watches)**
+  Permet de surveiller les valeurs de certaines expressions ou variables tout au long de l'exécution.
+---
+7. **Gestion des exceptions**
+  Permet de capturer les exceptions levées pendant l'exécution et d'inspecter leur état.
+8. **Modification à chaud (Hot Swap)**
+  Permet de modifier le code source pendant le débogage et de recharger les modifications sans redémarrer le programme.
+9. **Débogage à distance**
+  Permet de déboguer une application Java qui s'exécute sur une machine distante.
 
 ---
 
 ### JMX
 Java Management Extensions est une technologie Java qui fournit des outils pour gérer et surveiller les applications, les services système, les réseaux et autres ressources
 
-Outils:
+---
+
+#### Outils
 - Java Mission Control
 - ...
 
@@ -1122,14 +1352,16 @@ JShell est un outil interactif de ligne de commande introduit dans Java 9, qui p
 
 </center>
 
+---
+
 **Caractéristiques de JShell**
-- Exécution immédiate<br>
+- Exécution immédiate
   Exécute des expressions et des instructions Java immédiatement, sans avoir besoin de compiler un programme complet.
-- Feedback instantané<br>
+- Feedback instantané
   Affiche les résultats des expressions et des instructions exécutées.
-- Déclarations et définitions<br/>
+- Déclarations et définitions
   Permet de déclarer des variables, des méthodes, et même des classes.
-- Commandes JShell<br/>
+- Commandes JShell
   Fournit des commandes spécifiques pour gérer l'environnement JShell, comme /list, /edit, et /exit.
 
 ---
@@ -1177,9 +1409,11 @@ Java est parfaitement conteneurisable, mais il faut passer par certaine étapes 
 
 Pour que votre architectire applicatif conteneurisés soit viable, il faut que le temps de démarrage de votre application soit le plus court possible et que vous soyez capable de détecter les anormalités de votre application(c.a.d de la JVM).
 
-- Taille des images <br/>
+---
+
+- Taille des images
   Il existe des outils pour inclure uniquement les bibliothèques utilisées dans votre application (taille ~800Mo à <1Mo)
-- Démarrage rapide<br/>
+- Démarrage rapide
   Il existe également des outils pour compiler votre application de manière native et complètement supprimer la JVM
 - ...
 
@@ -1193,6 +1427,8 @@ Pour que votre architectire applicatif conteneurisés soit viable, il faut que l
 Kotlin est un langage de programmation moderne, statiquement typé, qui s'exécute sur la machine virtuelle Java (JVM). Il a été développé par **JetBrains**, l'entreprise derrière des outils de développement populaires comme IntelliJ IDEA.
 
 Kotlin est conçu pour être concis, expressif et sûr, tout en étant entièrement interopérable avec Java.
+
+---
 
 ```kotlin
 // Définition d'une classe de données
@@ -1220,7 +1456,21 @@ fun main() {
 ## Conclusion
 En 2025, Java reste l'un des langages de programmation les plus populaires et les plus utilisés dans le monde.
 
-Malgré la JVM, Java reste un langage peu énergivore et être très léger (source: [programmation.developpez.com](https://programmation.developpez.com/actu/253829/Programmation-une-etude-revele-les-langages-les-plus-voraces-en-energie-Perl-Python-et-Ruby-en-tete-C-Rust-et-Cplusplus-les-langages-les-plus-verts/#:~:text=Le%20top%205%20des%20langages,Lua%20(45%2C98).))
+Java a su évoluer sans cesse pour rester à la pointe des technologies modernes. Grâce à une communauté active, une feuille de route claire, et une grande compatibilité ascendante, il continue de séduire développeurs et entreprises.
+
+<details>
+<summary><b>Pourquoi Java est-il toujours au top en 2025 ?</b></summary>
+
+- **Écosystème mature et vaste** : Java dispose de bibliothèques, frameworks (comme Spring, Jakarta EE, Quarkus) et outils de développement très puissants qui couvrent tous les besoins, du développement web aux applications mobiles et cloud-native.
+- **Performance et scalabilité** : Grâce aux optimisations constantes de la JVM (Java Virtual Machine), Java offre d'excellentes performances, y compris pour les applications à grande échelle.
+- **Multiplateforme** : "Write Once, Run Anywhere" reste une réalité. Java fonctionne sur toutes les plateformes majeures, y compris les architectures cloud et serveurs modernes.
+- **Sécurité renforcée** : Java intègre depuis longtemps des mécanismes de sécurité robustes, qui sont essentiels dans le développement d'applications critiques.
+- **Langage moderne** : Avec les versions récentes (Java 17, 21 et au-delà), le langage introduit régulièrement des fonctionnalités modernes comme les records, les pattern matching, les sealed classes ou les virtual threads, rendant le code plus concis, lisible et performant.
+- **Communauté et support industriel** : Java est soutenu par une communauté mondiale et des géants de l'industrie comme Oracle, Red Hat, Amazon et bien d'autres. Cela garantit des mises à jour régulières, un support à long terme (LTS), et une adoption continue.
+
+</details>
+
+En résumé, Java n’est pas un langage du passé, c’est un langage d’avenir, prêt à relever les défis du développement logiciel moderne. Que ce soit pour des applications d’entreprise, des microservices, de l’intelligence artificielle, ou du cloud computing, Java reste un choix solide, pérenne et performant.
 
 ---
 <!-- header: 'Sources' -->
