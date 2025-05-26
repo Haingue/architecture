@@ -1,6 +1,5 @@
 ---
 marp: true
-# marp: false
 theme: default
 paginate: true
 style: |
@@ -38,8 +37,7 @@ footer: "Fabien HAINGUE"
 <div class="grid grid-cols-3 grid-flow-col gap-2 text-center">
   <div class="row-span-1">
 
-![](../resources/images/IMT-logo.png)
-
+  ![](../resources/images/IMT-logo.png)
   </div>
 
   <div class="row-span-1 row-start-3">
