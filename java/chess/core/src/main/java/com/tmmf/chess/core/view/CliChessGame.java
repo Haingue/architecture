@@ -2,52 +2,55 @@ package com.tmmf.chess.core.view;
 
 import com.tmmf.chess.core.exceptions.MoveNotPermitException;
 import com.tmmf.chess.core.exceptions.PieceNotFoundException;
-import com.tmmf.chess.core.game.Board;
-import com.tmmf.chess.core.game.ChessGame;
-import com.tmmf.chess.core.game.Player;
-import com.tmmf.chess.core.game.Point;
+import com.tmmf.chess.core.game.*;
 import com.tmmf.chess.core.piece.*;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class CliChessGame implements ChessGame {
+public class CliChessGame implements ChessGame<Void> {
 
-    private final Board board;
+    private Board board;
 
     public CliChessGame() {
         this.board = new Board();
     }
 
     @Override
-    public Board getBoard() {
+    public Void createBoard() {
+        this.board = new Board();
+        return null;
+    }
+
+    @Override
+    public Board getBoard(Void identifier) {
         return this.board;
     }
 
     @Override
-    public void resetBoard() {
+    public void resetBoard(Void identifier) {
         this.board.resetBoard();
     }
 
     @Override
-    public void exportBoard() {
+    public void exportBoard(Void identifier) {
         System.out.println(this);
     }
 
     @Override
-    public void reloadBoard(List<Piece> pieces) {
-        this.getBoard().getCells().clear();
-        pieces.stream().map(Optional::of).forEach(this.getBoard().getCells()::add);
+    public void reloadBoard(Void identifier, List<Piece> pieces) {
+        this.getBoard(identifier).getCells().clear();
+        pieces.stream().map(Optional::of).forEach(this.getBoard(identifier).getCells()::add);
     }
 
     @Override
-    public void playNextMove(Point sourcePoint, Point destinationPoint) throws MoveNotPermitException, PieceNotFoundException {
-        this.board.move(sourcePoint, destinationPoint);
+    public MoveResult playNextMove(Void identifier, Point sourcePoint, Point destinationPoint) throws MoveNotPermitException, PieceNotFoundException {
+        return this.board.move(sourcePoint, destinationPoint);
     }
 
     @Override
-    public Optional<Player> getWinner() {
+    public Optional<Player> getWinner(Void identifier) {
         return this.board.getWinner();
     }
 

@@ -7,13 +7,14 @@ import com.tmmf.chess.core.piece.Piece;
 import java.util.List;
 import java.util.Optional;
 
-public interface ChessGame {
+public interface ChessGame<K> {
 
-    Board getBoard();
-    Optional<Player> getWinner();
-    void playNextMove(Point sourcePoint, Point destinationPoint) throws MoveNotPermitException, PieceNotFoundException;
+    K createBoard();
+    Board getBoard(K identifier);
+    Optional<Player> getWinner(K identifier);
+    MoveResult playNextMove(K identifier, Point sourcePoint, Point destinationPoint) throws MoveNotPermitException, PieceNotFoundException;
 
-    void resetBoard();
-    void exportBoard();
-    void reloadBoard(List<Piece> pieces);
+    void resetBoard(K identifier);
+    void exportBoard(K identifier);
+    void reloadBoard(K identifier, List<Piece> pieces);
 }

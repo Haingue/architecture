@@ -18,6 +18,7 @@ public class Board {
     private int turn;
 
     public Board() {
+        this.players = new ArrayList<>();
         this.resetBoard();
     }
 
@@ -113,6 +114,7 @@ public class Board {
     }
 
     public Player getCurrentPlayer() {
+        if (players.isEmpty()) return null;
         return players.get(turn % players.size());
     }
 
@@ -132,7 +134,8 @@ public class Board {
         return selectedPiece.getAvailableMoves(source, this);
     }
 
-    public void move(Point source, Point destination) throws PieceNotFoundException, MoveNotPermitException {
+    public MoveResult move(Point source, Point destination) throws PieceNotFoundException, MoveNotPermitException {
+        MoveResult result = new MoveResult(source, destination, this.turn);
         Set<Point> availableMoves = getAvailableMoves(source);
         if (!availableMoves.contains(destination)) throw new MoveNotPermitException(destination);
 
@@ -140,10 +143,16 @@ public class Board {
         Optional<Piece> sourcePiece = this.cells.get(sourceIdx);
         int destinationIdx = this.getCellIndex(destination);
         Optional<Piece> destinationPiece = this.cells.get(destinationIdx);
+        if (destinationPiece.isPresent()) {
+            result.setResult(MoveResult.Result.TAKE);
+        } else {
+            result.setResult(MoveResult.Result.MOVE);
+        }
 
         this.cells.set(sourceIdx, Optional.empty());
         this.cells.set(destinationIdx, sourcePiece);
         this.turn++;
+        return result;
     }
 
 }

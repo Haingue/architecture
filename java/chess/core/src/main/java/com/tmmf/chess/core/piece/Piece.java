@@ -1,6 +1,5 @@
 package com.tmmf.chess.core.piece;
 
-import com.tmmf.chess.core.exceptions.MoveNotPermitException;
 import com.tmmf.chess.core.game.Board;
 import com.tmmf.chess.core.game.Color;
 import com.tmmf.chess.core.game.Point;
