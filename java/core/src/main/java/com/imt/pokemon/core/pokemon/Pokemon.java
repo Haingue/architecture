@@ -5,9 +5,10 @@ import com.imt.pokemon.core.pokemon.effect.PokemonEffect;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
-public class Pokemon {
+public class Pokemon implements Comparable<Pokemon> {
     private UUID uuid;
     private String name;
     private String sprite;
@@ -181,21 +182,29 @@ public class Pokemon {
     }
 
     @Override
+    public int compareTo(Pokemon o) {
+        return this.uuid.compareTo(o.uuid);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Pokemon pokemon)) return false;
+        return Objects.equals(this.uuid, pokemon.uuid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(uuid);
+    }
+
+    @Override
     public String toString() {
         return "Pokemon{" +
                 "uuid=" + uuid +
                 ", name='" + name + '\'' +
-                ", sprite='" + sprite + '\'' +
-                ", type=" + type +
                 ", level=" + level +
                 ", healthPoint=" + getHealthPoint() +
-                ", physicalAttackPoint=" + physicalAttackPoint +
-                ", specialAttackPoint=" + specialAttackPoint +
-                ", defensePoint=" + defensePoint +
-                ", speedPoint=" + speedPoint +
-                ", accuracyPoint=" + accuracyPoint +
-                ", effect=" + effect +
-                ", attackList=" + attackList +
                 '}';
     }
+
 }
