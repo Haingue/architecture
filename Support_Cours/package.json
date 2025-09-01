@@ -1,0 +1,31 @@
+{
+  "name": "support-cours",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  },
+  "slidev": {
+    "addons": [
+      "slidev-component-progress",
+      "slidev-addon-qrcode",
+      "slidev-addon-java-runner"
+    ]
+  },
+  "dependencies": {
+    "@slidev/cli": "^52.1.0",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest",
+    "sanitize-html": "^2.17.0",
+    "slidev-addon-java-runner": "^0.1.1",
+    "slidev-addon-qrcode": "^1.0.2",
+    "slidev-component-progress": "^1.1.0",
+    "vue": "^3.5.18"
+  },
+  "devDependencies": {
+    "@types/sanitize-html": "^2.16.0",
+    "@unocss/preset-wind3": "^66.4.2"
+  }
+}

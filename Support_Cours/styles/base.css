@@ -1,0 +1,19 @@
+:root {
+    /* --primary-color: red;
+    --secondary-color: brown; */
+}
+
+ul {
+    list-style: disc;
+    padding-left: 40px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+span.code-line {
+    background-color: #1e2939;
+    color: #ebe6e7;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    font-family: monospace;
+}
