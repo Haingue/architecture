@@ -828,11 +828,28 @@ public class SecurityConfiguration {
 
 ---
 title: Tests
-subtitle: Tests boîtes blanches
 layout: chapter_title
 transition: slide-up
 ---
 
+::top::
+<div class="text-center">
+« Les tests automatisés ne sont pas une option, mais une assurance qualité intégrée. »
+</div>
+
+::bottom::
+<img class="m-auto w-1/2" src="/images/spring-boot-test-pyramide.png" />
+
+<Note type="info" v-click>
+  <p>Dans le vrai monde, il est parfois difficile de respecter la théorie, 80% de couverture de test peu être compliqué à mettre en place et rendre difficile le travail de vos équipes...</p>
+  <p>D'un point de vue valeur, les tests end-to-end sont les tests qui rapport le plus de valeurs car ils permettent de validé le fonctionement des règles métiers, vous pouvez donc prioriser ses tests dans certains cas (Definition of Done).</p>
+</Note>
+
+---
+title: Tests boîtes blanches
+layout: chapter_subtitle
+transition: slide-up
+---
 
 Mise en place de tests en utilisant les composants internes de votre application (Service, Repository, ...).
 
@@ -861,7 +878,6 @@ public class ItemRepositoryTests {
 ---
 title: Tests boîtes noire
 layout: chapter_subtitle
-transition: slide-up
 ---
 
 
@@ -895,9 +911,8 @@ public class ItemRestController {
 }
 ```
 
----
 
-> Il y a plusieurs façons de faire des tests boîte noire ([voir article](https://docs.spring.io/spring-framework/reference/testing/spring-mvc-test-framework/vs-end-to-end-integration-tests.html))
+> Il y a plusieurs façons de faire des tests boîte noire (<a class="text-blue" href="https://docs.spring.io/spring-framework/reference/testing/spring-mvc-test-framework/vs-end-to-end-integration-tests.html">voir article</a>)
 >
 > - MockMVC
 > - End-to-End
@@ -908,30 +923,47 @@ layout: chapter_title
 transition: slide-up
 ---
 
-<img class="absolute right-5 top-5 w-30" src="/images/spring-webflux-logo.png" />
+<img class="absolute right-5 top-2 w-20" src="/images/spring-webflux-logo.png" />
 
-Avec ce projet, vous allez pouvoir créer des application **réactive** ([doc](https://docs.spring.io/spring-framework/docs/5.0.0.M4/spring-framework-reference/html/web-reactive.html)).
+Avec ce projet, vous allez pouvoir créer des application **réactive** (<a class="text-blue" href="https://docs.spring.io/spring-framework/docs/5.0.0.M4/spring-framework-reference/html/web-reactive.html">doc</a>).
 
-> En informatique, la programmation réactive est un paradigme de programmation visant à conserver une cohérence d'ensemble en propageant les modifications d'une source réactive (modification d'une variable, entrée utilisateur, etc.) aux éléments dépendants de cette source.
+<img class="m-auto w-1/2" src="/images/spring-boot-web-reactivity.png" />
+
+<Note type="info" class="mt-2em">
+  <p>En informatique, la programmation réactive est un paradigme de programmation visant à conserver une cohérence d'ensemble en propageant les modifications d'une source réactive (modification d'une variable, entrée utilisateur, etc.) aux éléments dépendants de cette source.</p>
+</Note>
 
 ---
 transition: slide-up
 ---
-
+::top::
 Pour une meilleure expérience, toute votre pile technique doit être réactive (API, SGBD, ...).
 
-> Vous pouvez ajouter Spring Webflux à un projet Spring Boot existant est modifier petit à petit vos Controllers puis vos Services puis vos Repository...
+<Note type="info" class="mb-10">
+  <p>Vous pouvez ajouter Spring Webflux à un projet Spring Boot existant est modifier petit à petit vos Controllers puis vos Services puis vos Repository...</p>
+</Note>
 
----
-title: Avantages
-layout: chapter_subtitle
-transition: slide-up
----
+::right::
+<Subtitle>Avantages</Subtitle>
 
-
-- Meilleurs performances
-- Adapté pour les débits faibles (smartphone, appareil en mouvement)
+- Communication non blocantes
+- Scalabilité
+- Performance IO
+- Backpressure
+- Compatibilité
 - ...
+
+::left::
+```java
+@RestController
+public class GreetingController {
+    @GetMapping("/greet")
+    public Mono<String> greet(@RequestParam String name) {
+        return Mono.just("Hello, " + name + "!");
+    }
+}
+```
+
 
 ---
 title: Comportement de Pub/Sub
@@ -974,8 +1006,6 @@ public class WeatherClientConfig {
   }
 }
 ```
----
-transition: slide-up
 ---
 
 Utilisation du client
@@ -1035,6 +1065,8 @@ title: Tips
 layout: chapter_title
 ---
 
+<v-clicks>
+
 - Utiliser toujours un [Logger](https://www.baeldung.com/spring-boot-logging)
   Cela vous permettra de rediriger les logs de votre application sur différents supports (console, fichier, bdd, ...).
 
@@ -1051,18 +1083,16 @@ layout: chapter_title
   /* … */
   ```
 
-  > Fin des println hasardeux !
-
-<br/>
+  > Fin des println hasardeux !<br/><br/>
 
 - <a class="text-blue" href="https://docs.spring.io/spring-boot/docs/2.0.6.RELEASE/reference/html/howto-hotswapping.html">Devtools</a>
-  Hotreload/Hotswap
-
-<br/>
+  Hotreload/Hotswap<br/><br/>
 
 - <a class="text-blue" href="https://www.baeldung.com/spring-debugging">Remote debug</a>
   JVM options:
   -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
+
+</v-clicks>
 
 ---
 title: Documentations
