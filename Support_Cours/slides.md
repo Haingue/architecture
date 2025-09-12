@@ -28,7 +28,7 @@ src: ./pages/project_design/index.md
 ---
 title: Java
 subject: Formation Java
-src: ./pages/java/index.md
+#src: ./pages/java/index.md
 ---
 
 <Cover title="Java" />
@@ -48,7 +48,7 @@ title: JavaScript
 
 ---
 title: NestJs
-src: ./pages/nestjs/index.md
+#src: ./pages/nestjs/index.md
 ---
 
 <Cover title="NestJs" />

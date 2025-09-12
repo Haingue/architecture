@@ -53,13 +53,17 @@ Pour cela, différents types de pratiques/documents peuvent vous aider à clarif
   Ensuite, vous pourrais concevoir une architecture logiciel en prenant compte tout le cycle de vie du projet:<br/>
 
   <ul>
-  <li>- Conception du projet</li>
-  <li>- Mise en place du projet</li>
-  <li>- Surveillance du projet</li>
-  <li>- Maintien opérationnel du projet</li>
-  <li>  - Réparation en cas de panne</li>
-  <li>  - Mise à niveau (vulnérabilités, mise à jour, ...)</li>
-  <li>- Arrêt/Remplacement du projet</li>
+  <li>Conception du projet</li>
+  <li>Mise en place du projet</li>
+  <li>Surveillance du projet</li>
+  <li>
+    <p>Maintien opérationnel du projet</p>
+    <ul>
+      <li>  Réparation en cas de panne</li>
+      <li>  Mise à niveau (vulnérabilités, mise à jour, ...)</li>
+    </ul>
+  </li>
+  <li>Arrêt/Remplacement du projet</li>
   </ul>
 
 </div>
@@ -163,6 +167,8 @@ layout: chapter_subtitle
 transition: slide-up
 ---
 
+::left::
+
 - Liste des roles
 
 <div clasS="grid grid-cols-2">
@@ -189,7 +195,7 @@ left to right direction
   </div>
 </div>
 
----
+::right::
 
 - Liste des processus / gammes
 
@@ -208,6 +214,7 @@ left to right direction
 
 ---
 
+::left::
 - Diagramme de séquence
 <div class="m-auto">
 
@@ -222,7 +229,7 @@ Stockeur --> Entrepôt : Stocke les livres
 ```
 </div>
 
----
+::right::
 
 - Logigramme
 
@@ -247,9 +254,11 @@ end
 </div>
 
 ---
+title: Obectifs
+layout: chapter_subtitle
+transition: slide-up
+---
 
-
-### Obectifs
 
 ```
 On a une cadence élevée pour assembler nos colis.
@@ -259,6 +268,8 @@ Nos équipes ont parfois du mal à noter les informations sur leur bloc notes, i
 Et nous avons également des objetifs écologiques, nous aimerions baisser notre impacte environnementale.
 ```
 
+---
+transition: slide-up
 ---
 
 
@@ -313,27 +324,29 @@ appro --> andon
 </div>
 
 ---
+title: Valider votre compréhension
+layout: chapter_title
+---
 
-### Valider votre compréhension
+<img class="m-auto my-2em" src="/images/comprehension-validation.png" />
 
-<div>
-  <img src="/images/comprehension-validation.png" />
-</div>
-
-Lors de vos premiers échanges avec le métier, posez toutes vos questions.
-Ensuite **documenter** votre compréhension du métier, de leurs problèmatiques et de leurs objectifs, ensuite **présentez** vos documents aux experts du métier pour vous assurer que votre compréhension soit la bonne.
+<p>Lors de vos premiers échanges avec le métier, posez toutes vos questions.</p>
+<p>Ensuite <b>documentez</b> votre compréhension du métier, de leurs problèmatiques et de leurs objectifs, ensuite <b>présentez</b> vos documents aux experts du métier pour vous assurer que votre compréhension soit la bonne.</p>
 
 ---
 title: Conception
+subtitle: Cycle de vie
+layout: chapter_title
 ---
 
-### Cycle de vie
-
-- Mise en place du projet
+- Préparation
   - Environnement de Test / Production
-- Surveillance du projet
-  - Alertes
-  - Monitoring
+  - Surveillance du projet
+    - Alertes
+    - Monitoring
+- Mise en place du projet
+  - Communication
+  - SOP
 - Maintenance du projet
   - Panne
   - Mise à jour
@@ -341,22 +354,26 @@ title: Conception
 
 
 ---
-
-#### Hybride diagramme
-
-![](/images/ISDM%20hybrid%20diagram.png)
-
+title: Hybride diagramme
+layout: chapter_subtitle
 ---
 
-Dans cette architecture, j'ai fais le choix de créer une application par domaine.
-Chaque application est composée d'une interface et d'une API qui utilise sa propre base de données, cela permet d'être plus résistent au panne et de partager plus facilement les informations avec d'autres systèmes.
-Chaque composant d'une application peut avoir plusieurs instances en simultanés et sur différents servers.
+::top::
+<img class="h-80 m-auto" src="/images/ISDM%20hybrid%20diagram.png" />
 
-Pour la gestion des accès/roles, j'utilise un **S**ingle **S**ign-**O**n ce qui permet d'avoir la même base d'utilisateur pour toutes les applications et demander à l'utilisateur de se connecter une seul fois.
+::bottom::
+<p>Dans cette architecture, j'ai fais le choix de créer une application par domaine.</p>
+<p>Chaque application est composée d'une interface et d'une API qui utilise sa propre base de données, cela permet d'être plus résistent au panne et de partager plus facilement les informations avec d'autres systèmes.</p>
+<p>Chaque composant d'une application peut avoir plusieurs instances en simultanés et sur différents servers.</p>
+
+<p>Pour la gestion des accès/roles, j'utilise un **S**ingle **S**ign-**O**n ce qui permet d'avoir la même base d'utilisateur pour toutes les applications et demander à l'utilisateur de se connecter une seul fois.</p>
 
 ---
+title: Stack technologique
+layout: chapter_subtitle
+---
 
-#### Stack technologique
+::left::
 Mettre en place une applications demande beaucoup de ressources:
 - Sauvegarde de code
 - Outils de build
@@ -367,13 +384,16 @@ Mettre en place une applications demande beaucoup de ressources:
 - Outils de restauration
 - ....
 
+::right::
+<img src="/images/technology_stack.jpg" />
+
 ---
 
-Il est judicieux de définir une stack technique standard pour votre entreprise couvrant toutes les strapes de vos projets.
+Il est judicieux de définir une stack technique standard pour votre entreprise couvrant toutes les strates de vos projets.
 
-<div class="grid grid-cols-2">
+<div class="grid grid-cols-2 mt-2em">
 <section class="w-full">
-Ex:<br/>
+<u>Ex:</u><br/>
 - Source code managment: Github<br/>
 - Application<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- Backend: Spring Boot<br/>
@@ -399,23 +419,25 @@ Ex:<br/>
 
 ---
 
-<div>
-  <img src="/images/tech-stack.jpeg" />
-</div>
+::top::
+<img class="m-auto w-2/4" src="/images/tech-stack.jpeg" />
 
----
-
+::bottom::
 La liste peut être longue suivant le type de vos activités / clients.
 Il est necessaire de définir une façon standard d'utiliser chaque technologie pour permettre de mutualiser les outils.
 Cela vous permettra, par exemple, de mettre en place le monitoring de votre projet en quelques secondes car vous avez réutiliser la méthode standard définie par des personnes plus compètente sur ce sujet.
 
 De plus, en utilisant le plus possible la même technologie, le maintient de celle-ci vous sera plus facile.
 
-> Garder à l'esprit qu'une technologie doit être maintenu à jour pour réduire les failles de sécurité, quel doit être capable d'être redémarré/restaurée en cas de panne, ...
+<Note type="info">
+Garder à l'esprit qu'une technologie doit être maintenu à jour pour réduire les failles de sécurité, quel doit être capable d'être redémarré/restaurée en cas de panne, ...
+</Note>
 
 ---
+title: Mock-up
+layout: chapter_subtitle
+---
 
-#### Mock-up
 La partie la plus importante dans le cadre d'un projet applicatif est son interface, les autres composants ne sont que des composants techniques qui parleront aux équipes supports.
 Il est donc important de présenter et valider des maquettes de l'interface aux différents experts du métier.
 
@@ -424,34 +446,44 @@ Il est donc important de présenter et valider des maquettes de l'interface aux 
 </div>
 
 ---
-
-### Agile
-##### Principes
-<div>
-  <img src="/images/architecture-agiles.png" />
-</div>
-
-##### User story
-  <img src="/images/user-story.png" />
-
+title: Agile
+subtitle: Principes
+layout: chapter_title
+transition: slide-up
 ---
 
-##### Versionnement
+<img class="m-auto w-2/3" src="/images/architecture-agiles.png" />
+
+---
+title: User story
+layout: chapter_subtitle
+transition: slide-up
+---
+
+<img class="m-auto w-2/3" src="/images/user-story.png" />
+
+---
+title: Versionnement
+layout: chapter_subtitle
+---
+
 - MVP: Minimum Viable Product
 - MMP: Minimum Marketable Product
 - MMR: Minimum Marketable Release
 
 ---
-
-### Finaliser un projet 
-##### SLA
-
-<div>
-  <img src="https://placehold.co/600x400" />
-</div>
-
+title: Finaliser un projet
+subtitle: SLA
+layout: chapter_title
+transition: slide-up
 ---
 
+<img class="m-auto" src="https://placehold.co/600x400" />
+
+---
+title: Ressources
+layout: chapter_title
+---
 
 ### Livres
 - [Clean Code](https://www.amazon.fr/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
