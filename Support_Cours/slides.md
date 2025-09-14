@@ -48,13 +48,14 @@ title: JavaScript
 
 ---
 title: NestJs
-#src: ./pages/nestjs/index.md
+src: ./pages/nestjs/index.md
 ---
 
 <Cover title="NestJs" />
 
 ---
 title: Docker
+src: ./pages/docker/index.md
 ---
 
 <Cover title="Docker" />

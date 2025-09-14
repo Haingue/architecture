@@ -42,11 +42,9 @@ c --> f4
 c --> f5
 
 f1 -- d
-f2 -- d
-f3 -- o
+f2 -- o
 f3 -- d
 f4 -- d
-f5 -- d
 f5 -- o
 
 @enduml
@@ -60,7 +58,7 @@ f5 -- o
 
 ```plantuml
 @startuml
-participant Student as s
+participant Company as s
 participant "JobOffer\nAPI" as o
 participant "JobDemand\nAPI" as d
 s --> d : Envoi les informations
@@ -94,18 +92,13 @@ o --> e : Envoi un mail de confirmation\navec les informations pertinentes
 
 ```plantuml
 @startuml
-archimate #Motivation "Permettre d'offrir" as trust <<motivation-driver>>
+archimate #Motivation "Travailler" as d1 <<motivation-driver>>
+archimate #Motivation "Rendre service" as d2 <<motivation-driver>>
 
+archimate #Motivation "Gagner de l'expérience" as m1 <<motivation-goal>>
+archimate #Motivation "Gagner de l'argent" as m2 <<motivation-goal>>
+archimate #Motivation "Chercher des futures collaborateurs" as m3 <<motivation-goal>>
 
-archimate #Motivation "Augmenter la confiance envers les organisateur" as trust <<motivation-driver>>
-archimate #Motivation "Rendre plus facile l'achat/revente des tickets" as purchase <<motivation-driver>>
-
-archimate #Motivation "Rendre l'accès aux evenement facile" as simple_access <<motivation-goal>>
-archimate #Motivation "Réduire les fraudes" as fraud <<motivation-goal>>
-
-trust --> simple_access
-trust --> fraud
-purchase --> simple_access
 @enduml
 ```
 
@@ -145,24 +138,31 @@ t_service -- t_bdd
 
 ### Entitée
 
-| Company |
-| --- |
-| __name__: Name |
-| address: String |
-| demands: List<JobDemand> |
+<center>
 
-| JobOffer |
-| --- |
-| __uid__: UUID |
-| title: title |
-| startDate: LocalDate |
-| endDate: LocalDate |
-| startDayTime: LocalTime |
-| endDayTime: LocalTime |
-| company: Company |
-| creationDatetime: Instant |
-| expirationDays: int |
-| creationTimestamp: Instant |
+```plantuml
+@startuml
+Class JobOffer {
+  **uid**: UUID
+  title: String
+  startDate: LocalDate
+  endDate: LocalDate
+  startDayTime: LocalTime
+  endDayTime: LocalTime
+  student: UUID
+  expirationDays: int
+  creationTimestamp: Instant
+}
+Class Company {
+  name: String
+  address: String
+
+}
+JobOffer *-- Company : owner
+@enduml
+```
+
+</center>
 
 ###  Contrat de service
 
@@ -180,38 +180,44 @@ t_service -- t_bdd
 
 ### Entitée
 
-| Student |
-| --- |
-| __email__: UUID |
-| firstname: String |
-| lastname: String |
-| studentNumber: String |
-| speciality: Speciality |
-| lastLoginTimestamp: Instant |
 
-| Speciality |
-| --- |
-| __name__: String |
-| category: SpecialityCategory |
+<center>
 
-| SpecialityCategory &lt;enum&gt; |
-| --- |
-| Development |
-| Project managment |
-| Legal |
+```plantuml
+@startuml
+Class JobDemand {
+  **uid**: UUID
+  startDate: LocalDate
+  endDate: LocalDate
+  startDayTime: LocalTime
+  speciality: Speciality
+  endDayTime: LocalTime
+  creationDatetime: Instant
+  expirationDays: int
+  creationTimestamp: Instant
+}
+Class Student {
+  **email**: UUID
+  firstname: String
+  lastname: String
+  studentNumber: String
+  lastLoginTimestamp: Instant
+}
+Class Speciality {
+  **name**: String
+}
+Enum SpecialityCategory {
+  Development
+  Project managment
+  Legal
+}
+JobDemand *-- Student : requestor
+Student *-- Speciality : speciality
+Speciality <|-- SpecialityCategory : category
+@enduml
+```
 
-| JobDemand |
-| --- |
-| __uid__: UUID |
-| startDate: LocalDate |
-| endDate: LocalDate |
-| startDayTime: LocalTime |
-| student: Student |
-| speciality: Speciality |
-| endDayTime: LocalTime |
-| creationDatetime: Instant |
-| expirationDays: int |
-| creationTimestamp: Instant |
+</center>
 
 ###  Contrat de service
 

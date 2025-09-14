@@ -6,33 +6,42 @@ Dans ce TP, vous allez apprendre/revoir comment utiliser Spring Boot et les modu
 
 ## Objectif
 
-Créer une application Spring Boot permettant de gérer des offre d'emploi pour étudiant  ([voir description](../conception%20de%20projet/INTES TP - Conception de projet 2025-2026.md)).
+Créer une application Spring Boot permettant de gérer des offre d'emploi pour étudiant  ([voir description](../conception%20de%20projet/INTES%20TP%20-%20Conception%20de%20projet%202025-2026.md)).
 
 #### TODO list
-1. Initialiser un projet Spring Boot
-2. Obtenir toutes les offres d'emploi
-3. Rechercher une offre par son titre
-4. Créer une offre d'emploi
-5. Modifier une offre d'emploi
-6. Modifier une offre d'emploi
-7. Annulation d'une offre d'emploi
+- [ ] Initialiser un projet Spring Boot
+- [ ] Mettez en place une page "Hello World"
+- [ ] Mettez en place une page d'acceuil
+  - [ ] Lister les offres d'emploi actives
+- [ ] Ajoutez des entités
+  - [ ] JobOfferEntity
+  - [ ] Company
+- [ ] Définissez un service regrouprant les logiques métier
+  - [ ] Obtenir toutes les offres d'emploi
+  - [ ] Rechercher une offre par son titre
+  - [ ] Publier une offre d'emploi
+  - [ ] Modifier une offre d'emploi
+  - [ ] Annulation d'une offre d'emploi
+- [ ] Définissez des point d'entrée pour chaque fonction du service (voir tableau)
+
+<br/>
+<br/>
 
 <center>
 
 ```plantuml
 @startuml
-archimate #Business "Gestion d'offre d'emploi" as event_service <<business-process>>
-archimate #Business "Chercher une offre" as find_event <<business-function>>
-archimate #Business "Publier une offre" as organize_event <<business-function>>
-archimate #Business "Accepter une offre" as accept_event <<business-function>>
-archimate #Business "Modifier" as update_event <<business-function>>
-archimate #Business "Annuler une offre" as cancel_event <<business-function>>
+archimate #Business "Gestion d'offre d'emploi" as bp_offer <<business-process>>
+archimate #Business "Chercher une offre" as bf_search <<business-function>>
+archimate #Business "Publier une offre" as bf_publish <<business-function>>
+archimate #Business "Accepter une offre" as bf_accept <<business-function>>
+archimate #Business "Annuler une offre" as bf_cancel <<business-function>>
 
-event_service --> find_event
-event_service --> organize_event
-event_service --> accept_event
-event_service --> update_event
-event_service --> cancel_event
+
+bp_offer --> bf_search
+bp_offer --> bf_publish
+bp_offer --> bf_accept
+bp_offer --> bf_cancel
 @enduml
 ```
 
@@ -133,11 +142,11 @@ class HelloRestControllerTest {
 
     @Test
     void loadHelloString () throws Exception {
-        mvc.perform(get("/hello"))
+        mvc.perform(MockMvcRequestBuilders.get("/hello"))
                 .andExpect(status().isOk())
-                .andExpect(content()
+                .andExpect(MockMvcResultMatchers.content()
                         .contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
-                .andExpect(content().string("Hello world !"));
+                .andExpect(MockMvcResultMatchers.content().string("Hello world !"));
     }
 }
 ```
@@ -166,13 +175,14 @@ Ensuite, créez un fichier HTML « **home.html** » dans le dossier « **templat
 Puis créez le contrôleur permettant de générer la vue.
 
 ```html
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <title>JobOfferService</title>
-  </head>
-  <body>
-    JobOfferService up !
-  </body>
+</head>
+<body>
+  JobOfferService up !
+</body>
 </html>
 ```
 
@@ -259,55 +269,25 @@ Maintenant, votre application est prête pour créer vos entités et les méthod
 
 <center>
 
-| Student |
-| --- |
-| __email__: UUID |
-| firstname: String |
-| lastname: String |
-| studentNumber: String |
-| speciality: Speciality |
-| lastLoginTimestamp: Instant |
-
-| Speciality |
-| --- |
-| __name__: String |
-| category: SpecialityCategory |
-
-| SpecialityCategory &lt;enum&gt; |
-| --- |
-| Development |
-| Project managment |
-| Legal |
-
 ```plantuml
 @startuml
 Class JobOffer {
   **uid**: UUID
-  title: title
+  title: String
   startDate: LocalDate
   endDate: LocalDate
   startDayTime: LocalTime
   endDayTime: LocalTime
-  student: Student
-  creationDatetime: Instant
+  student: UUID
   expirationDays: int
   creationTimestamp: Instant
 }
-Class Student {
+Class Company {
+  name: String
+  address: String
 
 }
-Class Speciality {
-  **name**: String
-  category: SpecialityCategory
-}
-Enum SpecialityCategory {
-  Development
-  Project managment
-  Legal
-}
-
-Student *-- Speciality : speciality
-Speciality *-- SpecialityCategory  : category
+JobOffer *-- Company : owner
 @enduml
 ```
 
@@ -317,15 +297,17 @@ Speciality *-- SpecialityCategory  : category
 
 <br>
 
+Une fois vos entités terminées, vous pouvez créer vos repository puis vos services.<br/>
+A noter que le résultat d'une fonction métier ne dois pas être votre entité met un **DTO**.
+
 **Méthodes métiers**
-- EventDto findOneEvent (UUID eventId)
-- List\<EventDto> findAllEvent (int page, int number)
-- EventDto organizeEvent (EventDto newEventDto)
-- EventDto updateEvent (EventDto eventDto)
-- void cancelEvent (UUID eventId)
+- JobOfferDto findOneJobOffer (UUID jobOfferId)
+- List&lt;JobOfferDto&gt; searchJobOffer (String titleRegex, int page, int number)
+- JobOfferDto publishJobOffer (JobOfferDto newjobOfferDto)
+- JobOfferDto updateJobOffer (JobOfferDto jobOfferDto)
+- void cancelJobOffer (UUID jobOfferId)
 
-Placez le fichier **EventRepositoryTest** dans votre dossier src/**tests**/java/com/imt/service/eventservice/repository pour vérifier votre code.
-
+Placez le fichier **jobOfferRepositoryTest** dans votre dossier src/**tests**/java/com/imt/service/eventservice/repository pour vérifier votre code.
 
 <details>
 <summary>Cliquez pour voir le contenu de ce fichier.</summary>
@@ -334,53 +316,75 @@ Placez le fichier **EventRepositoryTest** dans votre dossier src/**tests**/java/
 > Il faut modifier ce test pour coller au sujet
 
 ```Java
-@SpringBootTest
-class EventRepositoryTest {
+import static org.junit.jupiter.api.Assertions.*;
 
-    private static final PartDto DEFAULT_PART = new PartDto(1L, "test", "00000", "description of the part");
+@SpringBootTest
+class JobOfferRepositoryTest {
+
+    private final JobOffer defaultJobOffer;
+    private final JobOfferRepository jobOfferRepository;
 
     @Autowired
-    private PartRepository partRepository;
+    public JobOfferRepositoryTest(JobOfferRepository jobOfferRepository) {
+        this.jobOfferRepository = jobOfferRepository;
+        JobOffer jobOffer = new JobOffer();
+        jobOffer.setId(UUID.randomUUID());
+        jobOffer.setTitle("Job Offer test");
+        jobOffer.setStartDate(LocalDate.MIN);
+        jobOffer.setEndDate(LocalDate.MAX);
+        jobOffer.setStartDayTime(LocalTime.MIN);
+        jobOffer.setEndDayTime(LocalTime.MAX);
+        jobOffer.setExpirationDays(10);
+        jobOffer.setCreationTimestamp(Instant.MIN);
 
-    @Test
-    void insertEntity () {
-        EventEntity originalEntity = PartMapper.dtoToEntity(DEFAULT_PART);
+        this.defaultJobOffer = jobOffer;
+    }
 
-        Event savedEntity = partRepository.save(originalEntity);
-        Assertions.assertEquals(originalEntity, savedEntity, "The object result from save method is different than the original part");
+    @BeforeAll
+    static void setUp(@Autowired JobOfferRepository jobOfferRepository) {
+        jobOfferRepository.deleteAll();
     }
 
     @Test
-    void selectEntity () {
-        Event originalEntity = PartMapper.dtoToEntity(DEFAULT_PART);
-        originalEntity = partRepository.save(originalEntity);
-
-        Optional<Event> savedEntity = partRepository.findById(originalEntity.getId());
-        Assertions.assertTrue(savedEntity.isPresent());
-        Assertions.assertEquals(originalEntity, savedEntity.get(), "The part found is not same than the original part");
+    void shouldInsertJobOffer() {
+        JobOffer savedEntity = this.jobOfferRepository.save(defaultJobOffer);
+        assertNotNull(savedEntity);
+        assertEquals(defaultJobOffer, savedEntity);
     }
 
     @Test
-    void updateEntity () {
-        Event originalEntity = PartMapper.dtoToEntity(DEFAULT_PART);
-        originalEntity = partRepository.save(originalEntity);
+    void shouldFindJobOfferByTitle() {
+        // Prepare data
+        this.jobOfferRepository.save(defaultJobOffer);
 
-        originalEntity.setName("updated name");
-        originalEntity.setDescription("updated description");
-        Event updatedEntity = partRepository.save(originalEntity);
-        Assertions.assertNotNull(updatedEntity);
-        Assertions.assertEquals(originalEntity, updatedEntity, "The part found is not same than the updated part");
+        List<JobOffer> results = this.jobOfferRepository.findAllByTitleLikeOrderByCreationTimestampDesc("Job Offer %");
+        assertNotNull(results);
+        assertFalse(results.isEmpty());
+        assertEquals(defaultJobOffer.getTitle(), results.get(0).getTitle());
     }
 
-    @Test
-    void deleteEntity () {
-        Event originalEntity = PartMapper.dtoToEntity(DEFAULT_PART);
-        originalEntity = partRepository.save(originalEntity);
+    void shouldUpdateJobOffer() {
+        // Prepare data
+        JobOffer modifiedJobOffer = this.jobOfferRepository.save(defaultJobOffer);
+        modifiedJobOffer.setTitle("Job Offer test (bis)");
+        modifiedJobOffer.setStartDate(modifiedJobOffer.getStartDate().plusDays(1));
+        modifiedJobOffer.setEndDate(modifiedJobOffer.getEndDate().minusDays(1));
+        modifiedJobOffer = this.jobOfferRepository.save(modifiedJobOffer);
 
-        partRepository.deleteById(originalEntity.getId());
-        Assertions.assertTrue(partRepository.findById(originalEntity.getId()).isEmpty(), "The deleted part still found");
+        Optional<JobOffer> savedJobOffer = this.jobOfferRepository.findById(defaultJobOffer.getId());
+        assertTrue(savedJobOffer.isPresent());
+        assertEquals(modifiedJobOffer.getTitle(), savedJobOffer.get().getTitle());
+        assertNotEquals(defaultJobOffer.getTitle(), savedJobOffer.get().getTitle());
     }
 
+    void shoudDeleteJobOffer() {
+        // Prepare data
+        this.jobOfferRepository.save(defaultJobOffer);
+
+        this.jobOfferRepository.deleteById(defaultJobOffer.getId());
+        List<JobOffer> all = this.jobOfferRepository.findAll();
+        assertTrue(all.isEmpty());
+    }
 }
 ```
 </details>
@@ -419,7 +423,7 @@ spring-security-started-log
 <br>
 
 Rafraichissez votre page d’accueil, normalement une page de connexion devrait apparaître.
-La configuration automatique de Spring Security a créé un utilisateur avec le login user et un mot de passe temporaire généré automatiquement (affiché dans les logs).
+La configuration automatique de Spring Security a créé un utilisateur avec le login "**user**" et un mot de passe temporaire généré automatiquement (affiché dans les logs).<br/>
 Il sera regénéré à chaque redémarrage de l’application, je vous laisse trouver le moyen pour fixer ce mot de passe.
 
 <br>
@@ -444,14 +448,139 @@ Créez ces Endpoints :
 
 | Method | url | request param | request body | response body | Result | Description |
 | --- | --- | --- | --- | --- | --- | --- |
-| GET | /job-offer | | | [ ]: Collection\<JobOffer> | 200 ou 204 | List 10 job offers |
-| GET | /job-offer | title | | []: Collection<JobOffer> | 200 ou 201 | Permet de chercher toutes les offres par titre |
-| GET | /job-offer | company | | []: Collection<JobOffer> | 200 ou 201 | Renvoi la liste des offre de l'entrerpies |
-| GET | /job-offer/{uid} | | | {}: JobOffer | 200 ou 404 | Renvoi une offer sinon error |
-| POST | /job-offer | | {}: JobOffer | {}: JobOffer | 201 ou 400 ou 401 | Créer une offer |
-| PUT | /job-offer | | {}: JobOffer | {}: JobOffer | 200 ou 400 ou 401 ou 404 | Modifier une offer |
-| DELETE | /job-offer/{uid} | | 200 ou 401 ou 404 | Annuler une offer |
+| GET | /service/job-offer | | | [ ]: Collection\<JobOffer> | 200 ou 204 | List 10 job offers |
+| GET | /service/job-offer | title | | []: Collection<JobOffer> | 200 ou 201 | Permet de chercher les offres par titre |
+| GET | /service/job-offer | company | | []: Collection<JobOffer> | 200 ou 201 | Renvoi la liste des offre de l'entrerpies |
+| GET | /service/job-offer/{uid} | | | {}: JobOffer | 200 ou 404 | Renvoi une offer sinon error |
+| POST | /service/job-offer | | {}: JobOffer | {}: JobOffer | 201 ou 400 ou 401 | Créer une offer |
+| PUT | /service/job-offer | | {}: JobOffer | {}: JobOffer | 200 ou 400 ou 401 ou 404 | Modifier une offer |
+| DELETE | /service/job-offer/{uid} | | | | 200 ou 401 ou 404 | Annuler une offer |
 
+
+Placez le fichier **JobOfferControllerTest** dans votre dossier src/**tests**/java/com/<*your package*>/repository pour vérifier votre code.
+
+<details>
+<summary>Cliquez pour voir le contenu de ce fichier.</summary>
+
+```Java
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@SpringBootTest
+@AutoConfigureMockMvc
+class JobOfferControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+    @Autowired
+    private JobOfferRepository jobOfferRepository;
+    @Autowired
+    private CompanyRepository companyRepository;
+
+    @BeforeAll
+    static void setUp(@Autowired JobOfferRepository jobOfferRepository, @Autowired CompanyRepository companyRepository) {
+        jobOfferRepository.deleteAll();
+        companyRepository.deleteAll();
+    }
+
+    @Test
+    @WithMockUser(roles = "user")
+    void shouldPublishNewOffer() throws Exception {
+        HashMap<String, Object> company = new HashMap<>();
+        company.put("name", "Company 1");
+        company.put("address", "10 rue de Java");
+
+        HashMap<String, Object> newOffer = new HashMap<>();
+        newOffer.put("title", "New offer");
+        newOffer.put("description", "This is a new offer");
+        newOffer.put("startDayTime", "08:00:00");
+        newOffer.put("endDayTime", "16:00:00");
+        newOffer.put("startTime", "2025-06-01");
+        newOffer.put("endTime", "2025-01-30");
+        newOffer.put("creationTimestamp", "2025-03-01T12:00:00Z");
+        newOffer.put("expirationDays", 90);
+
+        newOffer.put("owner", company);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(newOffer);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .post("/service/job-offer")
+                        .content(json)
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.title").value(newOffer.get("title")));
+
+        Page<JobOffer> savedEntities = this.jobOfferRepository.searchAllByTitleLikeIgnoreCase(newOffer.get("title").toString(), Pageable.ofSize(10));
+        assertFalse(savedEntities.isEmpty());
+        Optional<Company> savedCompany = companyRepository.findById(company.get("name").toString());
+        assertTrue(savedCompany.isPresent());
+    }
+
+    @Test
+    @WithMockUser(roles = "user")
+    void shouldFindOffer() throws Exception {
+        shouldPublishNewOffer();
+        mockMvc.perform(MockMvcRequestBuilders.get("/service/job-offer").param("title", "New offer"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    @WithMockUser(roles = "user")
+    void shouldUpdateOffer() throws Exception {
+        shouldPublishNewOffer();
+        UUID previousId = this.jobOfferRepository.searchAllByTitleLikeIgnoreCase("New offer", Pageable.ofSize(10)).getContent()
+                .stream().map(JobOffer::getId)
+                .findFirst().get();
+        HashMap<String, Object> company = new HashMap<>();
+        company.put("name", "Company 1");
+        company.put("address", "10 rue de Java");
+
+        HashMap<String, Object> jobOffer = new HashMap<>();
+        jobOffer.put("id", previousId);
+        jobOffer.put("title", "This is a real offer");
+        jobOffer.put("description", "This is a new offer");
+        jobOffer.put("startDayTime", "08:00:00");
+        jobOffer.put("endDayTime", "16:00:00");
+        jobOffer.put("startTime", "2025-06-01");
+        jobOffer.put("endTime", "2025-01-30");
+        jobOffer.put("creationTimestamp", "2025-03-01T12:00:00Z");
+        jobOffer.put("expirationDays", 90);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        mockMvc.perform(
+                        MockMvcRequestBuilders.put("/service/job-offer")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(jobOffer))
+                )
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(previousId.toString()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.title").value(jobOffer.get("title")));
+    }
+
+    @Test
+    @WithMockUser(roles = {"user", "admin"})
+    void shouldDeleteOffer() throws Exception {
+        shouldPublishNewOffer();
+        JobOffer jobOffer = this.jobOfferRepository.searchAllByTitleLikeIgnoreCase("%", Pageable.ofSize(10)).getContent().getFirst();
+        jobOffer.setTitle("This is a real offer");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        mockMvc.perform(
+                        MockMvcRequestBuilders.delete("/service/job-offer/"+jobOffer.getId())
+                )
+                .andExpect(MockMvcResultMatchers.status().isOk());
+        Optional<JobOffer> deletedEntity = this.jobOfferRepository.findById(jobOffer.getId());
+        assertFalse(deletedEntity.isPresent());
+    }
+
+}
+```
+</details>
+<br/>
+<br/>
 Vous pouvez également ajouter un tableau HTML sur votre page d’accueil pour être capable de voir le contenu de votre base de données.
 
 Pensez à sécuriser vos endpoints, pour cela vous pouvez ajouter la configuration ci-dessous :
@@ -480,7 +609,7 @@ Cette configuration permet de rendre public toutes actions de lecture sur les ur
 
 > La méthode cors() permet de configurer la protections CORS policy ou de la désactiver (doc).
 
-<br>
+<br/>
 
 Libre à vous de configurer la sécurité que vous souhaitez.
 
@@ -534,6 +663,7 @@ Ajouter cette configuration pour ajouter votre filtre dans le `FilterChain` de s
 ```
 
 > Ce filter est un exemple, normalement on doit vérifier plus de chose (ex: vérifier que le token placé dans le header soit valid)
+
 </details>
 
 
@@ -543,7 +673,7 @@ Ajouter cette configuration pour ajouter votre filtre dans le `FilterChain` de s
 
 # [Optionel] Aller plus loin
 
-## 7. Communication avec TicketService et MarkService
+## 7. Communication avec JobDemandService
 
 Depuis votre application Spring Boot, essayez d’appeler une autre API.
 Pour cela, vous pouvez définir un nouveau service qui enverra une requête http à votre second API et traitera les données en retour (voir : WebClient de Spring Reactive).

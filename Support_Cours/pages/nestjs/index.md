@@ -41,45 +41,61 @@ Javascript est un langage de script créé en 1995 par <b>Sun Microsystems</b> e
 Initialement, il était utilisé pour donner du dynamise aux pages HTML côté <b>navigateur (client)</b>, mais maintenant, on l’utilise aussi bien pour du backend/frontend côté client/serveur.
 
 ::top::
-
-<img class="m-auto" scr="/images/nestjs-netscape.jpeg" />
+<img class="m-auto w-1/2" src="/images/nestjs-netscape.jpeg" />
 
 ---
+title: Java & Javascript
+layout: chapter_subtitle
+transition: slide-up
+---
 
-> Au départ, le langage devait s'appeler LiveScript, mais le nom Javascript a été utilisé pour faciliter l’acception de la technologie et faire un coup de pub. <br/>
-> Au final, cela a causé de la confusion entre Java et JavaScript.
+::top::
+<Note type="info">
+Au départ, le langage devait s'appeler LiveScript, mais le nom Javascript a été utilisé pour faciliter l’acception de la technologie et faire un coup de pub.<br/>
+Au final, cela a causé de la confusion entre Java et JavaScript.
+</Note>
 
+::bottom::
 Javascript est un langage qui n’a pas de moteur officiel. C’est-à-dire qu’à l’époque, Netscape avait son moteur Javascript et Microsoft le sien nommé Jscript, etc…
 
 ---
-title: Javascript
-layout: chapter_title
+title: Caractéristiques
+layout: chapter_subtitle
+transition: slide-up
 ---
 
-## Fonctionnement
+::top::
+Javascript est un langage de type script basé sur la <a class="text-blue" href="https://developer.mozilla.org/fr/docs/Glossary/Prototype-based_programming">programmation orientée prototype</a>.<br/>
 
-Javascript est un langage de type script basé sur la [programmation orientée prototype](https://developer.mozilla.org/fr/docs/Glossary/Prototype-based_programming).<br/>
+<Note type="info">
+POO (Programmation Orientée Objet) est un paradigme de l’informatique qui consiste en la définition et l’assemblage d’objet.  Un objet en programmation informatique représente un concept, une idée ou toute entité du monde physique.
+
+POP (Programmation Orienté Prototype) est une forme de programmation orienté objet sans utilisation de classe, mais  basée sur la notion de prototype. Ici, un prototype fait allusion à un objet à partir duquel on crée de nouveau objet par le principe du clonage.
+</Note>
+
+::bottom::
 Il a été standardisé pour facilité son utilisation, c’est ECMA international qui s’en est occupé pour la première fois en 1997
 
 ECMA est un ensemble de norme à propos des langages de type script créés par ECMA international.
 
 ---
-title: Javascript
-layout: chapter_title
+title: Standardisation
+layout: chapter_subtitle
+transition: slide-up
 ---
 
-### Standards
 - Standardisé sous le nom <b>ECMAScript</b>
   - ECMA-262: 1997
   - ECMA-6: 2015
   - ECMA-12: 2021
   - ECnext: en cours
 
-  <img class="m-auto" scr="/images/nestjs-ecmascript.png" />
+  <img class="m-auto" src="/images/nestjs-ecmascript.png" />
 
 ---
-title: Javascript
-layout: chapter_title
+title: Fonctionnement
+layout: chapter_subtitle
+transition: slide-up
 ---
 
 ### Comment Javascript, fonctionne-t-il ?
@@ -89,12 +105,11 @@ C’est-à-dire que le code source et directement lu pendant son exécution ce q
 <img class="m-auto" src="/images/nestjs-interprete.png" />
 
 ---
-title: Javascript
-layout: chapter_title
+title: Syntaxe
+layout: chapter_subtitle
+transition: slide-up
 ---
-
-## Syntaxe
-
+::left::
 - Variable 
   - var
   - let 
@@ -106,7 +121,6 @@ layout: chapter_title
     return 42;
   }
   ```
----
 
 - Fonction anonyme
   ```js
@@ -118,8 +132,7 @@ layout: chapter_title
   }
   ```
 
----
-
+::right::
 - Prototype
   ```js
   function UserConstructeur (name) {
@@ -140,9 +153,8 @@ layout: chapter_title
   ```
 
 ---
-title: Javascript
-subtile: Syntaxe
-layout: chapter_title
+title: ECMAScript
+layout: chapter_subtitle
 ---
 
 ::left::
@@ -157,7 +169,7 @@ class User {
     }
 
     getName () {
-	return this.name
+	    return this.name
     }
 }
 
@@ -193,39 +205,36 @@ user1.getName();
 ---
 title: Node.js
 layout: chapter_title
+transition: slide-up
 ---
 
-## Node.js
-
-<img class="m-auto" scr="/images/nestjs-nodejs-logo.png" />
+<img class="m-auto" src="/images/nodejs-runtime.png" />
 
 Node.js est un moteur d'exécution de Javascript qui fonctionne côté serveur, il utilise :
 - le moteur Javascript <b>V8</b> de Google
 - la librairie <b>LibUV</b> (permet de gérer sa boucle événementielle).
-
----
 
 Ce projet open-source permet de créer des applications web événementiel:
 - <b>cross-platforme</b>
 - <b>hautement concurrent</b> (ne créer pas de nouveau thread par requête d'utilisateur et est non bloquant).
 
 ---
-title: Node.js
-layout: chapter_title
+title: Boucle d'événement
+layout: chapter_subtitle
+transition: slide-up
 ---
 
-## Boucle d'événement
+<img class="m-auto w-80" src="/images/nestjs-node-eventloop.png" />
 
-<img class="m-auto" scr="/images/nestjs-node-eventloop.png" />
-
-voir: [practicalprogramming.fr/event-loop-nodejs](practicalprogramming.fr/event-loop-nodejs)
+voir: <a class="text-blue" href="http://practicalprogramming.fr/event-loop-nodejs">practicalprogramming.fr/event-loop-nodejs</a>
 
 ---
 title: Fonctionnement
 layout: chapter_title
+transition: slide-up
 ---
 
-```js
+```js {all|3-7|9-11|all}
 const { createServer } = require('http');
 
 //Creation du serveur
@@ -240,8 +249,8 @@ server.listen(3000, () =>
 ```
 
 ---
-title: Fonctionnement
-layout: impacting_message
+title: Interpretation
+layout: chapter_subtitle
 ---
 
 #### Comment Javascript, fonctionne-t-il ?
@@ -253,34 +262,33 @@ C’est-à-dire que le code source et directement lu pendant son exécution ce q
 ---
 title: Nest.js
 layout: chapter_title
+transition: slide-up
 ---
 
-## Nest.js
-
-<img class="m-auto" scr="/images/nestjs-logo.png" />
+<img class="m-auto w-50" src="/images/nestjs-logo.png" />
 
 Nest.js est un Framework Node.js qui permet de créer des applications côté serveur efficaces et évolutives.<br/>
 
 Comme Spring Boot, il utilise l’<b>inversion de contrôle</b> ([IoC](https://gayerie.dev/docs/spring/spring/principe_ioc.html)), ce qui permet de mieux séparer le code métier du code technique. <br/>
-
----
 
 On retrouve le même principes:
 - <b>Controller</b>: ensemble de classe gérant les entrées/sorties de l’application
 - <b>Module</b>: ensemble de classe liant les différentes parties du projet
 - <b>Provider</b> (~Service): ensemble de classe gérant les logiques
 
-
-Avec Nest.js, vous pouvez écrire votre code en Javascript classique (vanilla) ou en TypeScript.
-> Il est conseillé d’utiliser TypeScript.<br/>
-> TypeScript est une variante du Javascript, « c’est la même chose, mais avec du typage ».
+<div v-click>
+  Avec Nest.js, vous pouvez écrire votre code en Javascript classique (vanilla) ou en TypeScript.
+  <Note type="info">
+  <p>Il est conseillé d’utiliser TypeScript.</p>
+  <p>TypeScript est une variante du Javascript, « c’est la même chose, mais avec du typage ».</p>
+  </Note>
+</div>
 
 ---
-title: Nest.js
-layout: chapter_title
+title: Modules technique
+layout: chapter_subtitle
+transition: slide-up
 ---
-
- ## Modules technique
 
 - Web
   - Express
@@ -292,15 +300,15 @@ layout: chapter_title
   - Mongoose
 - Test
   - Jest
+- ...
 
-[Voir documentation](https://docs.nestjs.com/modules)
+<a class="text-blue" href="https://docs.nestjs.com/modules">Voir documentation</a>
 
 ---
-title: Nest.js
-layout: chapter_title
+title: TypeScript
+layout: chapter_subtitle
+transition: slide-up
 ---
-
- ## TypeScript
 
 Ce langage est un dérivé d'ECMAScript car il ajoute la notion de typage.
 
@@ -337,27 +345,26 @@ let b:state = "ouvert"; // Error: Type '"ouvert"' is not assignable to type 'sta
 ```
 
 Tutoriel
-- [TypeScript for JavaScript dev](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
-- [TypeScript for OOP dev](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-oop.html)
+- <a class="text-blue" href="https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html">TypeScript for JavaScript dev</a>
+- <a class="text-blue" href="https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-oop.html">TypeScript for OOP dev</a>
 
 ---
-title: Nest.js
-layout: chapter_title
+title: Controller
+layout: chapter_subtitle
+transition: slide-up
 ---
 
-## Controller
-
+::top::
 Un contrôleur sert à définir les comportements lors de réception de <b>requête HTTP</b> et renvoie une <b>réponse HTTP</b> au client.
 
----
-
+::left::
 <div class="m-auto">
 
 **./hello/hello.controller.ts**
 
 </div>
 
-```ts
+```ts {all|1-3|7|5|all}
 @Controller({
     path: "/hello"
 })
@@ -371,34 +378,40 @@ export class HelloController {
 }
 ```
 
+::right::
+<v-switch at=1>
+  <template #1>
+    L’annotation <b>@Controller</b> signaler au conteneur Nest IoC que cette classe est un contrôleur, et on peut utiliser certains paramètres pour modifier l’utilisation de cette classe (ex: path).
+  </template>
+  <template #2>
+    Ensuite, j’utilise l’annotation <b>@Get</b> pour définir la méthode HTTP servant à exécuter la méthode getHello.<br/>
+    Il existe toutes les méthodes HTTP: <b>@GET</b>, <b>@POST</b>, <b>@DELETE</b>, <b>@PUT</b>, …
+  </template>
+
+  <template #3>
+    Dans le constructeur de la classe, vous pouvez voir qu’il y a un seul paramètre HelloService.<br/>
+    Cela sert à demander au conteneur Nest IoC de nous fournir une instance d'un objet (HelloService).
+  </template>
+</v-switch>
+
+---
+title: Provider
+layout: chapter_subtitle
+transition: slide-up
 ---
 
-L’annotation <b>@Controller</b> signaler au conteneur Nest IoC que cette classe est un contrôleur, et on peut utiliser certains paramètres pour modifier l’utilisation de cette classe (ex: path).<br/>
-Ensuite, j’utilise l’annotation <b>@Get</b> pour définir la méthode HTTP servant à exécuter la méthode getHello.<br/>
-Il existe toutes les méthodes HTTP: <b>@GET</b>, <b>@POST</b>, <b>@DELETE</b>, <b>@PUT</b>, …
-
-Dans le constructeur de la classe, vous pouvez voir qu’il y a un seul paramètre HelloService.
-Cela sert à demander au conteneur Nest IoC de nous fournir une instance d'un objet (HelloService).
-
----
-title: Nest.js
-layout: chapter_title
----
-
-## Provider
-
-Beaucoup de classes peuvent être considérées comme un provider (service/repository/factories/helper/…) (e.q. aux composants de Spring Boot).
+::top::
+Beaucoup de classes peuvent être considérées comme un provider (service/repository/factories/helper/…) (e.q. aux composants de Spring Boot).<br/>
 Un provider peut être injecté comme une <b>dépendance</b>.
 
----
-
+::left::
 <div class="m-auto">
 
 **./hello/hello.service.ts**
 
 </div>
 
-```ts
+```ts {all|1|3-8|all}
 @Injectable()
 export class HelloService {
     getHello(): string {
@@ -411,20 +424,25 @@ export class HelloService {
 }
 ```
 
-Dans cet exemple, j’utilise l’annotation <b>@Injectable</b> pour signaler que cette classe peut être managée par le conteneur Nest IoC (e.q @Component de Spring Boot).<br/>
-Et je définis 2 méthodes pour renvoyer « Hello world », l’une avec le nom et l’autre sans.
+::right::
+<v-switch at=1>
+<template #1>
+  Dans cet exemple, j’utilise l’annotation <b>@Injectable</b> pour signaler que cette classe peut être managée par le conteneur Nest IoC (e.q @Component de Spring Boot).
+</template>
+<template #2>
+  Et je définis 2 méthodes pour renvoyer « Hello world », l’une avec le nom et l’autre sans.
+</template>
+</v-switch>
 
 ---
-title: Nest.js
-layout: chapter_title
+title: Modules
+layout: chapter_subtitle
+transition: slide-up
 ---
 
-## Modules
 Pour garder votre code <b>organisé</b>, vous pouvez utiliser les modules.<br/>
 
-<div class="m-auto" scr="/images/nestjs-modules.png" />
-
----
+<div class="m-auto" src="/images/nestjs-modules.png" />
 
 Par exemple, si vous définissez un ensemble de classe permettant de gérer des utilisateurs, vous devez créer un module et y placer toutes vos classes dedans.
 
@@ -518,7 +536,7 @@ Les pipes sont utilisés souvent de 2 manières :
 - Pour <b>transformer</b> les données d’input en une forme plus adapté (e.g., un string deviens un integer)
 - Pour <b>évaluer</b> les données d’entrée and les vérifier, et si elles sont valides, les laisse continuer sinon lance une exception.
 
-<img class="m-auto" scr="/images/nestjs-pipes.png" />
+<img class="m-auto" src="/images/nestjs-pipes.png" />
 
 ---
 
@@ -601,7 +619,7 @@ layout: chapter_title
 
 Les filtres vont vous permettre d’attraper les <b>exceptions</b> durant l’exécution de votre code et de renvoyer un message d’erreurs à l’utilisateur.
 
-<img class="m-auto" scr="/images/nestjs-filters.png" />
+<img class="m-auto" src="/images/nestjs-filters.png" />
 
 ---
 
@@ -747,4 +765,4 @@ layout: chapter_title
 
 [docs.nestjs.com](https://docs.nestjs.com/)
 
-<img class="m-auto" scr="/images/nestjs-doc.png" />
+<img class="m-auto" src="/images/nestjs-doc.png" />

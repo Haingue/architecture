@@ -32,7 +32,7 @@ const props = defineProps({
 
 <template>
   <div class="w-full h-full flex flex-col">
-    <Progress level="1" position="bottom" />
+    <Progress level="1" position="" opacity="0.1" />
     <header class="basis-1/12 text-secondary dark:text-secondary">
       <SubTitle><TitleRenderer /></SubTitle>
     </header>
