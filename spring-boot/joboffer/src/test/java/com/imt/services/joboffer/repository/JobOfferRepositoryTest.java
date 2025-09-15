@@ -60,6 +60,7 @@ class JobOfferRepositoryTest {
         assertEquals(defaultJobOffer.getTitle(), results.get(0).getTitle());
     }
 
+    @Test
     void shouldUpdateJobOffer() {
         // Prepare data
         JobOffer modifiedJobOffer = this.jobOfferRepository.save(defaultJobOffer);
@@ -74,6 +75,7 @@ class JobOfferRepositoryTest {
         assertNotEquals(defaultJobOffer.getTitle(), savedJobOffer.get().getTitle());
     }
 
+    @Test
     void shoudDeleteJobOffer() {
         // Prepare data
         this.jobOfferRepository.save(defaultJobOffer);

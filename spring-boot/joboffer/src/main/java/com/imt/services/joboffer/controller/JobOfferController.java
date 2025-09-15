@@ -7,9 +7,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.codec.ServerSentEvent;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.Disposable;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Sinks;
 
 import java.util.UUID;
 
@@ -19,8 +24,22 @@ public class JobOfferController {
 
     private static final Logger logger = LoggerFactory.getLogger(JobOfferController.class);
 
+    private final Sinks.Many<ServerSentEvent<JobOfferDto>> notificationSink = Sinks.many().multicast().directBestEffort();
+
     @Autowired
     private JobOfferService jobOfferService;
+
+    @GetMapping(path = "/subscribe", produces = MediaType.APPLICATION_NDJSON_VALUE)
+    public Flux<ServerSentEvent<JobOfferDto>> subscribe() {
+        return Flux.create(sink -> {
+            sink.next(ServerSentEvent.<JobOfferDto>builder()
+                    .id(UUID.randomUUID().toString())
+                    .event("open")
+                    .build());
+            Disposable disposable = notificationSink.asFlux().subscribe(sink::next);
+            sink.onCancel(disposable);
+        });
+    }
 
     @GetMapping("/{jobOfferId}")
     public ResponseEntity<JobOfferDto> findOneJobOffer(@PathVariable UUID jobOfferId) {
@@ -43,8 +62,13 @@ public class JobOfferController {
     @PostMapping
     public ResponseEntity<JobOfferDto> publishJobOffer(@RequestBody JobOfferDto jobOffer, Authentication authentication) {
         logger.info("Publishing job offer: {}", jobOffer);
+        JobOfferDto resultJobOffer = jobOfferService.publishNewJobOffer(jobOffer, authentication.getName());
+
+        notificationSink.tryEmitNext(ServerSentEvent.<JobOfferDto>builder()
+                .data(resultJobOffer)
+                .build());
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(jobOfferService.publishNewJobOffer(jobOffer, authentication.getName()));
+                .body(resultJobOffer);
     }
 
     @PutMapping

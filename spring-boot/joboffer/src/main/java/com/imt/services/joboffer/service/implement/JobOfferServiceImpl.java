@@ -11,7 +11,6 @@ import com.imt.services.joboffer.repository.JobOfferRepository;
 import com.imt.services.joboffer.service.JobOfferService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -23,11 +22,13 @@ public class JobOfferServiceImpl implements JobOfferService {
     private static final Logger logger = LoggerFactory.getLogger(JobOfferServiceImpl.class);
     private final JobOfferMapper mapper = JobOfferMapper.INSTANCE;
     private final CompanyMapper companyMapper = CompanyMapper.INSTANCE;
+    private final JobOfferRepository jobOfferRepository;
+    private final CompanyRepository companyRepository;
 
-    @Autowired
-    private JobOfferRepository jobOfferRepository;
-    @Autowired
-    private CompanyRepository companyRepository;
+    public JobOfferServiceImpl(JobOfferRepository jobOfferRepository, CompanyRepository companyRepository) {
+        this.jobOfferRepository = jobOfferRepository;
+        this.companyRepository = companyRepository;
+    }
 
     @Override
     public JobOfferDto findOne(UUID id) {
