@@ -31,11 +31,12 @@ public class JobOfferController {
 
     @GetMapping
     public ResponseEntity<PaginatedResponseDto<JobOfferDto>> searchJobOffers(
-            @RequestParam(required = false, name = "title") String title,
+            @RequestParam(required = false, name = "title", defaultValue = "*") String title,
             @RequestParam(required = false, name = "page", defaultValue = "0") int page,
             @RequestParam(required = false, name = "size", defaultValue = "10") int size
     ) {
         logger.info("Searching job offers for title {}", title);
+        title = title.replace("*", "%");
         PaginatedResponseDto<JobOfferDto> response = jobOfferService.search(title, page, size);
         if (response.isEmpty()) return ResponseEntity.noContent().build();
         return ResponseEntity.ok(response);
