@@ -9,15 +9,15 @@ Dans ce TP, vous allez apprendre/revoir comment utiliser Spring Boot et les modu
 Créer une application Spring Boot permettant de gérer des offre d'emploi pour étudiant  ([voir description](../conception%20de%20projet/INTES%20TP%20-%20Conception%20de%20projet%202025-2026.md)).
 
 #### TODO list
-- [ ] Initialiser un projet Spring Boot
-- [ ] Mettez en place une page "Hello World"
-- [ ] Mettez en place une page d'acceuil
-  - [ ] Lister les offres d'emploi actives
-- [ ] Ajoutez des entités
-  - [ ] JobOfferEntity
-  - [ ] Company
-- [ ] Définissez un service regrouprant les logiques métier
-  - [ ] Obtenir toutes les offres d'emploi
+- [x] Initialiser un projet Spring Boot
+- [x] Mettez en place une page "Hello World"
+- [x] Mettez en place une page d'acceuil
+  - [x] Lister les offres d'emploi actives
+- [x] Ajoutez des entités
+  - [x] JobOfferEntity
+  - [x] Company
+- [x] Définissez un service regrouprant les logiques métier
+  - [x] Obtenir toutes les offres d'emploi
   - [ ] Rechercher une offre par son titre
   - [ ] Publier une offre d'emploi
   - [ ] Modifier une offre d'emploi

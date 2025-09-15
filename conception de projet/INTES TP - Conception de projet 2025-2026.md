@@ -197,7 +197,7 @@ Class JobDemand {
   creationTimestamp: Instant
 }
 Class Student {
-  **email**: UUID
+  **email**: String
   firstname: String
   lastname: String
   studentNumber: String

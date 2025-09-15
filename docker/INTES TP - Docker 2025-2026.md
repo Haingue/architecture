@@ -101,10 +101,10 @@ Ajoutez un service a votre précédent docker-compose
 <summary>Solution</summary>
 
 ```yml
-  part-service:
+  joboffer-service:
     depends_on:
-      - part-service-db
-    image: intes-part-service
+      - joboffer-service-db
+    image: intes-joboffer-service
     restart: always
     ports:
       - 8090:8080
@@ -113,9 +113,9 @@ Ajoutez un service a votre précédent docker-compose
     environment:
       SECURITY_USER_NAME: admin
       SECURITY_USER_PASSWORD: changeit
-      DB_HOST: part-service-db
-      DB_NAME: PartService
-      DB_USERNAME: PartService_USER
+      DB_HOST: joboffer-service-db
+      DB_NAME: JobOfferService
+      DB_USERNAME: JobOfferService_USER
       DB_PASSWORD: kqe!12lsdjconz34aejw
 ```
 </details>
@@ -364,7 +364,7 @@ Il existe de nombreux outils que vous pouvez installer via docker, essayez s'en.
 ```shell
 docker compose \
 -f docker-compose.tools.yml \
--f docker-compose.partservice.yml \
+-f docker-compose.jobofferservice.yml \
 -f docker-compose.supplierservice.yml \
 up -d
 ```
