@@ -39,6 +39,7 @@ public class SecurityConfiguration {
         http
                 .authorizeHttpRequests((requests) -> requests
                     .requestMatchers("/api-docs/**","/swagger-ui/**").permitAll()
+                    .requestMatchers("/mcp/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/", "/hello", "/hello/**", "/h2-console**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/service/**").permitAll()
                     .requestMatchers(HttpMethod.DELETE, "/service/**").hasRole("admin")

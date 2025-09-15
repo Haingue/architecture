@@ -2,6 +2,7 @@ package com.imt.services.joboffer.service;
 
 import com.imt.services.joboffer.dto.JobOfferDto;
 import com.imt.services.joboffer.dto.wrapper.PaginatedResponseDto;
+import org.springframework.ai.tool.annotation.Tool;
 
 import java.util.UUID;
 

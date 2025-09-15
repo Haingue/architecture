@@ -29,7 +29,7 @@ public class JobOfferController {
     @Autowired
     private JobOfferService jobOfferService;
 
-    @GetMapping(path = "/subscribe", produces = MediaType.APPLICATION_NDJSON_VALUE)
+    @GetMapping(path = "/subscribe", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<ServerSentEvent<JobOfferDto>> subscribe() {
         return Flux.create(sink -> {
             sink.next(ServerSentEvent.<JobOfferDto>builder()
