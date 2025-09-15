@@ -2,7 +2,6 @@ package com.imt.services.joboffer.service.implement;
 
 import com.imt.services.joboffer.dto.JobOfferDto;
 import com.imt.services.joboffer.dto.wrapper.PaginatedResponseDto;
-import com.imt.services.joboffer.entity.Company;
 import com.imt.services.joboffer.entity.JobOffer;
 import com.imt.services.joboffer.exceptions.NotFound;
 import com.imt.services.joboffer.mapper.CompanyMapper;
@@ -17,7 +16,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Service

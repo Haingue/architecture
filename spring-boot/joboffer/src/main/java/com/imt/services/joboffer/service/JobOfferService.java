@@ -2,9 +2,7 @@ package com.imt.services.joboffer.service;
 
 import com.imt.services.joboffer.dto.JobOfferDto;
 import com.imt.services.joboffer.dto.wrapper.PaginatedResponseDto;
-import com.imt.services.joboffer.entity.JobOffer;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface JobOfferService {

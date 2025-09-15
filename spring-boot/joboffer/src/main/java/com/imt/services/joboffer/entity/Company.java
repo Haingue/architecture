@@ -1,11 +1,11 @@
 package com.imt.services.joboffer.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 public class Company {

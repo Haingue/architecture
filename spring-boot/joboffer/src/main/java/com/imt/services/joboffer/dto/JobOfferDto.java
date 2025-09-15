@@ -1,8 +1,5 @@
 package com.imt.services.joboffer.dto;
 
-import com.imt.services.joboffer.entity.Company;
-import jakarta.persistence.ManyToOne;
-
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;

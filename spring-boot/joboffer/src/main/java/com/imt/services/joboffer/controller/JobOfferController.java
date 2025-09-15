@@ -2,8 +2,6 @@ package com.imt.services.joboffer.controller;
 
 import com.imt.services.joboffer.dto.JobOfferDto;
 import com.imt.services.joboffer.dto.wrapper.PaginatedResponseDto;
-import com.imt.services.joboffer.entity.JobOffer;
-import com.imt.services.joboffer.repository.JobOfferRepository;
 import com.imt.services.joboffer.service.JobOfferService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

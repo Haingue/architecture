@@ -1,5 +1,7 @@
 package com.imt.services.joboffer.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -19,11 +21,14 @@ import java.util.Arrays;
 @Configuration
 public class SecurityConfiguration {
 
+    @Autowired
+    private SecurityProperties securityProperties;
+
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user = User.withDefaultPasswordEncoder()
-                .username("user")
-                .password("password")
+                .username(securityProperties.getUser().getName())
+                .password(securityProperties.getUser().getPassword())
                 .roles("user", "admin")
                 .build();
         return new InMemoryUserDetailsManager(user);
