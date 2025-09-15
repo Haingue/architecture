@@ -4,6 +4,7 @@ import NotFound from './pages/NotFound'
 import Navigation from './components/Navigation'
 import JobOfferHome from './pages/JobOfferHome'
 import JobDemandHome from './pages/JobDemandHome'
+import JobOfferForm from './pages/JobOfferForm'
 
 const Root = () => {
   return (
@@ -16,6 +17,7 @@ const Root = () => {
               <Routes>
                   <Route path='/' element={<Home/>} />
                   <Route path='/job-offer' element={<JobOfferHome/>} />
+                  <Route path='/job-offer/form' element={<JobOfferForm />} />
                   <Route path='/job-demand' element={<JobDemandHome/>} />
                   <Route path='*' element={<NotFound/>} />
               </Routes>
