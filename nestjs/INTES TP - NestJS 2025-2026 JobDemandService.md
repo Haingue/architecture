@@ -4,12 +4,24 @@ Dans ce TP, vous aller apprendre à utiliser NestJs et ces modules pour créer u
 <br/>
 
 ## Objectif
-Créer une application NestJs permettant de gérer des fournisseurs.
--	Ajout de fournisseur
--	Modification de fournisseur
--	Suppression de fournisseur
--	Obtenir tous les fournisseurs
--	Rechercher un fournisseur
+Créer une application NestJs permettant de gérer des demandes d'emploi.
+
+### TODO list
+
+- [ ] Initialiser un projet NestJs
+- [ ] Mettez en place une page "Hello World"
+- [ ] Mettez en place une page d'acceuil
+  - [ ] Lister les demandes d'emploi actives
+- [ ] Ajoutez des entités
+  - [ ] JobDemandEntity
+  - [ ] Student
+- [ ] Définissez un service regrouprant les logiques métier
+  - [ ] Obtenir toutes les demandes d'emploi
+  - [ ] Rechercher une demandes par étudient
+  - [ ] Publier une demandes d'emploi
+  - [ ] Modifier une demandes d'emploi
+  - [ ] Annulation d'une demandes d'emploi
+- [ ] Définissez des point d'entrée pour chaque fonction du service (voir tableau)
 
 <center>
 

@@ -42,5 +42,15 @@ services:
     environment:
       SECRET_KEY_BASE:
       DATABASE_URL: postgresql://user:password@motoradmin-db:5432/motoradmin
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - 5050:5050
+    networks:
+      - intes
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@domain.com
+      PGADMIN_DEFAULT_PASSWORD: strongpassword
+      PGADMIN_LISTEN_PORT: 5050
 networks:
   intes:
