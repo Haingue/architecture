@@ -196,6 +196,7 @@ Maintenant, votre application est prête pour créer vos entités et les méthod
 @startuml
 Class JobDemand {
   **uid**: UUID
+  title: String
   startDate: LocalDate
   endDate: LocalDate
   startDayTime: LocalTime
