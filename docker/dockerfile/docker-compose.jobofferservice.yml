@@ -1,0 +1,33 @@
+version: '3.1'
+services:
+  joboffer-service-db:
+    image: postgres
+    restart: always
+    ports:
+      - 8091:5432
+    networks:
+      - api-service
+    #volumes:
+    #  - 'joboffer-service-db:/var/lib/postgresql/data'
+    environment:
+      POSTGRES_USER: JobOfferService_USER
+      POSTGRES_PASSWORD: kqe!12lsdjconz34aejw
+      POSTGRES_DB: JobOfferService
+#  joboffer-service:
+#    depends_on:
+#      - joboffer-service-db
+#    image: haingue/api-service-joboffer-service:latest
+#    restart: always
+#    ports:
+#      - 8090:8080
+#    networks:
+#      - api-service
+#    environment:
+#      SECURITY_USER_NAME: admin
+#      SECURITY_USER_PASSWORD: changeit
+#      DB_HOST: joboffer-service-db
+#      DB_NAME: JobOfferService
+#      DB_USERNAME: PartService_USER
+#      DB_PASSWORD: kqe!12lsdjconz34aejw
+networks:
+  api-service:

@@ -52,6 +52,7 @@ class JobOfferRepositoryTest {
     @Test
     void shouldFindJobOfferByTitle() {
         // Prepare data
+        this.jobOfferRepository.deleteAll();
         this.jobOfferRepository.save(defaultJobOffer);
 
         List<JobOffer> results = this.jobOfferRepository.findAllByTitleLikeOrderByCreationTimestampDesc("Job Offer %");
@@ -63,6 +64,7 @@ class JobOfferRepositoryTest {
     @Test
     void shouldUpdateJobOffer() {
         // Prepare data
+        this.jobOfferRepository.deleteAll();
         JobOffer modifiedJobOffer = this.jobOfferRepository.save(defaultJobOffer);
         modifiedJobOffer.setTitle("Job Offer test (bis)");
         modifiedJobOffer.setStartDate(modifiedJobOffer.getStartDate().plusDays(1));
@@ -78,6 +80,7 @@ class JobOfferRepositoryTest {
     @Test
     void shoudDeleteJobOffer() {
         // Prepare data
+        this.jobOfferRepository.deleteAll();
         this.jobOfferRepository.save(defaultJobOffer);
 
         this.jobOfferRepository.deleteById(defaultJobOffer.getId());
