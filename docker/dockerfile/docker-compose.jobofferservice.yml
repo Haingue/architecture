@@ -13,21 +13,22 @@ services:
       POSTGRES_USER: JobOfferService_USER
       POSTGRES_PASSWORD: kqe!12lsdjconz34aejw
       POSTGRES_DB: JobOfferService
-#  joboffer-service:
-#    depends_on:
-#      - joboffer-service-db
-#    image: haingue/api-service-joboffer-service:latest
-#    restart: always
-#    ports:
-#      - 8090:8080
-#    networks:
-#      - api-service
-#    environment:
-#      SECURITY_USER_NAME: admin
-#      SECURITY_USER_PASSWORD: changeit
-#      DB_HOST: joboffer-service-db
-#      DB_NAME: JobOfferService
-#      DB_USERNAME: PartService_USER
-#      DB_PASSWORD: kqe!12lsdjconz34aejw
+  joboffer-service:
+    depends_on:
+      - joboffer-service-db
+    image: haingue/msi-joboffer-service:latest
+    restart: always
+    ports:
+      - 8090:8080
+    networks:
+      - api-service
+    environment:
+      DB_DRIVER: org.postgresql.Driver
+      DB_DIALECT: org.hibernate.dialect.PostgreSQLDialect
+      DB_URL: jdbc:postgresql://localhost:8091/JobOfferService
+      DB_USERNAME: JobOfferService_USER
+      DB_PASSWORD: kqe!12lsdjconz34aejw
+      SECURITY_USER: user
+      SECURITY_PASSWORD: strongpassword
 networks:
   api-service:
