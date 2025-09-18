@@ -9,13 +9,14 @@ mdc: true
 seoMeta:
   ogImage: auto
 plantUmlServer: https://www.plantuml.com/plantuml
+download: true
 ---
 
 <Cover title="Architecture logiciel" />
 
 ---
 
-<Toc columns=2 maxDepth=2 />
+<Toc columns=1 maxDepth=1 />
 
 ---
 title: Conception de projet informatique
@@ -28,7 +29,7 @@ src: ./pages/project_design/index.md
 ---
 title: Java
 subject: Formation Java
-#src: ./pages/java/index.md
+src: ./pages/java/index.md
 ---
 
 <Cover title="Java" />

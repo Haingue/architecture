@@ -17,6 +17,10 @@ const props = defineProps({
   title: {
     type: String,
   },
+  logo: {
+    type: String,
+    default: undefined
+  },
   subtitle: {
     type: String,
   },
@@ -37,6 +41,7 @@ const props = defineProps({
     <header class="basis-1/12">
       <Title><TitleRenderer /></Title>
       <SubTitle>{{ subtitle }}</SubTitle>
+      <img v-if="logo" className="max-h-4em fixed top-0 right-0 p-2 z-40" :src="logo" />
     </header>
     <main class="basis-10/12">
       <div v-if="$slots.left || $slots.right || $slots.top || $slots.bottom" class="">

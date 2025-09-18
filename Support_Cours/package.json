@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@types/sanitize-html": "^2.16.0",
-    "@unocss/preset-wind3": "^66.4.2"
+    "@unocss/preset-wind3": "^66.4.2",
+    "playwright-chromium": "^1.55.0"
   }
 }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SubTitle from './Subtitle.vue';
 import Title from './Title.vue';
+import { useSlideContext } from '@slidev/client';
 
 const props = defineProps({
   logoUrl: {
@@ -16,6 +17,7 @@ const props = defineProps({
     default: `${new Date().getUTCFullYear()}-${new Date().getUTCFullYear()+1}`,
   },
 })
+
 </script>
 
 <template>

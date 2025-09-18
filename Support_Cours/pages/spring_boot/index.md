@@ -10,6 +10,7 @@ seoMeta:
   ogImage: auto
 plantUmlServer: https://www.plantuml.com/plantuml
 layout: cover
+level: 1
 ---
 
 <Cover title="Formation Spring Boot" logoUrl="/images/spring-boot-logo.png" />
@@ -17,6 +18,7 @@ layout: cover
 ---
 title: Sommaire
 layout: chapter_title
+level: 2
 ---
 
 - Java
@@ -33,6 +35,8 @@ layout: chapter_title
 title: Fonctionnement
 layout: chapter_title
 transition: slide-up
+logo: /images/java-logo.png
+level: 2
 ---
 
 ::top::
@@ -60,6 +64,8 @@ transition: slide-up
 title: Editions
 layout: chapter_subtitle
 transition: slide-up
+logo: /images/java-logo.png
+level: 3
 ---
 
 ::left::
@@ -79,6 +85,8 @@ Java possède trois éditions
 title: Versions
 layout: chapter_subtitle
 transition: slide-up
+logo: /images/java-logo.png
+level: 3
 ---
 
 <table class="m-auto">
@@ -112,6 +120,8 @@ transition: slide-up
 title: Programmation orienté objet
 layout: chapter_subtitle
 transition: slide-up
+logo: /images/java-logo.png
+level: 3
 ---
 
 
@@ -126,6 +136,8 @@ Plus longue à mettre en place, mais permet de garder une bonne structure du cod
 title: Syntaxe
 layout: chapter_subtitle
 transition: slide-up
+logo: /images/java-logo.png
+level: 3
 ---
 
 ::left::
@@ -186,6 +198,8 @@ public class Person {
 title: Tips
 layout: chapter_title
 transition: slide-up
+logo: /images/java-logo.png
+level: 3
 ---
 
 <Subtitle>StringBuilder</Subtitle>
@@ -225,6 +239,8 @@ JVM options:
 title: Maven / Gradle
 layout: chapter_title
 transition: slide-up
+logo: /images/java-logo.png
+level: 3
 ---
 
 Outils pour construire vos applications Java et autres
@@ -253,6 +269,8 @@ Outils pour construire vos applications Java et autres
 ---
 title: Démo
 layout: chapter_title
+logo: /images/java-logo.png
+level: 3
 ---
 
 ::top::
@@ -274,6 +292,8 @@ title: Spring Boot
 subtitle: Spring framework
 layout: chapter_title
 transition: slide-up
+logo: /images/spring-logo.svg
+level: 2
 ---
 
 Historiquement, le framework Spring est le premier à avoir été créé. Spring permet de construire et de définir l’infrastructure d’une application Java.
@@ -296,6 +316,8 @@ Ensuite plusieurs projets ont émergé de l’équipe Spring:
 title: Principe de Spring
 layout: chapter_title
 transition: slide-up
+logo: /images/spring-logo.svg
+level: 3
 ---
 
 - **Conception basée sur l’inversion de contrôle** ([IoC](https://gayerie.dev/docs/spring/spring/principe_ioc.html)).
@@ -314,6 +336,8 @@ transition: slide-up
 title: Injection de dépendances
 layout: chapter_subtitle
 transition: slide-up
+logo: /images/spring-logo.svg
+level: 3
 ---
 ::top::
 ```java
@@ -377,6 +401,8 @@ public class ReservationSalleService {
 title: Inversion de contrôle
 layout: chapter_subtitle
 transition: slide-up
+logo: /images/spring-logo.svg
+level: 3
 ---
 
 Spring prend en charge la création et la mise en relation d'objets.
@@ -393,6 +419,8 @@ Spring est considéré comme un conteneur léger (*rien à voir avec la conteneu
 title: Injection de dépendance
 layout: chapter_subtitle
 transition: slide-up
+logo: /images/spring-logo.svg
+level: 3
 ---
 
 ::left::
@@ -428,6 +456,8 @@ public class ReservationSalleService {
 title: Annotation
 layout: chapter_subtitle
 transition: slide-up
+logo: /images/spring-logo.svg
+level: 3
 ---
 ::left::
 
@@ -459,6 +489,8 @@ public class ReservationSalleService {
 ---
 title: Bean
 layout: chapter_subtitle
+logo: /images/spring-logo.svg
+level: 3
 ---
 
 
@@ -472,6 +504,8 @@ Chaque annotation permet de créer une bean avec un comportement différents, il
 title: Spring Boot
 layout: chapter_title
 transition: slide-up
+logo: /images/spring-boot-logo.png
+level: 2
 ---
 
 ::top::
@@ -490,6 +524,8 @@ Libre au développeur de modifier ces valeurs par défaut.
 title: Starters
 layout: chapter_title
 transition: slide-up
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 ::left::
@@ -506,6 +542,8 @@ transition: slide-up
 title: Spring Web MVC
 layout: chapter_title
 transition: slide-up
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 ::right::
@@ -531,6 +569,8 @@ Concrètement, il simplifie la manipulation des servlets Java ce qui permet de f
 title: Controller
 layout: chapter_subtitle
 transition: slide-up
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 Pour créer un point d'entrée (_endpoint_) à votre application Web, vous devez créer un **Controller**.
@@ -554,6 +594,8 @@ Une fois votre choix fait, vous devez placer l'annotation <b>@Controller</b> ou 
 title: Rendu côté serveur
 layout: chapter_subtitle
 transition: slide-up
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 ::top::
@@ -588,6 +630,8 @@ public class PersonController {
 title: API Rest
 layout: chapter_subtitle
 transition: slide-up
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 ::top::
@@ -617,6 +661,8 @@ public class PersonRestController {
 title: Thymeleaf
 layout: chapter_title
 transition: slide-up
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 ::top::
@@ -677,6 +723,8 @@ public class PersonController {
 title: Spring Data
 layout: chapter_title
 transition: slide-up
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 ::right::
@@ -691,6 +739,8 @@ Grâce à divers modules, vous pourrez gérer la plupart des SGBD existants.
 title: JPA
 layout: chapter_subtitle
 transition: slide-up
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 ::top::
@@ -728,6 +778,8 @@ public interface PersonRepository extends CrudRepository<PersonEntity, Long> {
 title: Spring Security
 layout: chapter_title
 transition: slide-up
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 
@@ -741,6 +793,8 @@ Spring Security est un module permettant d’ajouter des méthodes de filtrage p
 
 ---
 transition: slide-up
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 ::top::
@@ -763,12 +817,15 @@ Il applique des **filtres** pour vérifier l’identité du client.
 title: Personnalisation des méthodes
 layout: chapter_subtitle
 transition: slide-up
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 <img class="m-auto" src="/images/spring-security-steps.png" />
 
 ---
 transition: slide-up
+logo: /images/spring-boot-logo.png
 ---
 
 Pour modifier l'utilisation des filtres de sécurité, il vous faut surcharger la bean **SecurityFilterChain**.
@@ -791,6 +848,8 @@ Vous allez pouvoir :
 ---
 title: Exemple de configuration
 layout: chapter_subtitle
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 ```java {all|1|3|4,24|5-15|16-21|23|26-29}
@@ -830,6 +889,8 @@ public class SecurityConfiguration {
 title: Tests
 layout: chapter_title
 transition: slide-up
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 ::top::
@@ -849,6 +910,8 @@ transition: slide-up
 title: Tests boîtes blanches
 layout: chapter_subtitle
 transition: slide-up
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 Mise en place de tests en utilisant les composants internes de votre application (Service, Repository, ...).
@@ -878,6 +941,8 @@ public class ItemRepositoryTests {
 ---
 title: Tests boîtes noire
 layout: chapter_subtitle
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 
@@ -921,6 +986,8 @@ public class ItemRestController {
 title: Spring WebFlux
 layout: chapter_title
 transition: slide-up
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 <img class="absolute right-5 top-2 w-20" src="/images/spring-webflux-logo.png" />
@@ -935,6 +1002,7 @@ Avec ce projet, vous allez pouvoir créer des application **réactive** (<a clas
 
 ---
 transition: slide-up
+level: 3
 ---
 ::top::
 Pour une meilleure expérience, toute votre pile technique doit être réactive (API, SGBD, ...).
@@ -968,6 +1036,8 @@ public class GreetingController {
 ---
 title: Comportement de Pub/Sub
 layout: chapter_subtitle
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 <img class="m-auto" src="/images/spring-boot-pub-sub.png" />
@@ -976,6 +1046,8 @@ layout: chapter_subtitle
 title: Spring WebClient
 layout: chapter_title
 transition: slide-up
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 Avec la création de Spring Webflux, les équipes Spring ont créé un client Web beaucoup plus pratique pour appeler des applications Web.
@@ -984,6 +1056,8 @@ Je vous conseille donc d'utiliser cet outil plutôt que les anciens comme RestTe
 
 ---
 transition: slide-up
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 Création du client
@@ -1031,6 +1105,8 @@ public class WeatherService {
 ---
 title: Kotlin
 layout: chapter_title
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 ::top::
@@ -1063,6 +1139,8 @@ fun blog(model: Model): String {
 ---
 title: Tips
 layout: chapter_title
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 <v-clicks>
@@ -1097,6 +1175,8 @@ layout: chapter_title
 ---
 title: Documentations
 layout: chapter_title
+logo: /images/spring-boot-logo.png
+level: 2
 ---
 
 - <a class="text-blue" href="https://www.baeldung.com/">baeldung.com</a>
@@ -1106,6 +1186,8 @@ layout: chapter_title
 ---
 title: Demo
 layout: chapter_title
+logo: /images/spring-boot-logo.png
+level: 3
 ---
 
 <img class="m-auto" src="/images/coding.gif" />
@@ -1116,6 +1198,7 @@ layout: chapter_title
 ---
 title: Questions ?
 layout: impacting_message
+level: 3
 ---
 
 Merci !

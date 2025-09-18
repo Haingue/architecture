@@ -10,6 +10,7 @@ seoMeta:
   ogImage: auto
 plantUmlServer: https://www.plantuml.com/plantuml
 layout: cover
+level: 1
 ---
 
 <Cover title="Formation NestJs" logoUrl="/images/nestjs-logo.png" />
@@ -17,22 +18,17 @@ layout: cover
 ---
 title: Sommaire
 layout: chapter_title
+level: 2
 ---
 
-- Javascript
-  - Fonctionnement
-  - Synctaxe
-- Node.js
-  - Principes
-  - Fonctionnement
-- Nest.js
-  - ...
-  - Modules
+<Toc minDepth=2 maxDepth=3 />
 
 ---
 title: Javascript
 layout: chapter_title
 transition: slide-up
+level: 2
+logo: /images/js-logo.png
 ---
 
 ::bottom::
@@ -47,6 +43,9 @@ Initialement, il était utilisé pour donner du dynamise aux pages HTML côté <
 title: Java & Javascript
 layout: chapter_subtitle
 transition: slide-up
+hideInToc: true
+level: 3
+logo: /images/js-logo.png
 ---
 
 ::top::
@@ -62,6 +61,9 @@ Javascript est un langage qui n’a pas de moteur officiel. C’est-à-dire qu�
 title: Caractéristiques
 layout: chapter_subtitle
 transition: slide-up
+hideInToc: true
+level: 3
+logo: /images/js-logo.png
 ---
 
 ::top::
@@ -82,6 +84,9 @@ ECMA est un ensemble de norme à propos des langages de type script créés par 
 title: Standardisation
 layout: chapter_subtitle
 transition: slide-up
+hideInToc: true
+level: 3
+logo: /images/js-logo.png
 ---
 
 - Standardisé sous le nom <b>ECMAScript</b>
@@ -96,6 +101,9 @@ transition: slide-up
 title: Fonctionnement
 layout: chapter_subtitle
 transition: slide-up
+hideInToc: true
+level: 3
+logo: /images/js-logo.png
 ---
 
 ### Comment Javascript, fonctionne-t-il ?
@@ -108,6 +116,9 @@ C’est-à-dire que le code source et directement lu pendant son exécution ce q
 title: Syntaxe
 layout: chapter_subtitle
 transition: slide-up
+hideInToc: true
+level: 3
+logo: /images/js-logo.png
 ---
 ::left::
 - Variable 
@@ -155,6 +166,9 @@ transition: slide-up
 ---
 title: ECMAScript
 layout: chapter_subtitle
+hideInToc: true
+level: 3
+logo: /images/js-logo.png
 ---
 
 ::left::
@@ -205,7 +219,8 @@ user1.getName();
 ---
 title: Node.js
 layout: chapter_title
-transition: slide-up
+transition: slide-up z-40
+logo: /images/nodejs-logo.png
 ---
 
 <img class="m-auto" src="/images/nodejs-runtime.png" />
@@ -222,6 +237,9 @@ Ce projet open-source permet de créer des applications web événementiel:
 title: Boucle d'événement
 layout: chapter_subtitle
 transition: slide-up
+hideInToc: true
+level: 3
+logo: /images/nodejs-logo.png
 ---
 
 <img class="m-auto w-80" src="/images/nestjs-node-eventloop.png" />
@@ -232,6 +250,9 @@ voir: <a class="text-blue" href="http://practicalprogramming.fr/event-loop-nodej
 title: Fonctionnement
 layout: chapter_title
 transition: slide-up
+hideInToc: true
+level: 3
+logo: /images/nodejs-logo.png
 ---
 
 ```js {all|3-7|9-11|all}
@@ -251,6 +272,9 @@ server.listen(3000, () =>
 ---
 title: Interpretation
 layout: chapter_subtitle
+hideInToc: true
+level: 3
+logo: /images/nodejs-logo.png
 ---
 
 #### Comment Javascript, fonctionne-t-il ?
@@ -263,6 +287,7 @@ C’est-à-dire que le code source et directement lu pendant son exécution ce q
 title: Nest.js
 layout: chapter_title
 transition: slide-up
+logo: /images/nestjs-logo.png
 ---
 
 <img class="m-auto w-50" src="/images/nestjs-logo.png" />
@@ -288,6 +313,9 @@ On retrouve le même principes:
 title: Modules technique
 layout: chapter_subtitle
 transition: slide-up
+hideInToc: true
+level: 3
+logo: /images/nestjs-logo.png
 ---
 
 - Web
@@ -308,6 +336,9 @@ transition: slide-up
 title: TypeScript
 layout: chapter_subtitle
 transition: slide-up
+hideInToc: true
+level: 3
+logo: /images/typescript-logo.png
 ---
 
 Ce langage est un dérivé d'ECMAScript car il ajoute la notion de typage.
@@ -336,6 +367,12 @@ const user: User = new UserAccount("Murphy", 1);
 ```
 
 ---
+title:
+layout: chapter_subtitle
+hideInToc: true
+level: 3
+logo: /images/typescript-logo.png
+---
 
 ```ts
 type state = "open" | "close";
@@ -352,6 +389,9 @@ Tutoriel
 title: Controller
 layout: chapter_subtitle
 transition: slide-up
+hideInToc: true
+level: 3
+logo: /images/nestjs-logo.png
 ---
 
 ::top::
@@ -398,6 +438,9 @@ export class HelloController {
 title: Provider
 layout: chapter_subtitle
 transition: slide-up
+hideInToc: true
+level: 3
+logo: /images/nestjs-logo.png
 ---
 
 ::top::
@@ -438,61 +481,83 @@ export class HelloService {
 title: Modules
 layout: chapter_subtitle
 transition: slide-up
+hideInToc: true
+level: 3
+logo: /images/nestjs-logo.png
 ---
 
 Pour garder votre code <b>organisé</b>, vous pouvez utiliser les modules.<br/>
 
-<div class="m-auto" src="/images/nestjs-modules.png" />
+<img class="m-auto" src="/images/nestjs-modules.png" />
 
 Par exemple, si vous définissez un ensemble de classe permettant de gérer des utilisateurs, vous devez créer un module et y placer toutes vos classes dedans.
 
 Chaque application a un <b>module racine</b> défini dans le fichier « app.module.ts ».
 C ’est dans ce module que vous allez importer vos modules enfant (ex: User modules/Item module) et des modules externes (orm, hbs, …).
 
-Un module est par défaut un <b>singleton</b>, ce qui permet d’utiliser la même instance d’une classe dans plusieurs modules l’ayant importé.
+Un module est par défaut un <b>singleton</b>, ce qui permet d’utiliser la même instance d’une classe dans plusieurs modules.
 Un module utilisé dans plusieurs modules est appelé un <b>shared module</b>.
 
 ---
-title: Nest.js
-layout: chapter_title
+title: Exemple de module
+layout: chapter_subtitle
+transition: slide-up
+hideInToc: true
+level: 4
+logo: /images/nestjs-logo.png
 ---
 
-### Exemple
+::top::
 Je créais les classes suivantes:
 - HelloController: définie les endpoints
 - HelloService: définie le code métier
 
 Si je ne créer pas de nouveau module, à chaque fois que je souhaiterais utiliser mon code, je devrais importer chaque classe.
 
----
 
-<div class="m-auto">
+::left::
 
-**./app.module.ts**
+<p class="w-full text-center">./app.module.ts</p>
 
-</div>
-
+````md magic-move
 ```ts
 @Module({
-  imports: [
-    …
-  ],
+  imports: [],
   controllers: [HelloContoller],
   providers: [HelloService],
 })
 export class AppModule {}
 ```
+```ts
+@Module({
+  imports: [
+    HelloModule
+  ],
+  controllers: [],
+  providers: [],
+})
+export class AppModule {}
+```
+````
 
----
+::right::
 
-Alors que si je définis le module HelloModule, je n’aurai plus qu’a l’importer.
+<v-switch at=0>
+  <template #0><p class="w-full text-center">./hello.*.ts</p></template>
+  <template #1><p class="w-full text-center">./hello/hello.module.ts</p></template>
+</v-switch>
 
-<div class="m-auto">
-
-**./hello/hello.module.ts**
-
-</div>
-
+````md magic-move {at: 0}
+```ts
+@Controller({ path: "/hello" })
+export class HelloController {
+  ...
+}
+@Injectable()
+export class HelloService {
+  ...
+}
+```
 ```ts
 @Module({
   imports: [],
@@ -502,36 +567,25 @@ Alors que si je définis le module HelloModule, je n’aurai plus qu’a l’imp
 })
 export class HelloModule {}
 ```
+````
+
+::bottom::
+<v-switch at=0>
+  <template #1>
+    <p>Alors que si je définis le module <b>HelloModule</b>, je n’aurai plus qu’a l’importer.</p>
+    <p>Si vous voulez avoir accès à HelloService, en important hello.module, il faut ajouter HelloService dans la liste des exports de votre module.</p>
+  </template>
+</v-switch>
 
 ---
-
-<div class="m-auto">
-
-**./app.module.ts**
-
-</div>
-
-```ts
-@Module({
-  imports: [
-    …,
-    HelloModule,
-    …
-  ],
-  controllers: [],
-  providers: [],
-})
-export class AppModule {}
-```
-
-> Si vous voulez avoir accès à HelloService, en important hello.module, il faut ajouter HelloService dans la liste des exports de votre module.
-
----
-title: Nest.js
-layout: chapter_title
+title: Pipes
+layout: chapter_subtitle
+transition: slide-up
+hideInToc: true
+level: 3
+logo: /images/nestjs-logo.png
 ---
 
-## Pipes
 Les pipes sont utilisés souvent de 2 manières :
 - Pour <b>transformer</b> les données d’input en une forme plus adapté (e.g., un string deviens un integer)
 - Pour <b>évaluer</b> les données d’entrée and les vérifier, et si elles sont valides, les laisse continuer sinon lance une exception.
@@ -539,6 +593,15 @@ Les pipes sont utilisés souvent de 2 manières :
 <img class="m-auto" src="/images/nestjs-pipes.png" />
 
 ---
+title: Pipes prédéfinis
+layout: chapter_subtitle
+transition: slide-up
+hideInToc: true
+level: 4
+logo: /images/nestjs-logo.png
+---
+
+::left::
 
 > Il existe des Pipes prédéfinis:
 > - ValidationPipe
@@ -550,11 +613,14 @@ Les pipes sont utilisés souvent de 2 manières :
 > - ParseEnumPipe
 > - DefaultValuePipe
 > - ParseFilePipe
->
-> [Voir documentation](https://docs.nestjs.com/pipes)
 
----
+::right::
+<div class="w-full text-center">
+  <a class="text-blue" href="https://docs.nestjs.com/pipes">Voir documentation</a>
+</div>
+<iframe class="w-full h-full" src="https://docs.nestjs.com/pipes#built-in-pipes" />
 
+::bottom::
 ```ts
 @Get(':id')
 async findOne(@Param('id', ParseIntPipe) id: number) {
@@ -563,15 +629,24 @@ async findOne(@Param('id', ParseIntPipe) id: number) {
 ```
 
 ---
+title: Exemple de Pipe
+layout: chapter_subtitle
+transition: slide-up
+hideInToc: true
+level: 4
+logo: /images/nestjs-logo.png
+---
 
-### Exemple de Pipe
+::top::
+
 <div class="m-auto">
 
 **CustomValidationPipe.ts**
 
 </div>
 
-```ts
+::left::
+```ts {all|5|6|9-17|all}
 import { ArgumentMetadata, BadRequestException } from "@nestjs/common";
 import { Injectable, PipeTransform } from "@nestjs/common";
 import { ObjectSchema } from "joi";
@@ -592,8 +667,21 @@ export class CustomValidationPipe implements PipeTransform {
 }
 ```
 
+::right::
+<v-switch at=1>
+  <template #1>Vous devez utiliser l'annotation <span class="code-line">@Injectable</span> pour que Nestjs gère cette class et que vous puissiez l'utiliser dans votre code</template>
+  <template #2>Ensuite, vous devez implemanter l'interface <span class="code-line">PipeTransform</span> pour créer votre Pipe</template>
+  <template #3>Pour finir, vous devez implémenter la méthode <span class="code-line">transform(value: any, metadata: ArgumentMetadata)</span> pour évaluer ou transformer les données d'entrée</template>
+</v-switch>
+
+---
+transition: slide-up
 ---
 
+::left::
+Utilisation de l'annotation <span class="code-line">@UsePipes</span> pour utiliser votre pipe custome.
+
+::right::
 <div class="m-auto">
 
 **EmployeeController.ts**
@@ -611,11 +699,13 @@ export class EmployeeController {
 ```
 
 ---
-title: Nest.js
-layout: chapter_title
+title: Filters
+layout: chapter_subtitle
+transition: slide-up
+hideInToc: true
+level: 3
+logo: /images/nestjs-logo.png
 ---
-
-## Filtres
 
 Les filtres vont vous permettre d’attraper les <b>exceptions</b> durant l’exécution de votre code et de renvoyer un message d’erreurs à l’utilisateur.
 
@@ -634,17 +724,21 @@ if(error) {
 ```
 
 ---
-title: Nest.js
-layout: chapter_title
+title: Guards
+layout: chapter_subtitle
+transition: slide-up
+hideInToc: true
+level: 3
+logo: /images/nestjs-logo.png
 ---
-
-## Guards
 
 Un Guard sert à une seul chose, vérifier si les requêtes HTTP entrantes ont le <b>droit d’accéder</b> au point d’entrée demandé.
 Il faut que la requête respecte des <b>conditions</b> (ex: rôle/permissions/…) que vous pouvais définir vous-même. (~Spring security)
 
-<img class="m-auto" src="/images/nestjs-guards.png" />
+<img class="m-auto my-4em" src="/images/nestjs-guards.png" />
 
+---
+transition: slide-up
 ---
 
 Possibilité de créer ses propres Guard, il faut <b>override</b> la fonction *canActivate* et renvoyer une Exception, Faux ou Vrai (ex: validateRequest).
@@ -659,6 +753,8 @@ export class AuthGuard implements CanActivate {
 }
 ```
 
+---
+transition: slide-up
 ---
 
 Ensuite, il suffit de l’utiliser sur chaque contrôleur avec l’annotation <b>@UseGuards</b> avec en paramètre le type du guard ou nouvelle instance du guard.
@@ -689,12 +785,14 @@ export class RolesModule {}
 ```
 
 ---
-title: Nest.js
+title: Tests
+subtitle: Jest Unit test
 layout: chapter_title
+transition: slide-up
+hideInToc: true
+level: 3
+logo: /images/nestjs-logo.png
 ---
-
-## Tests
-### Jest Unit test
 
 <div class="m-auto">
 
@@ -724,8 +822,12 @@ describe('HelloController', () => {
 ```
 
 ---
-
-### Jest E2E test
+title: Jest E2E test
+layout: chapter_subtitle
+hideInToc: true
+level: 3
+logo: /images/nestjs-logo.png
+---
 
 <div class="m-auto">
 
@@ -759,6 +861,9 @@ describe('AppController (e2e)', () => {
 ---
 title: Nest.js
 layout: chapter_title
+hideInToc: true
+level: 3
+logo: /images/nestjs-logo.png
 ---
 
 ### Documentation

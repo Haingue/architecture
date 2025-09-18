@@ -10,6 +10,7 @@ seoMeta:
   ogImage: auto
 plantUmlServer: https://www.plantuml.com/plantuml
 layout: cover
+level: 1
 ---
 
 <Cover title="Formation Java" logoUrl="/images/java-logo.png" />
@@ -17,6 +18,8 @@ layout: cover
 ---
 title: Sommaire
 layout: chapter_title
+level: 2
+logo: /images/java-logo.png
 ---
 
 <v-clicks>
@@ -33,6 +36,8 @@ layout: chapter_title
 title: Fonctionnement
 layout: chapter_title
 transition: slide-up
+level: 2
+logo: /images/java-logo.png
 ---
 
 :: right ::
@@ -52,6 +57,8 @@ Pour cela Java s'abstrait du système d'exploitation grâce à la Java Virtual M
 title: Java Virtual Machine
 layout: chapter_subtitle
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 <p>
@@ -70,6 +77,8 @@ elle exécute des instructions qui manipulent différentes zones de mémoire dé
 title: Compilation et Interpretation
 layout: chapter_subtitle
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 <p class="mb-8">
@@ -82,6 +91,8 @@ La machine virtuelle ne connaît pas le langage Java : elle ne connaît que le b
 title: Mémoires
 layout: chapter_subtitle
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 <img class="m-auto" src="/images/java-memory-model.png" height="450px" />
@@ -107,6 +118,8 @@ Seules des données de type primitif et des références à des objets peuvent �
 
 ---
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 <div class="text-xl color-blue-400">HEAP</div>
@@ -132,6 +145,9 @@ transition: slide-up
 </Note>
 
 ---
+level: 3
+logo: /images/java-logo.png
+---
 
 <div class="text-xl color-blue-400">Autres zones mémoire</div>
 
@@ -151,6 +167,8 @@ transition: slide-up
 title: Garbage collector
 layout: chapter_subtitle
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 <img class="m-auto" src="/images/java-objectlifecycle.png" />
@@ -161,6 +179,8 @@ La règle principale pour déterminer qu'un objet n'est plus utilisé est de vé
 
 ---
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 ::left::
@@ -176,6 +196,8 @@ Lorsque le ramasse-miettes va libérer la mémoire d'un objet, il a l'obligation
 
 ---
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 
@@ -198,6 +220,8 @@ transition: slide-up
 
 ---
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 ::left::
@@ -226,6 +250,8 @@ Ou visionner la conférence <a class="text-blue" href="https://www.youtube.com/w
 title: Implementation de la JVM
 layout: chapter_subtitle
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 <div>
@@ -258,6 +284,8 @@ transition: slide-up
 title: Editions et versions
 layout: chapter_title
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 <img class="m-auto h-full" src="/images/java-release.png" />
@@ -266,6 +294,8 @@ transition: slide-up
 title: Editions
 layout: chapter_subtitle
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 Java possède trois éditions
@@ -279,6 +309,8 @@ Java possède trois éditions
 ---
 title: Versions
 layout: chapter_subtitle
+level: 3
+logo: /images/java-logo.png
 ---
 
 <table class="m-auto">
@@ -312,6 +344,8 @@ layout: chapter_subtitle
 title: Programmation orienté objet
 layout: chapter_title
 transition: slide-up
+level: 2
+logo: /images/java-logo.png
 ---
 
 ::top::
@@ -325,6 +359,8 @@ Plus longue à mettre en place, mais permet de garder une bonne structure du cod
 title: Vocabulaire
 layout: chapter_subtitle
 transition: fade
+level: 3
+logo: /images/java-logo.png
 ---
 
 ::top::
@@ -381,6 +417,8 @@ public class Person {
 title: Vocabulaire
 layout: chapter_subtitle
 transition: fade
+level: 3
+logo: /images/java-logo.png
 ---
 
 - **Membres** : Les membres d'une classe sont ses attributs et ses méthodes. Ils constituent les éléments fondamentaux d'une classe.
@@ -441,6 +479,8 @@ public class Application {
 title: Principes
 layout: chapter_subtitle
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 ::left::
@@ -578,6 +618,8 @@ public class Main {
 title: Types Primitifs
 layout: chapter_title
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 ::left::
@@ -662,6 +704,8 @@ Cela vous donnes accès à des méthodes très utiles pour le developpement, mai
 title: Le poids des objects
 layout: chapter_subtitle
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 ::right::
@@ -708,6 +752,8 @@ public class ObjectSizeExample {
 title: Types de Référence
 layout: chapter_title
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 ::left::
@@ -760,6 +806,8 @@ transition: slide-up
 ---
 title: Hello World
 layout: chapter_title
+level: 2
+logo: /images/java-logo.png
 ---
 
 ::top::
@@ -814,6 +862,8 @@ public class HelloParReflexion {
 title: Objet
 layout: chapter_title
 transition: slide-up
+level: 2
+logo: /images/java-logo.png
 ---
 Un objet en Java est une instance d'une classe. Il représente une entité concrète qui encapsule un état (données) et un comportement (méthodes).
 
@@ -821,6 +871,8 @@ Un objet en Java est une instance d'une classe. Il représente une entité concr
 title: Instance d'objet
 layout: chapter_subtitle
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 - **Constructeur** : Une méthode spéciale utilisée pour initialiser un nouvel objet. Le constructeur a le même nom que la classe et n'a pas de type de retour.
@@ -828,6 +880,8 @@ transition: slide-up
   - **Chaînage de constructeurs** : Utilisation du mot-clé ```this()``` pour appeler un autre constructeur de la même classe, permettant ainsi de réutiliser le code d'initialisation.
 ---
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 - **Auto-référence**
@@ -837,6 +891,8 @@ transition: slide-up
   - **Passage par copie** : En Java, les paramètres de méthode sont toujours passés par copie. Pour les objets, cela signifie que la référence à l'objet est copiée, pas l'objet lui-même. Ainsi, les modifications apportées à l'objet dans la méthode affectent l'objet original.
 ---
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 - **Comparaison**
@@ -845,6 +901,8 @@ transition: slide-up
     - **État** : Utilisation de la méthode equals() pour vérifier si deux objets ont le même état (mêmes valeurs d'attributs).
 ---
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 - **Méthode commune**
@@ -853,6 +911,8 @@ transition: slide-up
     - ```hashCode()``` : Méthode qui retourne un code de hachage pour l'objet, utilisé dans les collections basées sur le hachage comme HashMap.
 ---
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 - **Modificateurs**
@@ -867,6 +927,8 @@ transition: slide-up
     - ```package-private``` (par défaut) : Accessible uniquement dans le même package.
 ---
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
   - **Modificateurs de restrictions**
@@ -876,6 +938,8 @@ transition: slide-up
     - ```final``` : Indique qu'une variable ne peut pas être modifiée après son initialisation, qu'une méthode ne peut pas être redéfinie, ou qu'une classe ne peut pas être héritée.
 ---
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
   - **Modificateurs de restrictions (moins connues)**
@@ -888,6 +952,8 @@ transition: slide-up
 title: Démo sur les principes de la POO
 layout: chapter_title
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
   <details>
@@ -1101,6 +1167,7 @@ class Pokemon {
     - defensePoint: int
     - type: PokemonType
     - level: int
+    logo: /images/java-logo.png
     - evasionPoint: int
     - speedPoint: int
     - accuracyPoint: int
@@ -1256,11 +1323,16 @@ WaterGun         -[#000082,plain]-^  BaseAttack
   </details>
 
 ---
+level: 3
+logo: /images/java-logo.png
+---
 
 <img class="m-auto" src="/images/java-poo-steps.png">
 ---
 title: Syntaxe résumée
 layout: chapter_title
+level: 3
+logo: /images/java-logo.png
 ---
 
 <img class="m-auto max-h-100" src="/images/java-syntaxe.png" />
@@ -1269,6 +1341,8 @@ layout: chapter_title
 title: Conception orientée objet
 subtitle: Diagramme de classe
 layout: chapter_title
+level: 2
+logo: /images/java-logo.png
 ---
 
 <div class="m-auto">
@@ -1281,6 +1355,8 @@ layout: chapter_title
 title: Patron de conception
 layout: chapter_subtitle
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 - Singleton
@@ -1299,6 +1375,9 @@ Vous pouvez vous rendre sur le site <a class="text-blue" href="https://refactori
 </Note>
 
 ---
+level: 3
+logo: /images/java-logo.png
+---
 
 ## Programmation orienté composant
 La programmation orientée composant (POC) consiste à utiliser une approche modulaire de l'architecture d'un projet informatique, ce qui permet d'assurer au logiciel une meilleure lisibilité et une meilleure maintenance. Les développeurs, au lieu de créer un exécutable monolithique, se servent de briques réutilisables
@@ -1311,6 +1390,8 @@ La POC est particulièrement pratique pour le travail en équipe et permet d'ind
 title: Composant
 layout: chapter_subtitle
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 Les caractéristiques clés d'un composant incluent :
 - Encapsulation : Un composant cache ses détails d'implémentation et expose uniquement les interfaces nécessaires pour interagir avec lui.
@@ -1329,6 +1410,9 @@ transition: slide-up
 <img class="m-auto" src="/images/LoD-follow.jpg" width=500px/>
 
 ---
+level: 3
+logo: /images/java-logo.png
+---
 
 ## Clean Architecture
 - DDD
@@ -1341,11 +1425,12 @@ transition: slide-up
 > Utilisez ce qu'il faut au bon moment, n'ayez pas peur de réarchitecturer vos applications, cela à un coup mais si vous avez fait les bon choix étapes par étapes alors votre code devrai être adaptable facilement.
 
 ---
-
-## Tips
-title: Exception
-layout: chapter_subtitle
+title: Tips
+subtitle: Exception
+layout: chapter_title
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 ```java
@@ -1376,6 +1461,8 @@ public class FinallyExample {
 title: Instanceof
 layout: chapter_subtitle
 transition: slide-up
+level: 4
+logo: /images/java-logo.png
 ---
 ```java
   if (myAnimal instanceof Dog) {
@@ -1383,9 +1470,13 @@ transition: slide-up
       myDog.bark(); // Affiche "Woof!"
   }
 ```
+
+---
 title: StringBuilder
 layout: chapter_subtitle
 transition: slide-up
+level: 4
+logo: /images/java-logo.png
 ---
 
 ```
@@ -1395,11 +1486,15 @@ for (String address : addresses) {
 }
 String csv = builder.toString();
 ```
+
 ---
 title: Map & Set
 layout: chapter_subtitle
 transition: slide-up
+level: 4
+logo: /images/java-logo.png
 ---
+
 - TreeMap / TreeSet
 - HashMap / HashSet
 - EnumMap / EnumSet
@@ -1408,10 +1503,13 @@ transition: slide-up
 - ...
 
 > Surcharger la méthode equals et compareTo permet de modifier le comportement de ces implémentations
+
 ---
 title: Optional
 layout: chapter_subtitle
 transition: slide-up
+level: 4
+logo: /images/java-logo.png
 ---
 
 ```java
@@ -1419,6 +1517,8 @@ Optional<Object> wrapper = Optional.of(obj);
 wrapper.ifPresent(object -> System.out.println(object));
 Object resultObject = wrapper.orElseThrow(() -> new EntityNotFoundException());
 ```
+
+---
 title: Stream
 layout: chapter_subtitle
 transition: slide-up
@@ -1431,6 +1531,8 @@ stream.filter(obj -> obj != null).map(obj -> obj.hashCode()).collect(Collectors.
 title: Remote debug
 layout: chapter_subtitle
 transition: slide-up
+level: 4
+logo: /images/java-logo.png
 ---
 
 JVM options:
@@ -1442,6 +1544,8 @@ JVM options:
 title: Outils
 layout: chapter_title
 transition: slide-up
+level: 3
+logo: /images/java-logo.png
 ---
 
 ## Outils
@@ -1450,6 +1554,8 @@ transition: slide-up
 title: IDE
 layout: chapter_subtitle
 transition: slide-up
+level: 4
+logo: /images/java-logo.png
 ---
 Pour développer des applications de minère plus ergonomique et efficace, vous devez utiliser un environnement de développement intégré ("EDI" en français, "IDE" en anglais).
 
@@ -1463,6 +1569,8 @@ Pour développer des applications de minère plus ergonomique et efficace, vous 
 title: Debugger
 layout: chapter_subtitle
 transition: slide-up
+level: 4
+logo: /images/java-logo.png
 ---
 
 ::top::
@@ -1508,6 +1616,8 @@ Fini les println pour tester votre code, devenez vrai pro avec le debugger Java.
 title: JMX
 layout: chapter_subtitle
 transition: slide-up
+level: 4
+logo: /images/java-logo.png
 ---
 
 ::top::
@@ -1525,6 +1635,8 @@ Java Management Extensions est une technologie Java qui fournit des outils pour 
 title: JShell
 layout: chapter_subtitle
 transition: slide-up
+level: 4
+logo: /images/java-logo.png
 ---
 
 ::left::
@@ -1548,6 +1660,8 @@ JShell est un outil interactif de ligne de commande introduit dans Java 9, qui p
 title: JBang
 layout: chapter_subtitle
 transition: slide-up
+level: 4
+logo: /images/java-logo.png
 ---
 JBang est un outil qui permet d'exécuter des scripts Java directement, sans avoir besoin de configurer un projet complet avec des outils comme Maven ou Gradle. Il est conçu pour simplifier l'exécution de code Java, en particulier pour les petits scripts, les démonstrations, et les tests rapides.
 
@@ -1562,6 +1676,8 @@ Et la documentation officiel: <a href="https://www.jbang.dev/" class="text-blue-
 title: Maven / Gradle
 layout: chapter_subtitle
 transition: slide-up
+level: 4
+logo: /images/java-logo.png
 ---
 
 Outils pour construire vos applications Java et autres
@@ -1595,6 +1711,8 @@ Outils pour construire vos applications Java et autres
 title: JVM & Conteneurisation
 layout: chapter_title
 transition: slide-up
+level: 2
+logo: /images/java-logo.png
 ---
 
 Java est parfaitement conteneurisable, mais il faut passer par certaine étapes pour optimiser vos conteneurs.
@@ -1616,6 +1734,8 @@ Pour que votre architectire applicatif conteneurisés soit viable, il faut que l
 title: Kotlin
 layout: chapter_title
 transition: slide-up
+level: 2
+logo: /images/java-logo.png
 ---
 
 Kotlin est un langage de programmation moderne, statiquement typé, qui s'exécute sur la machine virtuelle Java (JVM). Il a été développé par <b>JetBrains</b>, l'entreprise derrière des outils de développement populaires comme IntelliJ IDEA.
@@ -1646,6 +1766,8 @@ fun main() {
 title: Conclusion
 layout: chapter_title
 transition: slide-up
+level: 2
+logo: /images/java-logo.png
 ---
 
 ::top::
@@ -1672,6 +1794,8 @@ En résumé, Java n’est pas un langage du passé, c’est un langage d’aveni
 title: Sources
 layout: chapter_title
 transition: slide-up
+level: 2
+logo: /images/java-logo.png
 ---
 
 <ul>
