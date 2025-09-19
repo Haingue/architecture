@@ -11,6 +11,7 @@ import java.util.List;
 @Configuration
 public class MainConfiguration {
 
+    /** Use to setup MCP Server tools (AI agent) **/
     @Bean
     public List<ToolCallback> findTools(JobOfferService jobOfferService) {
         return List.of(ToolCallbacks.from(jobOfferService));

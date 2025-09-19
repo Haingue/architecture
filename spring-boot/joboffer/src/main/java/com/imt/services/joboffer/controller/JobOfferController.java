@@ -5,7 +5,6 @@ import com.imt.services.joboffer.dto.wrapper.PaginatedResponseDto;
 import com.imt.services.joboffer.service.JobOfferService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,13 +23,17 @@ public class JobOfferController {
 
     private static final Logger logger = LoggerFactory.getLogger(JobOfferController.class);
 
-    private final Sinks.Many<ServerSentEvent<JobOfferDto>> notificationSink = Sinks.many().multicast().directBestEffort();
+    private final Sinks.Many<ServerSentEvent<JobOfferDto>> notificationSink;
+    private final JobOfferService jobOfferService;
 
-    @Autowired
-    private JobOfferService jobOfferService;
+    public JobOfferController(JobOfferService jobOfferService) {
+        this.jobOfferService = jobOfferService;
+        this.notificationSink = Sinks.many().multicast().directBestEffort();
+    }
 
     @GetMapping(path = "/subscribe", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<ServerSentEvent<JobOfferDto>> subscribe() {
+        logger.debug("New job offer subscriber");
         return Flux.create(sink -> {
             sink.next(ServerSentEvent.<JobOfferDto>builder()
                     .id(UUID.randomUUID().toString())
@@ -52,7 +55,7 @@ public class JobOfferController {
             @RequestParam(required = false, name = "page", defaultValue = "0") int page,
             @RequestParam(required = false, name = "size", defaultValue = "10") int size
     ) {
-        logger.info("Searching job offers for title {}", title);
+        logger.debug("Searching job offers for title {}", title);
         title = title.replace("*", "%");
         PaginatedResponseDto<JobOfferDto> response = jobOfferService.search(title, page, size);
         if (response.isEmpty()) return ResponseEntity.noContent().build();

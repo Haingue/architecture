@@ -24,6 +24,7 @@ public class SecurityConfiguration {
     @Autowired
     private SecurityProperties securityProperties;
 
+    /** ONLY FOR TESTING: use a simple method to load/store one user in memory **/
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user = User.withDefaultPasswordEncoder()
@@ -34,6 +35,7 @@ public class SecurityConfiguration {
         return new InMemoryUserDetailsManager(user);
     }
 
+    /** Configure SpringSecurity filter chain **/
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -52,17 +54,18 @@ public class SecurityConfiguration {
         return http.build();
     }
 
+    /** Configure CORS policy **/
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:*")); // Allow only one source
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Allow all methods
+        configuration.setAllowedHeaders(Arrays.asList("*")); // Allow all header
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
+        source.registerCorsConfiguration("/**", configuration); // Use this configuration for all endpoints
         return source;
     }
 }
