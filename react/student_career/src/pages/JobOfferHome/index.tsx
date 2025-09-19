@@ -2,7 +2,7 @@ import { useState } from "react"
 import Button from "../../components/Button/Button"
 import { useLocation, useNavigate } from "react-router"
 
-const HOST = 'http://localhost:8080'
+const HOST = 'http://localhost:8090'
 
 const JobOfferSummary = ({dto={}, onUpdate=()=>{}, onCancel=()=>{}}) => {
   const cancelJobOffer = async (jobOfferId: string) => {

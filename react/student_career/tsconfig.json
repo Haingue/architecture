@@ -7,6 +7,9 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "types": [
+      "@vitest/browser/providers/playwright"
+    ]
   }
 }

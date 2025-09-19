@@ -55,7 +55,7 @@ footer: "Fabien HAINGUE"
 
 ### INTES
 
-### 2024-2025
+### 2025-2026
 
   </div>
   
@@ -108,6 +108,28 @@ footer: "Fabien HAINGUE"
 
 ---
 <!-- header: 'Architectures d''applications' -->
+
+## microKernel
+
+<center>
+
+![](resources/images/architecture-microkernel.png)
+
+</center>
+
+---
+<!-- header: 'Architectures d''applications' -->
+
+## Event sourcing
+
+<center>
+
+![height:560px](resources/images/architecture-event-sourcing.png)
+
+</center>
+
+---
+<!-- header: 'Architectures d''applications' -->
 <div class="grid grid-cols-2">
   <div>
   
@@ -124,20 +146,11 @@ Application sans état, ce qui rend le multi-instance facile (cloud ready).
 
 ---
 <!-- header: 'Architectures d''applications' -->
-> La methodologie [12factors](https://12factor.net/fr/) est une méthodologie pour concevoir des logiciels en tant que service qui :
-> - Utilisent des formats déclaratifs pour mettre en oeuvre l’automatisation, pour minimiser le temps et les coûts pour que de nouveaux développeurs rejoignent le projet;
-> - Ont un contrat propre avec le système d’exploitation sous-jacent, offrant une portabilité maximum entre les environnements d’exécution;
-> - Sont adaptés à des déploiements sur des plateformes cloud modernes, rendant inutile le besoin de serveurs et de l’administration de systèmes;
-Minimisent la divergence entre le développement et la production, ce qui permet le déploiement continu pour une agilité maximum;
-> - et peuvent grossir verticalement sans changement significatif dans les outils, l’architecture ou les pratiques de développement;
 
----
-<!-- header: 'Architectures d''applications' -->
 ### Serverless
 L'informatique serverless est un modèle de développement cloud-native qui permet aux développeurs de créer et d'exécuter des applications sans avoir à gérer des serveurs.
 
 > C'est comme créer une lambda expression
-
 
 ---
 <!-- header: 'Big data' -->
@@ -449,6 +462,17 @@ spec:
 ---
 <!-- header: 'Architectures d'applications' -->
 ## Pratiques de développement
+
+---
+
+### 12 Factors
+
+> La methodologie [12factors](https://12factor.net/fr/) est une méthodologie pour concevoir des logiciels en tant que service qui :
+> - Utilisent des formats déclaratifs pour mettre en oeuvre l’automatisation, pour minimiser le temps et les coûts pour que de nouveaux développeurs rejoignent le projet;
+> - Ont un contrat propre avec le système d’exploitation sous-jacent, offrant une portabilité maximum entre les environnements d’exécution;
+> - Sont adaptés à des déploiements sur des plateformes cloud modernes, rendant inutile le besoin de serveurs et de l’administration de systèmes;
+Minimisent la divergence entre le développement et la production, ce qui permet le déploiement continu pour une agilité maximum;
+> - et peuvent grossir verticalement sans changement significatif dans les outils, l’architecture ou les pratiques de développement;
 
 ---
 <!-- header: 'Architectures d'applications' -->

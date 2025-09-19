@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router"
 import Button from "../../components/Button/Button"
 import { useState, type BaseSyntheticEvent } from "react"
 
-const HOST = 'http://localhost:8080'
+const HOST = 'http://localhost:8090'
 
 const JobOfferForm = () => {
   const location = useLocation()

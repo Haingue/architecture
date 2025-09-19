@@ -1,0 +1,34 @@
+version: '3.1'
+services:
+  jobdemand-service-db:
+    image: postgres
+    restart: always
+    ports:
+      - 8093:5432
+    networks:
+      - api-service
+    #volumes:
+    #  - 'jobdemand-service-db:/var/lib/postgresql/data'
+    environment:
+      POSTGRES_USER: JobDemandService_USER
+      POSTGRES_PASSWORD: kqe!12lsdjconz34aejw
+      POSTGRES_DB: JobDemandService
+  # jobdemand-service:
+  #   depends_on:
+  #     - jobdemand-service-db
+  #   image: haingue/msi-jobdemand-service:latest
+  #   restart: always
+  #   ports:
+  #     - 8092:3000
+  #   networks:
+  #     - api-service
+  #   environment:
+  #     DB_DRIVER: org.postgresql.Driver
+  #     DB_DIALECT: org.hibernate.dialect.PostgreSQLDialect
+  #     DB_URL: jdbc:postgresql://host.docker.internal:8091/JobDemandService
+  #     DB_USERNAME: JobDemandService_USER
+  #     DB_PASSWORD: kqe!12lsdjconz34aejw
+  #     SECURITY_USER: user
+  #     SECURITY_PASSWORD: strongpassword
+networks:
+  api-service:

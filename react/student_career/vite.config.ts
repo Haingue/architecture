@@ -11,11 +11,6 @@ export default defineConfig({
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
   },
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    css: true,
-  },
   server: {
     allowedHosts: true,
     cors: false

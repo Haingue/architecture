@@ -10,6 +10,9 @@
     "preview": "vite preview",
     "test": "vitest --watch",
     "test:ui": "vite build && vitest --ui",
+    "test:e2e": "pnpm exec playwright test",
+    "test:e2e:ui": "pnpm exec playwright test --ui",
+    "test:e2e:view": "pnpm exec playwright test --headed",
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
@@ -26,6 +29,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@playwright/test": "^1.55.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@types/node": "^22.15.23",

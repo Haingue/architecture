@@ -1,16 +1,20 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm/browser';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
-export type SpecialityCategory =
-  | 'IT'
-  | 'Finance'
-  | 'Marketing'
-  | 'HR'
-  | 'Sales';
+export enum SpecialityCategory {
+  IT = 'IT',
+  Finance = 'Finance',
+  Marketing = 'Marketing',
+  HR = 'HR',
+  Sales = 'Sales',
+}
 
 @Entity()
 export class Speciality {
   @PrimaryColumn()
   name: string;
-  @Column()
+  @Column({
+    type: 'enum',
+    enum: SpecialityCategory,
+  })
   category: SpecialityCategory;
 }

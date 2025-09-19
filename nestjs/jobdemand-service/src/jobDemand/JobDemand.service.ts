@@ -1,12 +1,16 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { JobDemand } from './entities/jobDemand.entity';
 import { Like, Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class JobDemandService {
   private readonly logger = new Logger(JobDemandService.name);
 
-  constructor(private jobDemandRepository: Repository<JobDemand>) {}
+  constructor(
+    @InjectRepository(JobDemand)
+    private jobDemandRepository: Repository<JobDemand>,
+  ) {}
 
   async publishNewJobDemand(newJobDemand: JobDemand): Promise<JobDemand> {
     this.logger.log(
@@ -16,9 +20,17 @@ export class JobDemandService {
     return newJobDemand;
   }
 
-  async cancelJobDemand(jobDemand: JobDemand): Promise<void> {
-    this.logger.log(`Cancelling job demand: ${JSON.stringify(jobDemand)}`);
-    await this.jobDemandRepository.delete(jobDemand);
+  async updateExistingJobDemand(
+    updatedJobDemand: JobDemand,
+  ): Promise<JobDemand> {
+    this.logger.log(`Updating job demand: ${JSON.stringify(updatedJobDemand)}`);
+    updatedJobDemand = await this.jobDemandRepository.save(updatedJobDemand);
+    return updatedJobDemand;
+  }
+
+  async cancelJobDemand(id: string): Promise<void> {
+    this.logger.log(`Cancelling job demand: ${JSON.stringify(id)}`);
+    await this.jobDemandRepository.delete({ id });
   }
 
   async findOne(id: string): Promise<JobDemand> {

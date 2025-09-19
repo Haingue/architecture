@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Link } from "react-router"
 
-const HOST = 'http://localhost:8080'
+const HOST = 'http://localhost:8090'
 
 const Navigation = () => {
   const [jobOfferNotification, setJobOfferNotification] = useState<number[]>([])
