@@ -30,16 +30,20 @@ jobs:
 
       - name: Install dependencies
         run: nci
+        working-directory: Support_Cours
 
       - name: Build
         run: nr build --base /${{github.event.repository.name}}/
+        working-directory: Support_Cours
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
+        working-directory: Support_Cours
 
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+        working-directory: Support_Cours
 
   deploy:
     environment:
