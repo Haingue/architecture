@@ -38,12 +38,10 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
-        working-directory: Support_Cours
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
-        working-directory: Support_Cours
+          path: Support_Cours/dist
 
   deploy:
     environment:
