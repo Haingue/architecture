@@ -32,6 +32,10 @@ jobs:
         run: nci
         working-directory: Support_Cours
 
+      - name: Install playwright
+        run: pnpm exec playwright install
+        working-directory: Support_Cours
+
       - name: Build
         run: nr build --base /${{github.event.repository.name}}/
         working-directory: Support_Cours
