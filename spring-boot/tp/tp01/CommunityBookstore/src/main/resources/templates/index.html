@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Community Bookstore - Home</title>
+</head>
+<body class="bg-gray-100 min-h-screen">
+<div class="container mx-auto px-4 py-12">
+    <!-- En-tête -->
+    <header class="mb-12 text-center">
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">Bienvenue dans la Bibliothèque Communautaire</h1>
+        <p class="text-lg text-gray-600">
+            Gérez vos livres, emprunts et utilisateurs en toute simplicité.
+        </p>
+    </header>
+
+    <!-- Navigation principale -->
+    <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Lien vers la liste des livres -->
+        <a href="/ui/book/catalogue" class="block">
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-2">Livres disponibles</h2>
+                <p class="text-gray-600">Consultez la liste des livres disponibles et empruntez-en un.</p>
+            </div>
+        </a>
+
+        <!-- Lien vers la page d'emprunt/retour -->
+        <a href="/ui/borrow" class="block">
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-2">Emprunter/Retourner</h2>
+                <p class="text-gray-600">Empruntez ou retournez un livre en un clic.</p>
+            </div>
+        </a>
+
+        <!-- Lien vers le tableau de bord administrateur -->
+        <a href="/ui/administrator/dashboard" class="block">
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-2">Tableau de bord</h2>
+                <p class="text-gray-600">Gérez les livres et les emprunts (réservé aux administrateurs).</p>
+            </div>
+        </a>
+
+        <!-- Lien vers H2-Console -->
+        <a href="/h2-console" target="_blank" class="block">
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-2">H2-Console</h2>
+                <p class="text-gray-600">Accédez à la base de données H2 pour le développement.</p>
+            </div>
+        </a>
+
+        <!-- Lien vers Swagger UI -->
+        <a href="/swagger-ui/index.html" target="_blank" class="block">
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-2">API Documentation</h2>
+                <p class="text-gray-600">Explorez et testez les endpoints de l'API avec Swagger.</p>
+            </div>
+        </a>
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="mt-12 text-center text-gray-500">
+        <p>© 2025 – Bibliothèque Communautaire</p>
+    </footer>
+</div>
+</body>
+</html>

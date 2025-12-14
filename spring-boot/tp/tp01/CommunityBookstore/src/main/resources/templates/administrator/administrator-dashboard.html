@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Community Bookstore – Tableau de bord</title>
+</head>
+<body class="bg-gray-100">
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Tableau de bord administrateur</h1>
+
+    <!-- Ajouter un livre -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Ajouter un livre</h2>
+        <form th:action="@{/admin/books/add}" method="post" class="space-y-4">
+            <div>
+                <label for="title" class="block text-gray-700 font-bold mb-2">Titre</label>
+                <input type="text" id="title" name="title" required
+                       class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div>
+                <label for="author" class="block text-gray-700 font-bold mb-2">Auteur</label>
+                <input type="text" id="author" name="author" required
+                       class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div>
+                <label for="isbn" class="block text-gray-700 font-bold mb-2">ISBN</label>
+                <input type="text" id="isbn" name="isbn" required
+                       class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <button type="submit"
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Ajouter le livre
+            </button>
+        </form>
+    </div>
+
+    <!-- Liste des emprunts en cours -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Emprunts en cours</h2>
+        <table class="min-w-full bg-white">
+            <thead>
+            <tr>
+                <th class="py-2 px-4 border-b">Titre</th>
+                <th class="py-2 px-4 border-b">Emprunteur</th>
+                <th class="py-2 px-4 border-b">Date d'emprunt</th>
+                <th class="py-2 px-4 border-b">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="borrowing : ${borrowings}">
+                <td th:text="${borrowing.book.title}" class="py-2 px-4 border-b"></td>
+                <td th:text="${borrowing.customer.name}" class="py-2 px-4 border-b"></td>
+                <td th:text="${#temporals.format(borrowing.borrowingDate, 'dd/MM/yyyy')}" class="py-2 px-4 border-b"></td>
+                <td class="py-2 px-4 border-b">
+                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-xs">
+                        Terminer l'emprunt
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
