@@ -3,6 +3,7 @@ package com.haingue.tp1.CommunityBookstore.service.implement;
 import com.haingue.tp1.CommunityBookstore.dto.BorrowingDto;
 import com.haingue.tp1.CommunityBookstore.dto.wrapper.PaginatedResponseDto;
 import com.haingue.tp1.CommunityBookstore.exception.BadRequestException;
+import com.haingue.tp1.CommunityBookstore.exception.BookNotAvailableException;
 import com.haingue.tp1.CommunityBookstore.mapper.BorrowingMapper;
 import com.haingue.tp1.CommunityBookstore.model.Book;
 import com.haingue.tp1.CommunityBookstore.model.Borrowing;
@@ -42,7 +43,7 @@ public class BorrowingServiceImpl implements BorrowingService {
                 .orElseThrow(BadRequestException::new);
         Book book = bookRepository.findById(isbn)
                 .orElseThrow(BadRequestException::new);
-        if (!book.isAvailable()) throw new BadRequestException();
+        if (!book.isAvailable()) throw new BookNotAvailableException(isbn);
         Borrowing borrowing = new Borrowing();
         borrowing.setUuid(UUID.randomUUID());
         borrowing.setBook(book);

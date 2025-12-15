@@ -15,6 +15,7 @@ import java.time.LocalDate;
 @Entity
 @Table
 public class Book {
+
     @Id
     private String isbn;
     private String title;

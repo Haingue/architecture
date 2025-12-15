@@ -1,6 +1,7 @@
 package com.haingue.tp1.CommunityBookstore.service.implement;
 
 import com.haingue.tp1.CommunityBookstore.dto.UserDto;
+import com.haingue.tp1.CommunityBookstore.dto.wrapper.PaginatedResponseDto;
 import com.haingue.tp1.CommunityBookstore.exception.BadRequestException;
 import com.haingue.tp1.CommunityBookstore.mapper.UserMapper;
 import com.haingue.tp1.CommunityBookstore.model.User;
@@ -50,5 +51,16 @@ public class UserServiceImpl implements UserService {
     public UserDto findOneById(@Nonnull UUID uuid) {
         User user = this.userRepository.findById(uuid).orElseThrow(BadRequestException::new);
         return UserMapper.INSTANCE.toDto(user);
+    }
+
+    @Override
+    public void delete(UUID uuid) {
+        this.userRepository.deleteById(uuid);
+    }
+
+    @Override
+    public PaginatedResponseDto<UserDto> findAll(int pageNumber, int pageSize) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
     }
 }

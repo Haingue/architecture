@@ -30,7 +30,7 @@ const props = defineProps({
     </div>
     <div class="row-span-3 col-span-3">
       <div class="grid grid-cols-1 gap-2 h-full">
-        <img v-if="logoUrl" :src="logoUrl" class="m-auto max-h-120px" />
+        <img v-if="logoUrl" :src="'./'+logoUrl" class="m-auto max-h-120px" />
         <Title>{{ title }}</Title>
         <SubTitle>{{ subject }}</SubTitle>
         <h2>{{ years }}</h2>

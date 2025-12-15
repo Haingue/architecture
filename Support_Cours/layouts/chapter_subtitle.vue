@@ -36,7 +36,7 @@ const props = defineProps({
     <Progress level="1" position="" opacity="0.1" />
     <header class="basis-1/12 text-secondary dark:text-secondary">
       <SubTitle><TitleRenderer /></SubTitle>
-      <img v-if="logo" className="max-h-4em fixed top-0 right-0 p-2 z-40" :src="logo" />
+      <img v-if="logo" className="max-h-4em fixed top-0 right-0 p-2 z-40" :src="'./'+logo" />
     </header>
     <main class="basis-10/12">
       <div v-if="$slots.left || $slots.right || $slots.top || $slots.bottom" class="">
