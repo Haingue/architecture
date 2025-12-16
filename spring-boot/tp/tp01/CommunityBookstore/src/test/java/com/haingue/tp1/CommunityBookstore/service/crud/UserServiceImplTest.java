@@ -6,7 +6,7 @@ import com.haingue.tp1.CommunityBookstore.mapper.UserMapper;
 import com.haingue.tp1.CommunityBookstore.model.Role;
 import com.haingue.tp1.CommunityBookstore.model.User;
 import com.haingue.tp1.CommunityBookstore.repository.UserRepository;
-import com.haingue.tp1.CommunityBookstore.service.implement.UserServiceImpl;
+import com.haingue.tp1.CommunityBookstore.service.crud.implement.UserServiceImpl;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,7 +32,7 @@ class UserServiceImplTest {
     private UserServiceImpl userService;
 
     @Test
-    public void testCreateUser_Success() {
+    public void shouldCreateUser_Success() {
         // Arrange
         UUID uuid = UUID.randomUUID();
         UserDto userDto = new UserDto(uuid, "John Doe", "john.doe@example.com", "password123", Role.CUSTOMER);

@@ -1,4 +1,4 @@
-package com.haingue.tp1.CommunityBookstore.service.implement;
+package com.haingue.tp1.CommunityBookstore.service.crud.implement;
 
 import com.haingue.tp1.CommunityBookstore.dto.UserDto;
 import com.haingue.tp1.CommunityBookstore.dto.wrapper.PaginatedResponseDto;
@@ -10,6 +10,10 @@ import com.haingue.tp1.CommunityBookstore.service.crud.UserService;
 import jakarta.annotation.Nonnull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
 
@@ -34,6 +38,7 @@ public class UserServiceImpl implements UserService {
         User user = UserMapper.INSTANCE.toModel(userDto);
         user.setUuid(UUID.randomUUID());
         user = userRepository.save(user);
+        logger.info("User created: {}", user);
         return UserMapper.INSTANCE.toDto(user);
     }
 
@@ -44,6 +49,7 @@ public class UserServiceImpl implements UserService {
         User user = UserMapper.INSTANCE.toModel(userDto);
         user.setUuid(userDto.uuid());
         user = userRepository.save(user);
+        logger.info("User updated: {}", user);
         return UserMapper.INSTANCE.toDto(user);
     }
 
@@ -56,11 +62,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(UUID uuid) {
         this.userRepository.deleteById(uuid);
+        logger.info("User deleted: {}", uuid);
     }
 
     @Override
     public PaginatedResponseDto<UserDto> findAll(int pageNumber, int pageSize) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        Page<User> results = userRepository.findAll(PageRequest.of(pageNumber, pageSize));
+        return PaginatedResponseDto.toPaginatedDto(results, UserMapper.INSTANCE::toDto);
     }
 }

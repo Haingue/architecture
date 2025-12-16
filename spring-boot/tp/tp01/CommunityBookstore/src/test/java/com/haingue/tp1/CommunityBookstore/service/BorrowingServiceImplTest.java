@@ -49,7 +49,7 @@ class BorrowingServiceImplTest {
 
 
     @Test
-    public void testBorrowBook_Success() {
+    public void shouldBorrowBook_Success() {
         // Arrange
         String isbn = "1234567890";
         UUID customerUuid = UUID.randomUUID();
@@ -75,7 +75,7 @@ class BorrowingServiceImplTest {
     }
 
     @Test
-    public void testBorrowBook_UserNotFound_ThrowsBadRequestException() {
+    public void shouldBorrowBook_UserNotFound_ThrowsBadRequestException() {
         // Arrange
         String isbn = "1234567890";
         UUID customerUuid = UUID.randomUUID();
@@ -86,7 +86,7 @@ class BorrowingServiceImplTest {
     }
 
     @Test
-    public void testBorrowBook_BookNotFound_ThrowsBadRequestException() {
+    public void shouldBorrowBook_BookNotFound_ThrowsBadRequestException() {
         // Arrange
         String isbn = "1234567890";
         UUID customerUuid = UUID.randomUUID();
@@ -99,7 +99,7 @@ class BorrowingServiceImplTest {
     }
 
     @Test
-    public void testBorrowBook_BookNotAvailable_ThrowsBadRequestException() {
+    public void shouldBorrowBook_BookNotAvailable_ThrowsBadRequestException() {
         // Arrange
         String isbn = "1234567890";
         UUID customerUuid = UUID.randomUUID();
@@ -113,7 +113,7 @@ class BorrowingServiceImplTest {
     }
 
     @Test
-    public void testReturnBook_Success() {
+    public void shouldReturnBook_Success() {
         // Arrange
         String isbn = "1234567890";
         UUID customerUuid = UUID.randomUUID();
@@ -135,7 +135,7 @@ class BorrowingServiceImplTest {
     }
 
     @Test
-    public void testReturnBook_BookNotFound_ThrowsBadRequestException() {
+    public void shouldReturnBook_BookNotFound_ThrowsBadRequestException() {
         // Arrange
         String isbn = "1234567890";
         UUID customerUuid = UUID.randomUUID();
@@ -146,7 +146,7 @@ class BorrowingServiceImplTest {
     }
 
     @Test
-    public void testReturnBookById_Success() {
+    public void shouldReturnBookById_Success() {
         // Arrange
         UUID borrowingUuid = UUID.randomUUID();
         Borrowing borrowing = new Borrowing();
@@ -163,7 +163,7 @@ class BorrowingServiceImplTest {
     }
 
     @Test
-    public void testReturnBookById_BorrowingNotFound_ThrowsBadRequestException() {
+    public void shouldReturnBookById_BorrowingNotFound_ThrowsBadRequestException() {
         // Arrange
         UUID borrowingUuid = UUID.randomUUID();
         when(borrowingRepository.findById(borrowingUuid)).thenReturn(Optional.empty());
@@ -173,7 +173,7 @@ class BorrowingServiceImplTest {
     }
 
     @Test
-    public void testIsBorrowed_BookNotFound_ReturnsFalse() {
+    public void shouldIsBorrowed_BookNotFound_ReturnsFalse() {
         // Arrange
         String isbn = "1234567890";
         when(bookRepository.findById(isbn)).thenReturn(Optional.empty());
@@ -186,7 +186,7 @@ class BorrowingServiceImplTest {
     }
 
     @Test
-    public void testIsBorrowed_BookAvailable_ReturnsFalse() {
+    public void shouldIsBorrowed_BookAvailable_ReturnsFalse() {
         // Arrange
         String isbn = "1234567890";
         Book book = new Book(isbn, "Title", "Author", LocalDate.now(), true);
@@ -200,7 +200,7 @@ class BorrowingServiceImplTest {
     }
 
     @Test
-    public void testIsBorrowed_BookNotAvailable_ReturnsTrue() {
+    public void shouldIsBorrowed_BookNotAvailable_ReturnsTrue() {
         // Arrange
         String isbn = "1234567890";
         Book book = new Book(isbn, "Title", "Author", LocalDate.now(), false);
@@ -214,7 +214,7 @@ class BorrowingServiceImplTest {
     }
 
     @Test
-    public void testIsBorrowed_BookNotFound() {
+    public void shouldIsBorrowed_BookNotFound() {
         // Arrange
         String isbn = "1234567890";
 
@@ -226,7 +226,7 @@ class BorrowingServiceImplTest {
     }
 
     @Test
-    public void testGetBorrowings_Success() {
+    public void shouldGetBorrowings_Success() {
         // Arrange
         Page<Borrowing> borrowings = new PageImpl<>(Collections.singletonList(new Borrowing()));
         when(borrowingRepository.findAll(any(PageRequest.class))).thenReturn(borrowings);
@@ -240,7 +240,7 @@ class BorrowingServiceImplTest {
     }
 
     @Test
-    public void testGetUserBorrowings_Success() {
+    public void shouldGetUserBorrowings_Success() {
         // Arrange
         UUID customerUuid = UUID.randomUUID();
         Page<Borrowing> borrowings = new PageImpl<>(Collections.singletonList(new Borrowing()));

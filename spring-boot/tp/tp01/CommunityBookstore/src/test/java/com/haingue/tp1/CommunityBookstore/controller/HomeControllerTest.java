@@ -30,8 +30,8 @@ class HomeControllerTest {
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("Tableau de bord")))
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("H2-Console")))
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("API Documentation")))
-                .andExpect(content().string(org.hamcrest.Matchers.containsString("/ui/book/catalogue")))
-                .andExpect(content().string(org.hamcrest.Matchers.containsString("/ui/borrow")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("/ui/public/books/catalogue")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("/ui/customer/books/borrow")))
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("/ui/administrator/dashboard")))
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("/h2-console")))
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("/swagger-ui/index.html")));
@@ -41,8 +41,8 @@ class HomeControllerTest {
     @Test()
     public void testHomePageLinks() throws Exception {
         mockMvc.perform(get("/"))
-                .andExpect(xpath("//a[href='/ui/book/catalogue']").exists())
-                .andExpect(xpath("//a[href='/ui/borrow']").exists())
+                .andExpect(xpath("//a[href='/ui/public/books/catalogue']").exists())
+                .andExpect(xpath("//a[href='/ui/customer/books/borrow']").exists())
                 .andExpect(xpath("//a[href='/ui/administrator/dashboard']").exists())
                 .andExpect(xpath("//a[href='/h2-console']").exists())
                 .andExpect(xpath("//a[href='/swagger-ui/index.html']").exists());

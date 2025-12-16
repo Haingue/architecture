@@ -1,4 +1,4 @@
-package com.haingue.tp1.CommunityBookstore.service.implement;
+package com.haingue.tp1.CommunityBookstore.service.crud.implement;
 
 import com.haingue.tp1.CommunityBookstore.dto.BookDto;
 import com.haingue.tp1.CommunityBookstore.dto.wrapper.PaginatedResponseDto;

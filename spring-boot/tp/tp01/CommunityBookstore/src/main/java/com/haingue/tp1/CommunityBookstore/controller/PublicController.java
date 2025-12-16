@@ -7,25 +7,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/ui/book")
-public class BookController {
+@RequestMapping("/ui/public")
+public class PublicController {
 
     private final BookService bookService;
 
-    public BookController(BookService bookService) {
+    public PublicController(BookService bookService) {
         this.bookService = bookService;
     }
 
-    @GetMapping("/catalogue")
+    @GetMapping("/books/catalogue")
     public String bookListPage (Model model) {
         model.addAttribute("books", bookService.getAll(0, 50).content());
         return "public/book-catalogue";
-    }
-
-    @GetMapping("/borrowing-book")
-    public String borrowingBookPage (Model model) {
-        model.addAttribute("books", bookService.getAll(0, 50).content());
-        return "customer/borrowing-book";
     }
 
 }

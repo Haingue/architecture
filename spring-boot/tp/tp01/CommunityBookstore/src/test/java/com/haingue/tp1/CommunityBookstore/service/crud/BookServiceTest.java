@@ -6,7 +6,7 @@ import com.haingue.tp1.CommunityBookstore.exception.BadRequestException;
 import com.haingue.tp1.CommunityBookstore.mapper.BookMapper;
 import com.haingue.tp1.CommunityBookstore.model.Book;
 import com.haingue.tp1.CommunityBookstore.repository.BookRepository;
-import com.haingue.tp1.CommunityBookstore.service.implement.BookServiceImpl;
+import com.haingue.tp1.CommunityBookstore.service.crud.implement.BookServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -32,14 +32,14 @@ class BookServiceTest {
     private BookServiceImpl bookService;
 
     @Test
-    public void testFindAllBooks() {
+    public void shouldFindAllBooks() {
         when(bookRepository.findAll(PageRequest.of(0, 10))).thenReturn(Page.empty());
         assertTrue(bookService.getAll(0, 10).isEmpty());
     }
 
 
     @Test
-    public void testCreateBook_Success() {
+    public void shouldCreateBook_Success() {
         // Arrange
         BookDto newBookDto = new BookDto("1234567890", "Title", "Author", LocalDate.now(), true);
         Book book = BookMapper.INSTANCE.toModel(newBookDto);
@@ -55,7 +55,7 @@ class BookServiceTest {
     }
 
     @Test
-    public void testCreateBook_InvalidInput_ThrowsBadRequestException() {
+    public void shouldCreateBook_InvalidInput_ThrowsBadRequestException() {
         // Arrange
         BookDto invalidBookDto = new BookDto("", null, null, LocalDate.now(), false);
 
@@ -64,17 +64,14 @@ class BookServiceTest {
     }
 
     @Test
-    public void testUpdateBook_Success() {
-        // Arrange
+    public void shouldUpdateBook_Success() {
         BookDto bookDto = new BookDto("1234567890", "Title", "Author", LocalDate.now(), true);
         Book book = BookMapper.INSTANCE.toModel(bookDto);
         when(bookRepository.existsById(bookDto.isbn())).thenReturn(true);
         when(bookRepository.save(any(Book.class))).thenReturn(book);
 
-        // Act
         BookDto result = bookService.update(bookDto);
 
-        // Assert
         assertNotNull(result);
         assertEquals(bookDto.isbn(), result.isbn());
         verify(bookRepository, times(1)).existsById(bookDto.isbn());
@@ -82,7 +79,7 @@ class BookServiceTest {
     }
 
     @Test
-    public void testUpdateBook_NotFound_ThrowsBadRequestException() {
+    public void shouldUpdateBook_NotFound_ThrowsBadRequestException() {
         // Arrange
         BookDto bookDto = new BookDto("1234567890", "Title", "Author", LocalDate.now(), true);
         when(bookRepository.existsById(bookDto.isbn())).thenReturn(false);
@@ -92,7 +89,7 @@ class BookServiceTest {
     }
 
     @Test
-    public void testDeleteBook_Success() {
+    public void shouldDeleteBook_Success() {
         // Arrange
         String isbn = "1234567890";
         Book book = new Book(isbn, "Title", "Author", LocalDate.now(), true);
@@ -106,7 +103,7 @@ class BookServiceTest {
     }
 
     @Test
-    public void testDeleteBook_NotFound_ThrowsBadRequestException() {
+    public void shouldDeleteBook_NotFound_ThrowsBadRequestException() {
         // Arrange
         String isbn = "1234567890";
         when(bookRepository.findById(isbn)).thenReturn(Optional.empty());
@@ -116,67 +113,54 @@ class BookServiceTest {
     }
 
     @Test
-    public void testDeleteBook_NotAvailable_ThrowsBadRequestException() {
-        // Arrange
+    public void shouldDeleteBook_NotAvailable_ThrowsBadRequestException() {
         String isbn = "1234567890";
         Book book = new Book(isbn, "Title", "Author", LocalDate.now(), false);
         when(bookRepository.findById(isbn)).thenReturn(Optional.of(book));
 
-        // Act & Assert
         assertThrows(BadRequestException.class, () -> bookService.delete(isbn));
     }
 
     @Test
-    public void testFindOneByIsbn_Success() {
-        // Arrange
+    public void shouldFindOneByIsbn_Success() {
         String isbn = "1234567890";
         Book book = new Book(isbn, "Title", "Author", LocalDate.now(), true);
         when(bookRepository.findById(isbn)).thenReturn(Optional.of(book));
 
-        // Act
         BookDto result = bookService.findOneByIsbn(isbn);
 
-        // Assert
         assertNotNull(result);
         assertEquals(isbn, result.isbn());
     }
 
     @Test
-    public void testFindOneByIsbn_NotFound_ThrowsBadRequestException() {
-        // Arrange
+    public void shouldFindOneByIsbn_NotFound_ThrowsBadRequestException() {
         String isbn = "1234567890";
         when(bookRepository.findById(isbn)).thenReturn(Optional.empty());
 
-        // Act & Assert
         assertThrows(BadRequestException.class, () -> bookService.findOneByIsbn(isbn));
     }
 
     @Test
-    public void testGetAllBooks_Success() {
-        // Arrange
+    public void shouldGetAllBooks_Success() {
         Page<Book> bookPage = new PageImpl<>(Collections.singletonList(new Book("1234567890", "Title", "Author", LocalDate.now(), true)));
         when(bookRepository.findAll(any(PageRequest.class))).thenReturn(bookPage);
 
-        // Act
         PaginatedResponseDto<BookDto> result = bookService.getAll(0, 5);
 
-        // Assert
         assertNotNull(result);
         assertFalse(result.content().isEmpty());
     }
 
     @Test
-    public void testSearchAllBooks_Success() {
-        // Arrange
+    public void shouldSearchAllBooks_Success() {
         String title = "Title";
         String author = "Author";
         Page<Book> bookPage = new PageImpl<>(Collections.singletonList(new Book("1234567890", title, author, LocalDate.now(), true)));
         when(bookRepository.findAllByTitleContainingIgnoreCaseAndAuthorContainingIgnoreCase(anyString(), anyString(), any(PageRequest.class))).thenReturn(bookPage);
 
-        // Act
         PaginatedResponseDto<BookDto> result = bookService.searchAll(title, author, 0, 5);
 
-        // Assert
         assertNotNull(result);
         assertFalse(result.content().isEmpty());
     }
