@@ -1,9 +1,6 @@
 package com.haingue.tp1.CommunityBookstore.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.Instant;
@@ -18,7 +15,7 @@ public class Borrowing {
 
     @ManyToOne
     private User customer;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     private Book book;
 
     private Instant borrowingDate;

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer - Book</title>
+</head>
+<body class="bg-gray-100">
+    <header th:replace="fragments/header :: ${true} ? 'header' : 'header-connected'"></header>
+
+    <div th:if="${errorMessage}">
+        <div th:replace="fragments/alert :: alert (type='danger', message=${errorMessage})"></div>
+    </div>
+
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Livres empruntés</h1>
+
+        <!-- Liste des livres -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div th:each="borrowingBook : ${borrowingBooks.content()}" class="bg-white p-4 rounded-lg shadow-md">
+                <h2 th:text="${borrowingBook.book.title}" class="text-xl font-semibold text-gray-800 mb-2"></h2>
+                <p th:text="'Auteur : ' + ${borrowingBook.book.author}" class="text-gray-600 mb-2"></p>
+                <p th:text="'Année : ' + ${borrowingBook.book.publicationDate}" class="text-gray-600 mb-4"></p>
+                <button
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        th:data-isbn="${borrowingBook.book().isbn()}"
+                        th:data-customerUuid="${borrowingBook.customer().uuid()}"
+                        onclick="returnBook(this.getAttribute('data-customerUuid'), this.getAttribute('data-isbn'))"
+                        th:if="${!borrowingBook.isReturned()}"
+                >
+                    Rendre
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="fragments/footer :: footer"></footer>
+
+    <div th:replace="fragments/imports :: imports"></div>
+    <script th:src="@{/js/customer/borrowed-books.js}"></script>
+</body>
+</html>

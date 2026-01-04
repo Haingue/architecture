@@ -82,6 +82,9 @@ public class BorrowingServiceImpl implements BorrowingService {
         Book book = borrowing.getBook();
         book.setAvailable(true);
         bookRepository.save(book);
+
+        // TODO manage history
+        borrowingRepository.delete(borrowing);
         logger.info("Book returned by id: {}", book);
     }
 
@@ -92,7 +95,7 @@ public class BorrowingServiceImpl implements BorrowingService {
 
     @Override
     public PaginatedResponseDto<BorrowingDto> getBorrowings(int page, int size) {
-        Page<Borrowing> result = borrowingRepository.findAll(PageRequest.of(page, size));
+        Page<Borrowing> result = borrowingRepository.findAllByReturnDateIsNullOrderByBorrowingDate(PageRequest.of(page, size));
         return PaginatedResponseDto.toPaginatedDto(result, BorrowingMapper.INSTANCE::toDto);
     }
 

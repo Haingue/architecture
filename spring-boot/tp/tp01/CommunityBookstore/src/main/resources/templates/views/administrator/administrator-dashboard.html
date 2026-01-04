@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+</head>
+<body class="bg-gray-100">
+    <header th:replace="fragments/header :: ${true} ? 'header' : 'header-connected'"></header>
+
+    <div th:if="${errorMessage}">
+        <div th:replace="fragments/alert :: alert (type='danger', message=${errorMessage})"></div>
+    </div>
+
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Tableau de bord administrateur</h1>
+
+        <!-- Ajouter un livre -->
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Ajouter un livre</h2>
+            <form th:action="@{/ui/administrator/books/add}" method="post" class="space-y-4">
+                <div>
+                    <label for="title" class="block text-gray-700 font-bold mb-2">Titre</label>
+                    <input type="text" id="title" name="title" required
+                           class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="author" class="block text-gray-700 font-bold mb-2">Auteur</label>
+                    <input type="text" id="author" name="author" required
+                           class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="isbn" class="block text-gray-700 font-bold mb-2">ISBN</label>
+                    <input type="text" id="isbn" name="isbn" required
+                           class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <input hidden="hidden" name="available" value="true">
+                <button type="submit"
+                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Ajouter le livre
+                </button>
+            </form>
+        </div>
+
+        <div class="bg-white mt-6 p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Livres</h2>
+            <table class="min-w-full bg-white">
+                <thead>
+                <tr>
+                    <th class="py-2 px-4 border-b">ISBN</th>
+                    <th class="py-2 px-4 border-b">Titre</th>
+                    <th class="py-2 px-4 border-b">Autheur</th>
+                    <th class="py-2 px-4 border-b">Date de publication</th>
+                    <th class="py-2 px-4 border-b">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="book : ${books.content()}">
+                    <td th:text="${book.isbn}" class="py-2 px-4 border-b"></td>
+                    <td th:text="${book.title}" class="py-2 px-4 border-b"></td>
+                    <td th:text="${book.author}" class="py-2 px-4 border-b"></td>
+                    <td th:text="${#temporals.format(book.publicationDate, 'dd/MM/yyyy')}" class="py-2 px-4 border-b"></td>
+                    <td class="py-2 px-4 border-b">
+                        <button
+                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-xs"
+                                th:data-isbn="${book.isbn}"
+                                onclick="removeBook(this.getAttribute('data-isbn'))"
+                        >
+                            Supprimer
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="bg-white mt-6 p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Emprunts en cours</h2>
+            <table class="min-w-full bg-white">
+                <thead>
+                <tr>
+                    <th class="py-2 px-4 border-b">Titre</th>
+                    <th class="py-2 px-4 border-b">Emprunteur</th>
+                    <th class="py-2 px-4 border-b">Date d'emprunt</th>
+                    <th class="py-2 px-4 border-b">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="borrowing : ${borrowings.content()}">
+                    <td th:text="${borrowing.book.title}" class="py-2 px-4 border-b"></td>
+                    <td th:text="${borrowing.customer.name}" class="py-2 px-4 border-b"></td>
+                    <td th:text="${#temporals.format(borrowing.borrowingDate, 'dd/MM/yyyy')}" class="py-2 px-4 border-b"></td>
+                    <td class="py-2 px-4 border-b">
+                        <button
+                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-xs"
+                                th:data-uuid="${borrowing.uuid()}"
+                                onclick="forceReturnBook(this.getAttribute('data-uuid'))"
+                        >
+                            Terminer l'emprunt
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer th:replace="fragments/footer :: footer"></footer>
+
+    <div th:replace="fragments/imports :: imports"></div>
+    <script th:src="@{/js/administrator/administrator-dashboards.js}"></script>
+</body>
+</html>
+

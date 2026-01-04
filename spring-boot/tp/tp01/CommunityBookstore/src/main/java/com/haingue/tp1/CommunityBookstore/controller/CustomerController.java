@@ -26,8 +26,8 @@ public class CustomerController {
 
     @GetMapping("/books")
     private String showAllCustomerBooks(@RequestParam(required = false) UUID customerId, Model model) {
-        model.addAttribute("books", borrowingService.getUserBorrowings(customerId, 0, 10));
-        return "customer/books";
+        model.addAttribute("borrowingBooks", borrowingService.getUserBorrowings(customerId, 0, 10));
+        return "views/customer/borrowed-books";
     }
 
     @PostMapping("/books/return")

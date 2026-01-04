@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+</head>
+<body class="bg-gray-100">
+  <header th:replace="fragments/header :: ${true} ? 'header' : 'header-connected'"></header>
+
+  <div th:if="${errorMessage}">
+    <div th:replace="fragments/alert :: alert (type='danger', message=${errorMessage})"></div>
+  </div>
+
+  <main class="p-12">
+
+    <div class="text-center">
+      <h1 class="text-4xl font-bold text-gray-800 mb-4">
+        Bienvenue à la <span class="text-blue-600">Bibliothèque Communautaire</span>
+      </h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Découvrez, empruntez et gérez vos livres en toute simplicité.
+        Que vous soyez un lecteur passionné, un étudiant ou un administrateur,
+        notre plateforme vous permet d'accéder à une collection variée de livres,
+        de suivre vos emprunts et de gérer efficacement votre bibliothèque.
+      </p>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-4">
+        Explorez nos fonctionnalités dès maintenant et plongez dans l'univers de la lecture !
+      </p>
+    </div>
+
+  </main>
+
+  <footer th:replace="fragments/footer :: footer"></footer>
+
+  <div th:replace="fragments/imports :: imports"></div>
+</body>
+</html>

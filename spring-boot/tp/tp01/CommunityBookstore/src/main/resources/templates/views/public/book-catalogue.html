@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Catalogue</title>
+</head>
+<body class="bg-gray-100">
+    <header th:replace="fragments/header :: ${true} ? 'header' : 'header-connected'"></header>
+
+    <div th:if="${errorMessage}">
+        <div th:replace="fragments/alert :: alert (type='danger', message=${errorMessage})"></div>
+    </div>
+
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Livres disponibles</h1>
+
+        <!-- Barre de recherche -->
+        <div class="container mb-6 mx-auto flex items-center justify-between">
+            <form th:action="@{/ui/public/books/catalogue/search}" method="post" class="flex flex-wrap">
+                <label class="flex flex-auto">
+                    <input type="text" placeholder="Rechercher un livre..."
+                           name="searchedTitle"
+                           th:value="${searchedTitle}"
+                           class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                </label>
+                <div class="flex flex-0">
+                    <button type="submit" class="w-full text-white bg-blue box-border border border-transparent hover:bg-blue-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">🔍</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Liste des livres -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div th:each="book : ${books}" class="bg-white p-4 rounded-lg shadow-md">
+                <h2 th:text="${book.title}" class="text-xl font-semibold text-gray-800 mb-2"></h2>
+                <p th:text="'Auteur : ' + ${book.author}" class="text-gray-600 mb-2"></p>
+                <p th:text="'Année : ' + ${book.publicationDate}" class="text-gray-600 mb-4"></p>
+                <button th:if="${book.available}"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Emprunter
+                </button>
+                <button th:unless="${book.available}"
+                        class="bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded cursor-not-allowed" disabled>
+                    Indisponible
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="fragments/footer :: footer"></footer>
+
+    <div th:replace="fragments/imports :: imports"></div>
+    <script th:src="@{/js/public/book-catalogue.js}"></script>
+</body>
+</html>

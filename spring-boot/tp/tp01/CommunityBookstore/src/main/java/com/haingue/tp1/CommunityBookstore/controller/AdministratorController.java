@@ -1,6 +1,7 @@
 package com.haingue.tp1.CommunityBookstore.controller;
 
 import com.haingue.tp1.CommunityBookstore.dto.BookDto;
+import com.haingue.tp1.CommunityBookstore.dto.BorrowingDto;
 import com.haingue.tp1.CommunityBookstore.service.BorrowingService;
 import com.haingue.tp1.CommunityBookstore.service.crud.BookService;
 import org.springframework.stereotype.Controller;
@@ -23,12 +24,24 @@ public class AdministratorController {
     public String administratorHomePage (Model model) {
         model.addAttribute("books", bookService.getAll(0, 50));
         model.addAttribute("borrowings", borrowingService.getBorrowings(0, 50));
-        return "administrator/administrator-dashboard";
+        return "views/administrator/administrator-dashboard";
     }
 
     @PostMapping("/books/add")
     public String addNewBook (@ModelAttribute BookDto newBookDto, Model model) {
         bookService.create(newBookDto);
+        return "redirect:/ui/administrator/dashboard";
+    }
+
+    @PostMapping("/books/remove")
+    public String removeNewBook (@ModelAttribute BookDto bookDto, Model model) {
+        bookService.delete(bookDto.isbn());
+        return "redirect:/ui/administrator/dashboard";
+    }
+
+    @PostMapping("/books/return")
+    public String removeNewBook (@ModelAttribute BorrowingDto borrowingBook, Model model) {
+        borrowingService.returnBook(borrowingBook.uuid());
         return "redirect:/ui/administrator/dashboard";
     }
 

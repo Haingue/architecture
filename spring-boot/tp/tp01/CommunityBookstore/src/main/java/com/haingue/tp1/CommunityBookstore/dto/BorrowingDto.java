@@ -9,4 +9,8 @@ public record BorrowingDto (
     BookDto book,
     Instant borrowingDate,
     Instant returnDate
-) {}
+) {
+    public boolean isReturned() {
+        return returnDate != null && returnDate.isBefore(Instant.now());
+    }
+}

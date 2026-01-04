@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <title>Community Bookstore - Home</title>
+    <title>Community Bookstore - Index</title>
 </head>
 <body class="bg-gray-100 min-h-screen">
 <div class="container mx-auto px-4 py-12">
@@ -19,7 +18,12 @@
 
     <!-- Navigation principale -->
     <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Lien vers la liste des livres -->
+        <a href="/ui" class="block">
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-2">Home</h2>
+                <p class="text-gray-600">Consultez la page d'accueil.</p>
+            </div>
+        </a>
         <a href="/ui/public/books/catalogue" class="block">
             <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-2">Livres disponibles</h2>
@@ -65,5 +69,7 @@
         <p>© 2025 – Bibliothèque Communautaire</p>
     </footer>
 </div>
+
+<div th:replace="fragments/imports :: imports"></div>
 </body>
 </html>

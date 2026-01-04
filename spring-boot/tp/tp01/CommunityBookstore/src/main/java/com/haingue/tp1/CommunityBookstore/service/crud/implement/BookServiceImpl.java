@@ -3,6 +3,7 @@ package com.haingue.tp1.CommunityBookstore.service.crud.implement;
 import com.haingue.tp1.CommunityBookstore.dto.BookDto;
 import com.haingue.tp1.CommunityBookstore.dto.wrapper.PaginatedResponseDto;
 import com.haingue.tp1.CommunityBookstore.exception.BadRequestException;
+import com.haingue.tp1.CommunityBookstore.exception.BookNotAvailableException;
 import com.haingue.tp1.CommunityBookstore.mapper.BookMapper;
 import com.haingue.tp1.CommunityBookstore.model.Book;
 import com.haingue.tp1.CommunityBookstore.repository.BookRepository;
@@ -54,7 +55,7 @@ public class BookServiceImpl implements BookService {
     public void delete(@Nonnull String isbn) {
         Optional<Book> book = this.bookRepository.findById(isbn);
         if (book.isEmpty()) throw new BadRequestException();
-        if (!book.get().isAvailable()) throw new BadRequestException();
+        if (!book.get().isAvailable()) throw new BookNotAvailableException(isbn);
         this.bookRepository.delete(book.get());
         logger.info("Book deleted: {}", book.get());
     }
