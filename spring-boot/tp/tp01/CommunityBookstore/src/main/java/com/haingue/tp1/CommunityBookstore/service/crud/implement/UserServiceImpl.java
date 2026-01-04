@@ -14,9 +14,14 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -60,6 +65,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDto findFirstByUsername(@Nonnull String username) {
+        return userRepository.findFirstByName(username)
+                .map(UserMapper.INSTANCE::toDto)
+                .orElseThrow(() -> new UsernameNotFoundException(username));
+    }
+
+    @Override
     public void delete(UUID uuid) {
         this.userRepository.deleteById(uuid);
         logger.info("User deleted: {}", uuid);
@@ -69,5 +81,16 @@ public class UserServiceImpl implements UserService {
     public PaginatedResponseDto<UserDto> findAll(int pageNumber, int pageSize) {
         Page<User> results = userRepository.findAll(PageRequest.of(pageNumber, pageSize));
         return PaginatedResponseDto.toPaginatedDto(results, UserMapper.INSTANCE::toDto);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findFirstByName(username)
+                .orElseThrow(() -> new UsernameNotFoundException(username));
+        return new org.springframework.security.core.userdetails.User(
+                user.getName(),
+                user.getPassword(),
+                Collections.singleton(new SimpleGrantedAuthority(user.getRole().name()))
+        );
     }
 }

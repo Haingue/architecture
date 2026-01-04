@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Connexion</title>
@@ -13,7 +13,7 @@
 
   <main class="p-12">
 
-    <form th:action="@{/login}" method="post" class="space-y-4">
+    <form th:action="@{/ui/login}" method="post" class="space-y-4">
       <div>
         <label for="username" class="block text-gray-700 font-bold mb-2">Nom d'utilisateur</label>
         <input type="text" id="username" name="username" required

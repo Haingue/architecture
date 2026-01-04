@@ -4,7 +4,7 @@ INSERT INTO book (isbn, title, author, publication_date, available) VALUES ('978
 
 DELETE FROM "user" WHERE uuid in ('468103a7-23de-4d94-87ab-8e7af0e3a553', 'b609a0dd-ecf4-4db0-9882-26798a7cf37f');
 INSERT INTO "user" (uuid, name, email, password, role) VALUES
-                                         ('468103a7-23de-4d94-87ab-8e7af0e3a553', 'Jean Dupont', 'jean.dupont@example.com', 'azerty', 'ADMINISTRATOR'),
-                                         ('b609a0dd-ecf4-4db0-9882-26798a7cf37f', 'Marie Martin', 'marie.martin@example.com', 'azerty', 'CUSTOMER');
+                                         ('468103a7-23de-4d94-87ab-8e7af0e3a553', 'Jean Dupont', 'jean.dupont@example.com', '{noop}azerty', 'ADMINISTRATOR'),
+                                         ('b609a0dd-ecf4-4db0-9882-26798a7cf37f', 'Marie Martin', 'marie.martin@example.com', '{noop}azerty', 'CUSTOMER');
 
 INSERT INTO borrowing (uuid, borrowing_date, return_date, book_isbn, customer_uuid) VALUES ('5b38df0b-c90b-4469-a220-c7febaabc395', '2026-01-01', null, 9783140464079, '468103a7-23de-4d94-87ab-8e7af0e3a553');

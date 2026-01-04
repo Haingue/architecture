@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Headers</title>
@@ -15,7 +15,8 @@
             </a>
 
             <div class="flex space-x-4">
-                <a href="/books" class="p-4 hover:underline hover:bg-blue-800">Connexion</a>
+                <a sec:authorize="isAuthenticated()" href="/ui/logout" class="p-4 hover:underline hover:bg-blue-800">Déconnexion</a>
+                <a sec:authorize="isAnonymous()" href="/ui/login" class="p-4 hover:underline hover:bg-blue-800">Connexion</a>
             </div>
         </div>
 
