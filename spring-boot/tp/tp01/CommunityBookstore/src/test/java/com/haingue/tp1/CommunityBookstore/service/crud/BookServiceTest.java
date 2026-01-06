@@ -3,6 +3,7 @@ package com.haingue.tp1.CommunityBookstore.service.crud;
 import com.haingue.tp1.CommunityBookstore.dto.BookDto;
 import com.haingue.tp1.CommunityBookstore.dto.wrapper.PaginatedResponseDto;
 import com.haingue.tp1.CommunityBookstore.exception.BadRequestException;
+import com.haingue.tp1.CommunityBookstore.exception.BookNotAvailableException;
 import com.haingue.tp1.CommunityBookstore.mapper.BookMapper;
 import com.haingue.tp1.CommunityBookstore.model.Book;
 import com.haingue.tp1.CommunityBookstore.repository.BookRepository;
@@ -118,7 +119,7 @@ class BookServiceTest {
         Book book = new Book(isbn, "Title", "Author", LocalDate.now(), false);
         when(bookRepository.findById(isbn)).thenReturn(Optional.of(book));
 
-        assertThrows(BadRequestException.class, () -> bookService.delete(isbn));
+        assertThrows(BookNotAvailableException.class, () -> bookService.delete(isbn));
     }
 
     @Test

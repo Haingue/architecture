@@ -90,7 +90,10 @@ public class UserServiceImpl implements UserService {
         return new org.springframework.security.core.userdetails.User(
                 user.getName(),
                 user.getPassword(),
-                Collections.singleton(new SimpleGrantedAuthority(user.getRole().name()))
+                List.of(
+                        new SimpleGrantedAuthority("ANOTHER_AUTHORITY"),
+                        new SimpleGrantedAuthority(user.getRole().name())
+                )
         );
     }
 }

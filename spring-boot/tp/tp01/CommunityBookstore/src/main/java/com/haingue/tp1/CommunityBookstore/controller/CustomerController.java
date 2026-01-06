@@ -8,6 +8,7 @@ import com.haingue.tp1.CommunityBookstore.dto.UserDto;
 import com.haingue.tp1.CommunityBookstore.service.BorrowingService;
 import com.haingue.tp1.CommunityBookstore.service.crud.BookService;
 import com.haingue.tp1.CommunityBookstore.service.crud.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -44,6 +45,7 @@ public class CustomerController {
     }
 
     @PostMapping("/books/borrowing")
+    @PreAuthorize("USER")
     public String borrowingBookPage (@ModelAttribute BorrowingRequestDto borrowingRequestDto, Model model) {
         borrowingService.borrowBook(borrowingRequestDto.bookIsbn(), borrowingRequestDto.customerUuid());
         return "redirect:/ui/public/books/catalogue";

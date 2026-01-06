@@ -7,6 +7,7 @@ import com.haingue.tp1.CommunityBookstore.service.crud.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/ui/administrator")
@@ -28,8 +29,13 @@ public class AdministratorController {
     }
 
     @PostMapping("/books/add")
-    public String addNewBook (@ModelAttribute BookDto newBookDto, Model model) {
-        bookService.create(newBookDto);
+    public String addNewBook (@ModelAttribute BookDto newBookDto, RedirectAttributes redirectAttributes) {
+        try {
+            bookService.create(newBookDto);
+            redirectAttributes.addFlashAttribute("errorMessage", "Success");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Error to save book: "+e.getMessage());
+        }
         return "redirect:/ui/administrator/dashboard";
     }
 

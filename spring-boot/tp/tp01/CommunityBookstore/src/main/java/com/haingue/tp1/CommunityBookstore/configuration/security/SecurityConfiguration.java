@@ -37,7 +37,8 @@ public class SecurityConfiguration {
                 "bcrypt", encoders);
         passworEncoder.setDefaultPasswordEncoderForMatches(defaultEncoder);
 
-        return passworEncoder;    }
+        return passworEncoder;
+    }
 
     /** Configure SpringSecurity filter chain **/
     @Bean

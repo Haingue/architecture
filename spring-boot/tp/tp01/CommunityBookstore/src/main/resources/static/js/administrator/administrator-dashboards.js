@@ -15,7 +15,9 @@ function removeBook (bookIsbn) {
     })
     .then(response => {
         if (response.ok) {
-            window.location.reload()
+            const tboby = document.getElementById(`books-tbody`)
+            const line = document.getElementById(`line-${bookIsbn}`)
+            tboby.removeChild(line)
             return
         }
         return response.json()

@@ -229,7 +229,7 @@ class BorrowingServiceImplTest {
     public void shouldGetBorrowings_Success() {
         // Arrange
         Page<Borrowing> borrowings = new PageImpl<>(Collections.singletonList(new Borrowing()));
-        when(borrowingRepository.findAll(any(PageRequest.class))).thenReturn(borrowings);
+        when(borrowingRepository.findAllByReturnDateIsNullOrderByBorrowingDate(any(PageRequest.class))).thenReturn(borrowings);
 
         // Act
         PaginatedResponseDto<BorrowingDto> result = borrowingService.getBorrowings(0, 5);

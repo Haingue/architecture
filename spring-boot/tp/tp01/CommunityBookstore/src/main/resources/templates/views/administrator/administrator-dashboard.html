@@ -5,7 +5,9 @@
     <title>Admin</title>
 </head>
 <body class="bg-gray-100">
-    <header th:replace="fragments/header :: ${true} ? 'header' : 'header-connected'"></header>
+    <header th:replace="fragments/header :: header"></header>
+
+    <span th:text="${errorMessage}"></span>
 
     <div th:if="${errorMessage}">
         <div th:replace="fragments/alert :: alert (type='danger', message=${errorMessage})"></div>
@@ -45,30 +47,30 @@
             <h2 class="text-xl font-semibold text-gray-800 mb-4">Livres</h2>
             <table class="min-w-full bg-white">
                 <thead>
-                <tr>
-                    <th class="py-2 px-4 border-b">ISBN</th>
-                    <th class="py-2 px-4 border-b">Titre</th>
-                    <th class="py-2 px-4 border-b">Autheur</th>
-                    <th class="py-2 px-4 border-b">Date de publication</th>
-                    <th class="py-2 px-4 border-b">Actions</th>
-                </tr>
+                    <tr>
+                        <th class="py-2 px-4 border-b">ISBN</th>
+                        <th class="py-2 px-4 border-b">Titre</th>
+                        <th class="py-2 px-4 border-b">Autheur</th>
+                        <th class="py-2 px-4 border-b">Date de publication</th>
+                        <th class="py-2 px-4 border-b">Actions</th>
+                    </tr>
                 </thead>
-                <tbody>
-                <tr th:each="book : ${books.content()}">
-                    <td th:text="${book.isbn}" class="py-2 px-4 border-b"></td>
-                    <td th:text="${book.title}" class="py-2 px-4 border-b"></td>
-                    <td th:text="${book.author}" class="py-2 px-4 border-b"></td>
-                    <td th:text="${#temporals.format(book.publicationDate, 'dd/MM/yyyy')}" class="py-2 px-4 border-b"></td>
-                    <td class="py-2 px-4 border-b">
-                        <button
-                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-xs"
-                                th:data-isbn="${book.isbn}"
-                                onclick="removeBook(this.getAttribute('data-isbn'))"
-                        >
-                            Supprimer
-                        </button>
-                    </td>
-                </tr>
+                <tbody id="books-tbody">
+                    <tr th:id="|line-${book.isbn}|" th:each="book : ${books.content()}">
+                        <td th:text="${book.isbn}" class="py-2 px-4 border-b"></td>
+                        <td th:text="${book.title}" class="py-2 px-4 border-b"></td>
+                        <td th:text="${book.author}" class="py-2 px-4 border-b"></td>
+                        <td th:text="${#temporals.format(book.publicationDate, 'dd/MM/yyyy')}" class="py-2 px-4 border-b"></td>
+                        <td class="py-2 px-4 border-b">
+                            <button
+                                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-xs"
+                                    th:data-isbn="${book.isbn}"
+                                    onclick="removeBook(this.getAttribute('data-isbn'))"
+                            >
+                                Supprimer
+                            </button>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

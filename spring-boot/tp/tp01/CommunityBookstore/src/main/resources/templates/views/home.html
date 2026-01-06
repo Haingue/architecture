@@ -5,7 +5,7 @@
   <title>Home</title>
 </head>
 <body class="bg-gray-100">
-  <header th:replace="fragments/header :: ${true} ? 'header' : 'header-connected'"></header>
+  <header th:replace="fragments/header :: header"></header>
 
   <div th:if="${errorMessage}">
     <div th:replace="fragments/alert :: alert (type='danger', message=${errorMessage})"></div>
@@ -33,5 +33,6 @@
   <footer th:replace="fragments/footer :: footer"></footer>
 
   <div th:replace="fragments/imports :: imports"></div>
+
 </body>
 </html>

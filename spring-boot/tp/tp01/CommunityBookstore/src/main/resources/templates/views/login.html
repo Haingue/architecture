@@ -7,8 +7,9 @@
 <body class="bg-gray-100">
   <header th:replace="fragments/header :: ${true} ? 'header' : 'header-connected'"></header>
 
-  <div th:if="${errorMessage}">
-    <div th:replace="fragments/alert :: alert (type='danger', message=${errorMessage})"></div>
+  <div th:if="${param.errorMessage}">
+    <span th:text="${param.errorMessage}"></span>
+    <!--<div th:replace="fragments/alert :: alert (type='danger', message=${param.errorMessage})"></div>-->
   </div>
 
   <main class="p-12">
