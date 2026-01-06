@@ -8,28 +8,29 @@ Projet centralisant tous les supports pour le cours d'intégration de service (a
 
 ## Getting Started
 ## Gestion de projet
-- [Architecture moderne](./Architectures%20modernes.md)
-- [Gestion de projet informatique](./Gestion%20de%20projet%20informatique.md)
+- [Architecture moderne](./architecture/Architectures%20modernes.md)
+- [Gestion de projet informatique](./project-design/Gestion%20de%20projet%20informatique.md)
 
 ### Docker
 - [Cours Docker](./docker/INTES%20Cours%20-%20Docker.md)
-- [TP Docker](./docker/INTES%20TP%20-%20Docker.md)
+- [TP Docker](./docker/tp/tp01/INTES%20TP%20-%20Docker.md)
 
 ### Spring Boot
 - [Cours Spring Boot](./spring-boot/INTES%20Cours%20-%20Spring%20Boot.md)
 - TP
-    - [TP Spring Boot StoreA](./spring-boot/INTES%20TP%20-%20Spring%20Boot%20StoreA.md)
-    - [TP Spring Boot PartService](./spring-boot/INTES%20TP%20-%20Spring%20Boot%20PartService.md)
+    - [TP Spring Boot StoreA](./spring-boot/tp/tp_archives/INTES%20TP%20-%20Spring%20Boot%20StoreA.md)
+    - [TP Spring Boot PartService](./spring-boot/tp/tp02/INTES%20TP%20-%20Spring%20Boot%20PartService.md)
+    - [TP Spring Boot JobOfferService](./spring-boot/tp/tp03/INTES%20TP%20-%20Spring%20Boot%202025-2026%20JobOfferService.md)
 
 ### NestJs
 - [Cours NestJs](./nestjs/INTES%20Cours%20-%20NestJS.md)
 - TP
-    - [TP NestJs StoreB](./nestjs/INTES%20TP%20-%20NestJS%20StoreB.md)
-    - [TP NestJs SupplierService](./nestjs/INTES%20TP%20-%20NestJS%20SupplierService.md)
+    - [TP NestJs StoreB](./nestjs/tp/tp_archives/INTES%20TP%20-%20NestJS%20StoreB.md)
+    - [TP NestJs SupplierService](./nestjs/tp/tp02/INTES%20TP%20-%20NestJS%20SupplierService.md)
 
 ### Monitoring
 - [Cours monitoring)](./monitoring/INTES%20Cours%20-%20Monitoring.md)
-- [TP Prometheus/Grafana/AlertManager](./monitoring/INTES%20TP%20-%20Monitoring.md)
+- [TP Prometheus/Grafana/AlertManager](./monitoring/tp/tp01/INTES%20TP%20-%20Monitoring.md)
 
 ## Tools
 - Git
@@ -43,7 +44,9 @@ Projet centralisant tous les supports pour le cours d'intégration de service (a
 - Interface de base de données
     - [Motor Admin](https://www.getmotoradmin.com/)
     - [Adminer](https://www.adminer.org/)
-- [Marp](https://marp.app/): outil pour générer un présentation à partir d'un markdown
+- Support de cours
+  - [Marp](https://marp.app/): outil pour générer un présentation à partir d'un markdown
+  - [Slidev](https://sli.dev/): outil pour générer un présentation à partir d'un markdown et Vue.js
 
 <br>
 
@@ -74,6 +77,11 @@ Créez une issue directement depuis GitHub.
 - 0.4
     - Nouvelle version pour 2024 - 2025
       - Ajout des supports liès à la gestion de projet
+- 0.5
+    - Nouvelle version pour 2025 - 2026
+      - Refactoring des dossier
+      - Ajouts du support de cours pour Java
+      - Migration de Marp vers Slidev
 
 <br>
 

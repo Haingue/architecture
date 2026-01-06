@@ -1,5 +1,20 @@
 # Agenda
 
+| Jour  | Demi-journée  | Sujet                              | Salle |
+| :---: | :---:         | :---                               | :---: |
+|  J1   | matin         | Architecture et Gestion de projet  | -     |
+|  J1   | après-midi    | Spring Boot (Cours + TP)           | -     |
+|  J2   | matin         | Spring Boot (TP)                   | -     |
+|  J2   | après-midi    | Spring Boot  (TP)                  | -     |
+|  J3   | matin         | Docker  (Cours + TP)               | -     |
+|  J3   | matin         | NestJS (Cours)                     | -     |
+|  J4   | après-midi    | NestJS (TP)                        | -     |
+|  J4   | matin         | Monitoring (Cours + TP)            | -     |
+|  J5   | matin         | Contrôle TP                        | -     |
+
+
+## 2025 - 2026
+
 ## 2024 - 2025
 
 | Jour  | Demi-journée  | Sujet                              | Salle |
