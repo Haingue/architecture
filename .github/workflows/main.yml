@@ -30,30 +30,30 @@ jobs:
 
       - name: Install dependencies
         run: nci
-        working-directory: Support_Cours
+        working-directory: slide-decks
 
       - name: Install playwright
         run: pnpm exec playwright install
-        working-directory: Support_Cours
+        working-directory: slide-decks
 
       - name: Build
         run: nr build --base /${{github.event.repository.name}}/
-        working-directory: Support_Cours
+        working-directory: slide-decks
 
       - name: Build Spring Boot
         run: nr build-spring_boot --base /${{github.event.repository.name}}/spring-boot/
-        working-directory: Support_Cours
+        working-directory: slide-decks
 
       - name: Build Nestjs
         run: nr build-nestjs --base /${{github.event.repository.name}}/nestjs/
-        working-directory: Support_Cours
+        working-directory: slide-decks
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: Support_Cours/dist
+          path: slide-decks/dist
 
   deploy:
     environment:
