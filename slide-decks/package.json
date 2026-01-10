@@ -16,6 +16,8 @@
     "build-java": "slidev build -d -o dist/java course_java.md",
     "build-spring_boot": "slidev build -d -o dist/spring-boot course_spring-boot.md",
     "build-nestjs": "slidev build -d -o dist/nestjs course_nestjs.md",
+    "build-reactjs": "slidev build -d -o dist/reactjs course_reactjs.md",
+    "build-vuejs": "slidev build -d -o dist/vuejs course_vuejs.md",
     "build-docker": "slidev build -d -o dist/docker course_docker.md",
     "build-monitoring": "slidev build -d -o dist/monitoring course_monitoring.md",
     "export": "slidev export"
