@@ -11,7 +11,7 @@ const props = defineProps({
     default: 'Chapter title',
   },
   subject: {
-    default: 'INTES',
+    default: 'Architecture & Réalisation WEB',
   },
   years: {
     default: `${new Date().getUTCFullYear()}-${new Date().getUTCFullYear()+1}`,
