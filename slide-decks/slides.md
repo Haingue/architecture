@@ -21,7 +21,7 @@ download: true
 ---
 title: Conception de projet informatique
 subject: Conception de projet informatique
-src: ./pages/project_design/index.md
+src: ./project_design.md
 ---
 
 <Cover title="Conception de projet informatique" />
@@ -29,14 +29,14 @@ src: ./pages/project_design/index.md
 ---
 title: Java
 subject: Formation Java
-src: ./pages/java/index.md
+src: ./java.md
 ---
 
 <Cover title="Java" />
 
 ---
 title: Spring Boot
-src: ./pages/spring_boot/index.md
+src: ./spring_boot.md
 ---
 
 <Cover title="Spring Boot" />
@@ -49,23 +49,29 @@ title: JavaScript
 
 ---
 title: NestJs
-src: ./pages/nestjs/index.md
+src: ./nestjs.md
 ---
 
 <Cover title="NestJs" />
 
 ---
 title: Docker
-src: ./pages/docker/index.md
+src: ./docker.md
 ---
 
 <Cover title="Docker" />
 
 ---
-title: ReactJs
+title: React.js
 ---
 
-<Cover title="ReactJs" />
+<Cover title="React.js" />
+
+---
+title: Vue.js
+---
+
+<Cover title="Vue.js" />
 
 ---
 title: Architecture modernes

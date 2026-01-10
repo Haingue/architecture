@@ -5,6 +5,17 @@
   "scripts": {
     "build": "slidev build",
     "dev": "slidev --open",
+    "slidev": "slidev",
+    "project_design": "slidev --open project_design.md",
+    "java": "slidev --open java.md",
+    "spring_boot": "slidev --open spring_boot.md",
+    "nestjs": "slidev --open nestjs.md",
+    "docker": "slidev --open docker.md",
+    "build-project_design": "slidev build -o dist/project-design project_design.md",
+    "build-java": "slidev build -d -o dist/java java.md",
+    "build-spring_boot": "slidev build -d -o dist/spring-boot spring_boot.md",
+    "build-nestjs": "slidev build -d -o dist/nestjs nestjs.md",
+    "build-docker": "slidev build -d -o dist/docker docker.md",
     "export": "slidev export"
   },
   "slidev": {

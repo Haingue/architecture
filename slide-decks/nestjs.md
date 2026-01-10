@@ -1,5 +1,5 @@
 ---
-theme: seriph
+theme: default
 title: Formation NestJs
 class: text-center
 drawings:
@@ -9,6 +9,7 @@ mdc: true
 seoMeta:
   ogImage: auto
 plantUmlServer: https://www.plantuml.com/plantuml
+download: true
 layout: cover
 level: 1
 ---

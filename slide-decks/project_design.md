@@ -1,5 +1,5 @@
 ---
-theme: seriph
+theme: default
 title: Conception de projet informatique
 class: text-center
 drawings:
@@ -9,7 +9,9 @@ mdc: true
 seoMeta:
   ogImage: auto
 plantUmlServer: https://www.plantuml.com/plantuml
+download: true
 layout: cover
+level: 1
 ---
 
 <Cover title="Conception de projet informatique" logoUrl="/images/project-managment.png" />
