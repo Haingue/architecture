@@ -40,12 +40,29 @@ jobs:
         run: nr build --base /${{github.event.repository.name}}/
         working-directory: slide-decks
 
-      - name: Build Spring Boot
+      - name: Build Project design course
+        run: nr build-project_design --base /${{github.event.repository.name}}/project-design/
+        working-directory: slide-decks
+      - name: Build Java course
+        run: nr build-java --base /${{github.event.repository.name}}/java/
+        working-directory: slide-decks
+      - name: Build Spring Boot course
         run: nr build-spring_boot --base /${{github.event.repository.name}}/spring-boot/
         working-directory: slide-decks
-
-      - name: Build Nestjs
+      - name: Build Nestjs course
         run: nr build-nestjs --base /${{github.event.repository.name}}/nestjs/
+        working-directory: slide-decks
+      - name: Build Docker course
+        run: nr build-docker --base /${{github.event.repository.name}}/docker/
+        working-directory: slide-decks
+      - name: Build Vuejs course
+        run: nr build-vuejs --base /${{github.event.repository.name}}/vuejs/
+        working-directory: slide-decks
+      - name: Build Reactjs course
+        run: nr build-reactjs --base /${{github.event.repository.name}}/reactjs/
+        working-directory: slide-decks
+      - name: Build Monitoring course
+        run: nr build-monitoring --base /${{github.event.repository.name}}/monitoring/
         working-directory: slide-decks
 
       - name: Setup Pages
