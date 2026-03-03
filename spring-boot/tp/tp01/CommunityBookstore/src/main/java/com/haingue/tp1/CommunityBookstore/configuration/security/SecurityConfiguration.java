@@ -1,8 +1,11 @@
 package com.haingue.tp1.CommunityBookstore.configuration.security;
 
+import jakarta.servlet.Filter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -14,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -25,6 +29,12 @@ import java.util.Map;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
+
+    private final Filter jwtFilter;
+
+    public SecurityConfiguration(Filter jwtFilter) {
+        this.jwtFilter = jwtFilter;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -40,6 +50,11 @@ public class SecurityConfiguration {
         return passworEncoder;
     }
 
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
+
     /** Configure SpringSecurity filter chain **/
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -47,6 +62,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests((requests) ->
                         requests
                             .requestMatchers("/", "/api-docs/**","/swagger-ui/**", "/h2-console**").permitAll()
+                            .requestMatchers("/service/auth").permitAll()
                             .requestMatchers(HttpMethod.GET, "/service/**").permitAll()
                             .requestMatchers("/service/**").authenticated()
                             .requestMatchers("/ui", "/ui/public/**").permitAll()
@@ -70,6 +86,10 @@ public class SecurityConfiguration {
                 })
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()));
+
+        http
+                .addFilterAfter(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 
