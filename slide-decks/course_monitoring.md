@@ -88,14 +88,20 @@ layout: chapter_title
 level: 2
 ---
 
-## Ce que vous allez apprendre aujourd’hui
+<h2 class="font-bold">Ce que vous allez apprendre aujourd’hui</h2>
 
 - Principes
 - Métriques clés : « Quelles données surveiller ? (Latence, throughput, erreurs…). »
-- Outils : « Prometheus, Grafana, Spring Boot Actuator, ELK Stack. »
+- Mise en place : « Prometheus, Grafana, Spring Boot Actuator, ELK Stack. »
+- Sujet du TP
+
+<!--
+- Principes
+- Métriques clés : « Quelles données surveiller ? (Latence, throughput, erreurs…). »
+- Mise en place : « Prometheus, Grafana, Spring Boot Actuator, ELK Stack. »
 - Alertes : « Comment configurer des seuils pertinents ? »
 - Cas pratiques : « Debugger une panne en live. »
-
+-->
 
 ---
 title: Principes
@@ -103,57 +109,21 @@ layout: chapter_title
 level: 2
 ---
 
-::left::
-
-- Supervision
-  - Etat actuel
-  - Alertes
-
-::right::
-
-- Métrologie
-  - Historique de mesure
-
 <!--
-
 « Le monitoring, ce n’est pas juste “regarder des graphiques”. C’est : »
-
 -->
 
+<MonitoringPrincipes />
 
 ---
-title: Les mesure clés 
+title: Les mesures clés 
 layout: chapter_title
 level: 2
 ---
 
 ::top::
 
-- Latence
-- Nombre d'erreur
-- Trafique
-- Saturation
-
-::bottom::
-
-<v-switch>
-  <template #1>
-  S1 -> s2 -> S3
-  Latence
-  </template>
-  <template #2>
-Nombre d'erreur
-  S1 -> s2 -> S3
-  </template>
-  <template #3>
-  S1 -> s2 -> S3
-Trafique
-  </template>
-  <template #4>
-  S1 -> s2 -> S3
-Saturation
-  </template>
-</v-switch>
+<MonitoringGoldenSignals />
 
 ---
 title: Methodologie 
@@ -161,16 +131,17 @@ layout: chapter_subtitle
 level: 3
 ---
 
-# DevOPS
-
 <v-switch>
   <template #1>
-    <img class="m-auto h-80" src="/images/devops.svg" />
+    <MonitoringMethodology />
   </template>
   <template #2>
-    <img class="m-auto h-80" src="/images/devops-technologies-ex.png" />
+    <MonitoringMethodologyDevOps />
   </template>
   <template #3>
+    <img class="m-auto h-80" src="/images/devops-technologies-ex.png" />
+  </template>
+  <template #4>
     <img class="m-auto h-80" src="/images/devops-technologies.jpeg" />
   </template>
 </v-switch>
@@ -184,64 +155,144 @@ level: 3
 <v-switch>
   <template #1>
 
-  Mauvais monitoring
-  - Liste complètes
-  - Valeurs incohérentes
-  - valeurs non significatives
+  <BadMonitoringExample />
 
   </template>
   <template #2>
 
-  Bon monitoring
-  - Mise en avant d'éléments
-  - Icône simple
+  <div>
+    <div class="mt-8 p-4 rounded-lg text-sm">
+      <h2 class="font-bold mb-2 text-red-600">❌ Pourquoi ce monitoring est mauvais ?</h2>
+      <ul class="list-disc pl-5 space-y-1">
+        <li><strong>Pas de légende</strong> : Les unités ("K", "%") sont ambiguës.</li>
+        <li><strong>Mélange des statuts</strong> : Alertes critiques (🚨) et normales (✅) côte à côte sans hiérarchie.</li>
+        <li><strong>Valeurs incompréhensibles</strong> : "4.2K" pour la mémoire ? "0.005K" erreurs ?</li>
+        <li><strong>Surcharge visuelle</strong> : Trop de métriques non priorisées.</li>
+        <li><strong>Pas de contexte</strong> : On ne sait pas ce que signifie "sys-prod-db-03-eu-west".</li>
+      </ul>
+    </div>
+  </div>
+  <div>
+    <!-- Exemple de bonne pratique (optionnel, pour contraste) -->
+    <div class="mt-6 p-3 rounded-lg text-center text-green-600 text-xs">
+      ➡️ À la place, un bon monitoring devrait :
+      <br />
+      <strong>1. Clarifier les unités</strong> | <strong>2. Séparer les alertes critiques</strong> | <strong>3. Donner du contexte</strong> | <strong>4. Prioriser l'information</strong>
+    </div>
+  </div>
 
   </template>
   <template #3>
 
-  Monitoring détaillé
-  - Adapté à la technologie
-  - Fait par et pour les experts
+  <GoodMonitoringExample/>
 
+  </template>
+  <template #4>
+  <div class="m-6 p-4 bg-blue-50 rounded-lg">
+    <h2 class="font-bold text-blue-800 mb-2">✅ Pourquoi ce monitoring est efficace ?</h2>
+    <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+      <li><strong>Icônes météo</strong> : Statut visuel immédiat (☀️/⛅/🌧️/⚡/🌪️).</li>
+      <li><strong>Hiérarchie claire</strong> : Couleurs et bordures pour prioriser.</li>
+      <li><strong>Unités explicites</strong> : "4.2 Go / 16 Go" au lieu de "4.2K".</li>
+      <li><strong>Contexte</strong> : Description du système et localisation.</li>
+      <li><strong>Seuils visuels</strong> : Couleurs pour les valeurs anormales.</li>
+    </ul>
+  </div>
+  </template>
+  <template #5>
+    <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">
+       🔎 Monitoring détailé
+    </h1>
+    <img class="m-auto h-80" src="/images/monitoring-grafana-board.png" />
   </template>
 </v-switch>
 
 ---
-title: Outils
+title: Mise en place
 layout: chapter_title
 level: 2
 ---
 
+<!--
 ## Strategie
 
 - Pull-based
 - Push-based
 
 [voir](https://www.alibabacloud.com/blog/pull-or-push-how-to-select-monitoring-systems_599007#:~:text=The%20Pull%2Dbased%20monitoring%20system,monitored%20objects%20actively%20push%20indicators.)
+-->
+
+<MonitoringToolsOverview />
 
 ---
+title: Strategie de collecte
+layout: chapter_subtitle
+level: 2
+---
+
+<PullVsPushComparison />
+
+---
+title: Strategie de collecte hybride
+layout: chapter_subtitle
+level: 2
+---
+
+<!-- Stratégie hybride -->
+<div class="m-6 p-4 bg-green-50 rounded-lg">
+  <h2 class="font-semibold text-green-800 mb-2 flex items-center">
+    <span class="text-green-500 mr-2 text-xl">🔄📤</span>
+    Stratégie Hybride (Recommandée)
+  </h2>
+  <p class="text-sm text-gray-700">
+    Dans la pratique, la plupart des systèmes modernes <strong>combinent pull et push</strong> :
+  </p>
+  <ul class="list-disc pl-5 mt-2 text-sm text-gray-700">
+    <li>
+      <strong>Pull</strong> pour les métriques système (Prometheus → Kubernetes pods).
+    </li>
+    <li>
+      <strong>Push</strong> pour les logs (Fluentd → ELK) et traces (Jaeger).
+    </li>
+  </ul>
+</div>
+
+---
+title: Étapes
+layout: chapter_subtitle
+level: 2
+---
+
+<MonitoringStrategySteps />
+
+---
+title: Sujet TP
+layout: chapter_title
+level: 2
+---
+
+Mise en place d'un monitoring complet basé sur Prometheus/Grafana/AlertManager pour assurer le bon fonctionnement d'un microservice Spring Boot.
+
+<img class="m-x-auto mt-6 w-xl" src="/images/monitoring-architecture.png" />
+
+<!-- ---
 title: Centralisation des mesures
 layout: chapter_subtitle
 level: 3
----
 
 # Prometheus
 
----
 title: Analyses et alertes
 layout: chapter_subtitle
 level: 3
----
 
 # Alertmanager
 
----
 title: Visualisation
 layout: chapter_subtitle
 level: 3
----
 
-# Grafana
+# Grafana -->
 
 ---
 title: Aller plus loin
